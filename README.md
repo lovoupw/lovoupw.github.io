@@ -10,7 +10,7 @@
   - **Sun Yat-sen University - 132 Waihuan East Rd. - Guangzhou, China**
 - Site
   - **<https://lovoupw.github.io>**
-- [Resume](https://lovou.pw.github.io/resume/resume.pdf)
+- [Resume](https://lovoupw.github.io/resume/resume.pdf)
 
 <!-- .slide vertical=true -->
 
