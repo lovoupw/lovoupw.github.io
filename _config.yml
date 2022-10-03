@@ -1,16 +1,13 @@
 title: 负重前行...@0520.eu.org # 站点标题
 description: | # 头像背后的信息（html格式），<br/>代表换行
-  SYSU第5年<br/>
-  水野爱<br/>
-  田宫例四驱车<br/>
+  负重前行<br/>
+  第三年<br/>
+  该上岸了<br/>
   <a href="mailto:support@0520.eu.org">
     <i class="fa-solid fa-envelope"></i>
   </a>
   <a href="https://github.com/lovoupw">
     <i class="fa-brands fa-github"></i>
-  </a>
-  <a href="https://vjudge.net/user/WuK">
-    <i class="fa-solid fa-smile"></i>
   </a>
   <a href="https://space.bilibili.com/491135347">
     <i class="fa-brands fa-bilibili"></i>
@@ -58,7 +55,7 @@ defaults: # 将所有配置选项使用<https://jekyllrb.com/docs/configuration/
               - title: '<i class="fa-solid fa-tags fa-fw"></i> 标签'
                 href: /tags/
               - title: '<i class="fa-solid fa-coffee fa-fw"></i> 打赏'
-                href: /merger/
+                href: /
             simple_jekyll_search: # 侧边栏的全站搜索
               enable: true
               full_text_search: false # 可能导致缓慢的搜索和加载
@@ -655,7 +652,7 @@ defaults: # 将所有配置选项使用<https://jekyllrb.com/docs/configuration/
             （除特别声明或转载文章外）
             <br/>
             <i class="fa-solid fa-coffee fa-fw"></i>
-            <a href="/merger/">如果这篇博客帮助到你，可以请我喝一杯咖啡~</a>
+            <a href="/">如果这篇博客帮助到你，可以请我喝一杯咖啡~</a>
         merger: # 打赏页，需要配置！
           append_to_head:
             - | # 需要配置的变量见<https://merger.justhx.com/cn/docs/configure>
