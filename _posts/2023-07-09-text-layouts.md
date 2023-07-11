@@ -1,7 +1,7 @@
 ---
 title: 主题布局设计
 tags: TeXt
-show_author_profile: true
+author: 
 
 ---
 
