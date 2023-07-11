@@ -2,6 +2,7 @@
 title: 主题布局设计
 tags: TeXt
 author: lovoupw
+comment: true
 ---
 
 ```mermaid
