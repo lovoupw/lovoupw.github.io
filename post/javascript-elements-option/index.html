@@ -1,0 +1,256 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-附录：网页元素接口-&lt;option&gt; 元素 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1726225545706">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1726225545706" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-附录：网页元素接口-&lt;option&gt; 元素
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#option-%E5%85%83%E7%B4%A0"><code>&lt;option&gt;</code> 元素</a>
+<ul>
+<li><a href="#%E5%B1%9E%E6%80%A7">属性</a></li>
+<li><a href="#option-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">Option() 构造函数</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="option-元素"><code>&lt;option&gt;</code> 元素</h1>
+<p><code>&lt;option&gt;</code>元素表示下拉框（<code>&lt;select&gt;</code>，<code>&lt;optgroup&gt;</code>或<code>&lt;datalist&gt;</code>）里面的一个选项。它是 HTMLOptionElement 接口的实例。</p>
+<h2 id="属性">属性</h2>
+<p>除了继承 HTMLElement 接口的属性和方法，HTMLOptionElement 接口具有下面的属性。</p>
+<!-- more -->
+<ul>
+<li><code>disabled</code>：布尔值，表示该项是否可选择。</li>
+<li><code>defaultSelected</code>：布尔值，表示该项是否默认选中。一旦设为<code>true</code>，该项的值就是<code>&lt;select&gt;</code>的默认值。</li>
+<li><code>form</code>：返回<code>&lt;option&gt;</code>所在的表单元素。如果不属于任何表单，则返回<code>null</code>。该属性只读。</li>
+<li><code>index</code>：整数，表示该选项在整个下拉列表里面的位置。该属性只读。</li>
+<li><code>label</code>：字符串，表示对该选项的说明。如果该属性未设置，则返回该选项的文本内容。</li>
+<li><code>selected</code>：布尔值，表示该选项是否选中。</li>
+<li><code>text</code>：字符串，该选项的文本内容。</li>
+<li><code>value</code>：字符串，该选项的值。表单提交时，上传的就是选中项的这个属性。</li>
+</ul>
+<h2 id="option-构造函数">Option() 构造函数</h2>
+<p>浏览器原生提供<code>Option()</code>构造函数，用来生成 HTMLOptionElement 实例。</p>
+<pre><code class="language-javascript">new Option(text, value, defaultSelected, selected)
+</code></pre>
+<p>它接受四个参数，都是可选的。</p>
+<ul>
+<li>text：字符串，表示该选项的文本内容。如果省略，返回空字符串。</li>
+<li>value：字符串，表示该选项的值。如果省略，默认返回<code>text</code>属性的值。</li>
+<li>defaultSelected：布尔值，表示该项是否默认选中，默认为<code>false</code>。注意，即使设为<code>true</code>，也不代表该项的<code>selected</code>属性为<code>true</code>。</li>
+<li>selected：布尔值，表示该项是否选中，默认为<code>false</code>。</li>
+</ul>
+<pre><code class="language-javascript">var newOption = new Option('hello', 'world', true);
+
+newOption.text // &quot;hello&quot;
+newOption.value // &quot;world&quot;
+newOption.defaultSelected // true
+newOption.selected // false
+</code></pre>
+<p>上面代码中，<code>newOption</code>的<code>defaultSelected</code>属性为<code>true</code>，但是它没有被选中（即<code>selected</code>属性为<code>false</code>）。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-elements-button/" class="post-title gt-a-link">
+                    JavaScript 教程-附录：网页元素接口-&lt;button&gt; 元素
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

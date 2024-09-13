@@ -1,0 +1,400 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-标准库-Number 对象 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1726225545706">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1726225545706" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-标准库-Number 对象
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#number-%E5%AF%B9%E8%B1%A1">Number 对象</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7">静态属性</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95">实例方法</a>
+<ul>
+<li><a href="#numberprototypetostring">Number.prototype.toString()</a></li>
+<li><a href="#numberprototypetofixed">Number.prototype.toFixed()</a></li>
+<li><a href="#numberprototypetoexponential">Number.prototype.toExponential()</a></li>
+<li><a href="#numberprototypetoprecision">Number.prototype.toPrecision()</a></li>
+<li><a href="#numberprototypetolocalestring">Number.prototype.toLocaleString()</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95">自定义方法</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="number-对象">Number 对象</h1>
+<h2 id="概述">概述</h2>
+<p><code>Number</code>对象是数值对应的包装对象，可以作为构造函数使用，也可以作为工具函数使用。</p>
+<p>作为构造函数时，它用于生成值为数值的对象。</p>
+<pre><code class="language-javascript">var n = new Number(1);
+typeof n // &quot;object&quot;
+</code></pre>
+<!-- more -->
+<p>上面代码中，<code>Number</code>对象作为构造函数使用，返回一个值为<code>1</code>的对象。</p>
+<p>作为工具函数时，它可以将任何类型的值转为数值。</p>
+<pre><code class="language-javascript">Number(true) // 1
+</code></pre>
+<p>上面代码将布尔值<code>true</code>转为数值<code>1</code>。<code>Number</code>作为工具函数的用法，详见《数据类型转换》一章。</p>
+<h2 id="静态属性">静态属性</h2>
+<p><code>Number</code>对象拥有以下一些静态属性（即直接定义在<code>Number</code>对象上的属性，而不是定义在实例上的属性）。</p>
+<ul>
+<li><code>Number.POSITIVE_INFINITY</code>：正的无限，指向<code>Infinity</code>。</li>
+<li><code>Number.NEGATIVE_INFINITY</code>：负的无限，指向<code>-Infinity</code>。</li>
+<li><code>Number.NaN</code>：表示非数值，指向<code>NaN</code>。</li>
+<li><code>Number.MIN_VALUE</code>：表示最小的正数（即最接近0的正数，在64位浮点数体系中为<code>5e-324</code>），相应的，最接近0的负数为<code>-Number.MIN_VALUE</code>。</li>
+<li><code>Number.MAX_SAFE_INTEGER</code>：表示能够精确表示的最大整数，即<code>9007199254740991</code>。</li>
+<li><code>Number.MIN_SAFE_INTEGER</code>：表示能够精确表示的最小整数，即<code>-9007199254740991</code>。</li>
+</ul>
+<pre><code class="language-javascript">Number.POSITIVE_INFINITY // Infinity
+Number.NEGATIVE_INFINITY // -Infinity
+Number.NaN // NaN
+
+Number.MAX_VALUE
+// 1.7976931348623157e+308
+Number.MAX_VALUE &lt; Infinity
+// true
+
+Number.MIN_VALUE
+// 5e-324
+Number.MIN_VALUE &gt; 0
+// true
+
+Number.MAX_SAFE_INTEGER // 9007199254740991
+Number.MIN_SAFE_INTEGER // -9007199254740991
+</code></pre>
+<h2 id="实例方法">实例方法</h2>
+<p><code>Number</code>对象有4个实例方法，都跟将数值转换成指定格式有关。</p>
+<h3 id="numberprototypetostring">Number.prototype.toString()</h3>
+<p><code>Number</code>对象部署了自己的<code>toString</code>方法，用来将一个数值转为字符串形式。</p>
+<pre><code class="language-javascript">(10).toString() // &quot;10&quot;
+</code></pre>
+<p><code>toString</code>方法可以接受一个参数，表示输出的进制。如果省略这个参数，默认将数值先转为十进制，再输出字符串；否则，就根据参数指定的进制，将一个数字转化成某个进制的字符串。</p>
+<pre><code class="language-javascript">(10).toString(2) // &quot;1010&quot;
+(10).toString(8) // &quot;12&quot;
+(10).toString(16) // &quot;a&quot;
+</code></pre>
+<p>上面代码中，<code>10</code>一定要放在括号里，这样表明后面的点表示调用对象属性。如果不加括号，这个点会被 JavaScript 引擎解释成小数点，从而报错。</p>
+<pre><code class="language-javascript">10.toString(2)
+// SyntaxError: Unexpected token ILLEGAL
+</code></pre>
+<p>只要能够让 JavaScript 引擎不混淆小数点和对象的点运算符，各种写法都能用。除了为<code>10</code>加上括号，还可以在<code>10</code>后面加两个点，JavaScript 会把第一个点理解成小数点（即<code>10.0</code>），把第二个点理解成调用对象属性，从而得到正确结果。</p>
+<pre><code class="language-javascript">10..toString(2)
+// &quot;1010&quot;
+
+// 其他方法还包括
+10 .toString(2) // &quot;1010&quot;
+10.0.toString(2) // &quot;1010&quot;
+</code></pre>
+<p>这实际上意味着，可以直接对一个小数使用<code>toString</code>方法。</p>
+<pre><code class="language-javascript">10.5.toString() // &quot;10.5&quot;
+10.5.toString(2) // &quot;1010.1&quot;
+10.5.toString(8) // &quot;12.4&quot;
+10.5.toString(16) // &quot;a.8&quot;
+</code></pre>
+<p>通过方括号运算符也可以调用<code>toString</code>方法。</p>
+<pre><code class="language-javascript">10['toString'](2) // &quot;1010&quot;
+</code></pre>
+<p><code>toString</code>方法只能将十进制的数，转为其他进制的字符串。如果要将其他进制的数，转回十进制，需要使用<code>parseInt</code>方法。</p>
+<h3 id="numberprototypetofixed">Number.prototype.toFixed()</h3>
+<p><code>toFixed()</code>方法先将一个数转为指定位数的小数，然后返回这个小数对应的字符串。</p>
+<pre><code class="language-javascript">(10).toFixed(2) // &quot;10.00&quot;
+10.005.toFixed(2) // &quot;10.01&quot;
+</code></pre>
+<p>上面代码中，<code>10</code>和<code>10.005</code>先转成2位小数，然后转成字符串。其中<code>10</code>必须放在括号里，否则后面的点会被处理成小数点。</p>
+<p><code>toFixed()</code>方法的参数为小数位数，有效范围为0到100，超出这个范围将抛出 RangeError 错误。</p>
+<p>由于浮点数的原因，小数<code>5</code>的四舍五入是不确定的，使用的时候必须小心。</p>
+<pre><code class="language-javascript">(10.055).toFixed(2) // 10.05
+(10.005).toFixed(2) // 10.01
+</code></pre>
+<h3 id="numberprototypetoexponential">Number.prototype.toExponential()</h3>
+<p><code>toExponential</code>方法用于将一个数转为科学计数法形式。</p>
+<pre><code class="language-javascript">(10).toExponential()  // &quot;1e+1&quot;
+(10).toExponential(1) // &quot;1.0e+1&quot;
+(10).toExponential(2) // &quot;1.00e+1&quot;
+
+(1234).toExponential()  // &quot;1.234e+3&quot;
+(1234).toExponential(1) // &quot;1.2e+3&quot;
+(1234).toExponential(2) // &quot;1.23e+3&quot;
+</code></pre>
+<p><code>toExponential</code>方法的参数是小数点后有效数字的位数，范围为0到100，超出这个范围，会抛出一个 RangeError 错误。</p>
+<h3 id="numberprototypetoprecision">Number.prototype.toPrecision()</h3>
+<p><code>Number.prototype.toPrecision()</code>方法用于将一个数转为指定位数的有效数字。</p>
+<pre><code class="language-javascript">(12.34).toPrecision(1) // &quot;1e+1&quot;
+(12.34).toPrecision(2) // &quot;12&quot;
+(12.34).toPrecision(3) // &quot;12.3&quot;
+(12.34).toPrecision(4) // &quot;12.34&quot;
+(12.34).toPrecision(5) // &quot;12.340&quot;
+</code></pre>
+<p>该方法的参数为有效数字的位数，范围是1到100，超出这个范围会抛出 RangeError 错误。</p>
+<p>该方法用于四舍五入时不太可靠，跟浮点数不是精确储存有关。</p>
+<pre><code class="language-javascript">(12.35).toPrecision(3) // &quot;12.3&quot;
+(12.25).toPrecision(3) // &quot;12.3&quot;
+(12.15).toPrecision(3) // &quot;12.2&quot;
+(12.45).toPrecision(3) // &quot;12.4&quot;
+</code></pre>
+<h3 id="numberprototypetolocalestring">Number.prototype.toLocaleString()</h3>
+<p><code>Number.prototype.toLocaleString()</code>方法接受一个地区码作为参数，返回一个字符串，表示当前数字在该地区的当地书写形式。</p>
+<pre><code class="language-javascript">(123).toLocaleString('zh-Hans-CN-u-nu-hanidec')
+// &quot;一二三&quot;
+</code></pre>
+<p>该方法还可以接受第二个参数配置对象，用来定制指定用途的返回字符串。该对象的<code>style</code>属性指定输出样式，默认值是<code>decimal</code>，表示输出十进制形式。如果值为<code>percent</code>，表示输出百分数。</p>
+<pre><code class="language-javascript">(123).toLocaleString('zh-Hans-CN', { style: 'percent' })
+// &quot;12,300%&quot;
+</code></pre>
+<p>如果<code>style</code>属性的值为<code>currency</code>，则可以搭配<code>currency</code>属性，输出指定格式的货币字符串形式。</p>
+<pre><code class="language-javascript">(123).toLocaleString('zh-Hans-CN', { style: 'currency', currency: 'CNY' })
+// &quot;￥123.00&quot;
+
+(123).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+// &quot;123,00 €&quot;
+
+(123).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+// &quot;$123.00&quot;
+</code></pre>
+<p>如果<code>Number.prototype.toLocaleString()</code>省略了参数，则由浏览器自行决定如何处理，通常会使用操作系统的地区设定。注意，该方法如果使用浏览器不认识的地区码，会抛出一个错误。</p>
+<pre><code class="language-javascript">(123).toLocaleString('123') // 出错
+</code></pre>
+<h2 id="自定义方法">自定义方法</h2>
+<p>与其他对象一样，<code>Number.prototype</code>对象上面可以自定义方法，被<code>Number</code>的实例继承。</p>
+<pre><code class="language-javascript">Number.prototype.add = function (x) {
+  return this + x;
+};
+
+8['add'](2) // 10
+</code></pre>
+<p>上面代码为<code>Number</code>对象实例定义了一个<code>add</code>方法。在数值上调用某个方法，数值会自动转为<code>Number</code>的实例对象，所以就可以调用<code>add</code>方法了。由于<code>add</code>方法返回的还是数值，所以可以链式运算。</p>
+<pre><code class="language-javascript">Number.prototype.subtract = function (x) {
+  return this - x;
+};
+
+(8).add(2).subtract(4)
+// 6
+</code></pre>
+<p>上面代码在<code>Number</code>对象的实例上部署了<code>subtract</code>方法，它可以与<code>add</code>方法链式调用。</p>
+<p>我们还可以部署更复杂的方法。</p>
+<pre><code class="language-javascript">Number.prototype.iterate = function () {
+  var result = [];
+  for (var i = 0; i &lt;= this; i++) {
+    result.push(i);
+  }
+  return result;
+};
+
+(8).iterate()
+// [0, 1, 2, 3, 4, 5, 6, 7, 8]
+</code></pre>
+<p>上面代码在<code>Number</code>对象的原型上部署了<code>iterate</code>方法，将一个数值自动遍历为一个数组。</p>
+<p>注意，数值的自定义方法，只能定义在它的原型对象<code>Number.prototype</code>上面，数值本身是无法自定义属性的。</p>
+<pre><code class="language-javascript">var n = 1;
+n.x = 1;
+n.x // undefined
+</code></pre>
+<p>上面代码中，<code>n</code>是一个原始类型的数值。直接在它上面新增一个属性<code>x</code>，不会报错，但毫无作用，总是返回<code>undefined</code>。这是因为一旦被调用属性，<code>n</code>就自动转为<code>Number</code>的实例对象，调用结束后，该对象自动销毁。所以，下一次调用<code>n</code>的属性时，实际取到的是另一个对象，属性<code>x</code>当然就读不出来。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-stdlib-boolean/" class="post-title gt-a-link">
+                    JavaScript 教程-标准库-Boolean 对象
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

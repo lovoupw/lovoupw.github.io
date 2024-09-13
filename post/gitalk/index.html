@@ -1,0 +1,395 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Gitalk一个基于 GitHub Issue 和 Preact 开发的评论插件 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1726225545706">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1726225545706" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Gitalk一个基于 GitHub Issue 和 Preact 开发的评论插件
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-04-28 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="gitalk">Gitalk</h1>
+<p>Gitalk 是一个基于 GitHub Issue 和 Preact 开发的评论插件。</p>
+<h2 id="特性">特性</h2>
+<ul>
+<li>使用 GitHub 登录</li>
+<li>支持多语言 [en, zh-CN, zh-TW, es-ES, fr, ru, de, pl, ko, fa, ja]</li>
+<li>支持个人或组织</li>
+<li>无干扰模式（设置 distractionFreeMode 为 true 开启）</li>
+<li>快捷键提交评论 （cmd|ctrl + enter）</li>
+</ul>
+<!-- more -->
+<p><a href="https://github.com/gitalk/gitalk/blob/master/readme.md">Readme</a><br>
+<a href="https://gitalk.github.io">在线示例</a></p>
+<h2 id="安装">安装</h2>
+<p>两种方式</p>
+<ul>
+<li>直接引入</li>
+</ul>
+<pre><code class="language-html">  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css&quot;&gt;
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js&quot;&gt;&lt;/script&gt;
+
+  &lt;!-- or --&gt;
+
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/gitalk/dist/gitalk.css&quot;&gt;
+  &lt;script src=&quot;https://unpkg.com/gitalk/dist/gitalk.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<ul>
+<li>npm 安装</li>
+</ul>
+<pre><code class="language-sh">npm i --save gitalk
+</code></pre>
+<pre><code class="language-js">import 'gitalk/dist/gitalk.css'
+import Gitalk from 'gitalk'
+</code></pre>
+<h2 id="使用">使用</h2>
+<p>首先，您需要选择一个公共github存储库（已存在或创建一个新的github存储库）用于存储评论，</p>
+<p>然后需要创建 <strong>GitHub Application</strong>，如果没有 <a href="https://github.com/settings/applications/new">点击这里申请</a>，<code>Authorization callback URL</code> 填写当前使用插件页面的域名。</p>
+<p>最后, 您可以选择如下的其中一种方式应用到页面：</p>
+<h3 id="方式1">方式1</h3>
+<p>添加一个容器：</p>
+<pre><code class="language-html">&lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>用下面的 Javascript 代码来生成 gitalk 插件：</p>
+<pre><code class="language-js">var gitalk = new Gitalk({
+  clientID: 'GitHub Application Client ID',
+  clientSecret: 'GitHub Application Client Secret',
+  repo: 'GitHub repo',
+  owner: 'GitHub repo owner',
+  admin: ['GitHub repo owner and collaborators, only these guys can initialize github issues'],
+  id: location.pathname,      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('gitalk-container')
+</code></pre>
+<h3 id="方式2在react使用">方式2：在React使用</h3>
+<p>使用以下代码引入Gitalk组件</p>
+<pre><code class="language-jsx">import GitalkComponent from &quot;gitalk/dist/gitalk-component&quot;;
+</code></pre>
+<p>按以下方式在React中使用Gitalk组件</p>
+<pre><code class="language-jsx">&lt;GitalkComponent options={{
+  clientID: &quot;...&quot;,
+  // ...
+  // 设置项
+}} /&gt;
+</code></pre>
+<h2 id="设置">设置</h2>
+<ul>
+<li>
+<p><strong>clientID</strong> <code>String</code></p>
+<p><strong>必须</strong>. GitHub Application Client ID.</p>
+</li>
+<li>
+<p><strong>clientSecret</strong> <code>String</code></p>
+<p><strong>必须</strong>. GitHub Application Client Secret.</p>
+</li>
+<li>
+<p><strong>repo</strong> <code>String</code></p>
+<p><strong>必须</strong>. GitHub repository.</p>
+</li>
+<li>
+<p><strong>owner</strong> <code>String</code></p>
+<p><strong>必须</strong>. GitHub repository 所有者，可以是个人或者组织。</p>
+</li>
+<li>
+<p><strong>admin</strong> <code>Array</code></p>
+<p><strong>必须</strong>. GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。</p>
+</li>
+<li>
+<p><strong>id</strong> <code>String</code></p>
+<p>Default: <code>location.href</code>.</p>
+<p>页面的唯一标识。长度必须小于50。</p>
+</li>
+<li>
+<p><strong>number</strong> <code>Number</code></p>
+<p>Default: <code>-1</code>.</p>
+<p>页面的 issue ID 标识，若未定义<code>number</code>属性则会使用<code>id</code>进行定位。</p>
+</li>
+<li>
+<p><strong>labels</strong> <code>Array</code></p>
+<p>Default: <code>['Gitalk']</code>.</p>
+<p>GitHub issue 的标签。</p>
+</li>
+<li>
+<p><strong>title</strong> <code>String</code></p>
+<p>Default: <code>document.title</code>.</p>
+<p>GitHub issue 的标题。</p>
+</li>
+<li>
+<p><strong>body</strong> <code>String</code></p>
+<p>Default: <code>location.href + header.meta[description]</code>.</p>
+<p>GitHub issue 的内容。</p>
+</li>
+<li>
+<p><strong>language</strong> <code>String</code></p>
+<p>Default: <code>navigator.language || navigator.userLanguage</code>.</p>
+<p>设置语言，支持 [en, zh-CN, zh-TW, es-ES, fr, ru, de, pl, ko, fa, ja]。</p>
+</li>
+<li>
+<p><strong>perPage</strong> <code>Number</code></p>
+<p>Default: <code>10</code>.</p>
+<p>每次加载的数据大小，最多 100。</p>
+</li>
+<li>
+<p><strong>distractionFreeMode</strong> <code>Boolean</code></p>
+<p>Default: false。</p>
+<p>类似Facebook评论框的全屏遮罩效果.</p>
+</li>
+<li>
+<p><strong>pagerDirection</strong> <code>String</code></p>
+<p>Default: 'last'</p>
+<p>评论排序方式， <code>last</code>为按评论创建时间倒叙，<code>first</code>为按创建时间正序。</p>
+</li>
+<li>
+<p><strong>createIssueManually</strong> <code>Boolean</code></p>
+<p>Default: <code>false</code>.</p>
+<p>如果当前页面没有相应的 isssue 且登录的用户属于 admin，则会自动创建 issue。如果设置为 <code>true</code>，则显示一个初始化页面，创建 issue 需要点击 <code>init</code> 按钮。</p>
+</li>
+<li>
+<p><strong>proxy</strong> <code>String</code></p>
+<p>Default: <code>https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token</code>.</p>
+<p>GitHub oauth 请求到反向代理，为了支持 CORS。 <a href="https://github.com/isaacs/github/issues/330">为什么要这样?</a></p>
+</li>
+<li>
+<p><strong>flipMoveOptions</strong> <code>Object</code></p>
+<p>Default:</p>
+<pre><code class="language-js">  {
+    staggerDelayBy: 150,
+    appearAnimation: 'accordionVertical',
+    enterAnimation: 'accordionVertical',
+    leaveAnimation: 'accordionVertical',
+  }
+</code></pre>
+<p>评论列表的动画。 <a href="https://github.com/joshwcomeau/react-flip-move/blob/master/documentation/enter_leave_animations.md">参考</a></p>
+</li>
+<li>
+<p><strong>enableHotKey</strong> <code>Boolean</code></p>
+<p>Default: <code>true</code>.</p>
+<p>启用快捷键(cmd|ctrl + enter) 提交评论.</p>
+</li>
+</ul>
+<h2 id="实例方法">实例方法</h2>
+<ul>
+<li>
+<p><strong>render(String/HTMLElement)</strong></p>
+<p>初始化渲染并挂载插件。</p>
+</li>
+</ul>
+<h2 id="typescript">TypeScript</h2>
+<p>已经包括了配置项和Gitalk类的类型定义，不包括React组件的类型定义。</p>
+<h2 id="贡献">贡献</h2>
+<ol>
+<li><a href="https://github.com/gitalk/gitalk/fork">Fork 代码仓库</a> 并从 master 创建你的分支</li>
+<li>如果你添加的代码需要测试，请添加测试！</li>
+<li>如果你修改了 API，请更新文档。</li>
+<li>确保单元测试通过 (npm test).</li>
+<li>确保代码风格一致 (npm run lint).</li>
+<li>提交你的代码 (git commit) <a href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines">提交信息格式参考</a></li>
+</ol>
+<h2 id="类似项目">类似项目</h2>
+<ul>
+<li><a href="https://github.com/imsun/gitment">gitment</a></li>
+<li><a href="https://vssue.js.org/zh">vssue</a></li>
+</ul>
+<h2 id="许可">许可</h2>
+<p>MIT</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/eu-org/" class="post-title gt-a-link">
+                    2024年最新免费Eu.org域名申请攻略
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

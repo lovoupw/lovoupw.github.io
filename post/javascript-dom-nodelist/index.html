@@ -1,0 +1,361 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-DOM-NodeList 接口，HTMLCollection 接口 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1726225545706">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1726225545706" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-DOM-NodeList 接口，HTMLCollection 接口
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#nodelist-%E6%8E%A5%E5%8F%A3htmlcollection-%E6%8E%A5%E5%8F%A3">NodeList 接口，HTMLCollection 接口</a>
+<ul>
+<li><a href="#nodelist-%E6%8E%A5%E5%8F%A3">NodeList 接口</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#nodelistprototypelength">NodeList.prototype.length</a></li>
+<li><a href="#nodelistprototypeforeach">NodeList.prototype.forEach()</a></li>
+<li><a href="#nodelistprototypeitem">NodeList.prototype.item()</a></li>
+<li><a href="#nodelistprototypekeysnodelistprototypevaluesnodelistprototypeentries">NodeList.prototype.keys()，NodeList.prototype.values()，NodeList.prototype.entries()</a></li>
+</ul>
+</li>
+<li><a href="#htmlcollection-%E6%8E%A5%E5%8F%A3">HTMLCollection 接口</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0-2">概述</a></li>
+<li><a href="#htmlcollectionprototypelength">HTMLCollection.prototype.length</a></li>
+<li><a href="#htmlcollectionprototypeitem">HTMLCollection.prototype.item()</a></li>
+<li><a href="#htmlcollectionprototypenameditem">HTMLCollection.prototype.namedItem()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="nodelist-接口htmlcollection-接口">NodeList 接口，HTMLCollection 接口</h1>
+<p>节点都是单个对象，有时需要一种数据结构，能够容纳多个节点。DOM 提供两种节点集合，用于容纳多个节点：<code>NodeList</code>和<code>HTMLCollection</code>。</p>
+<p>这两种集合都属于接口规范。许多 DOM 属性和方法，返回的结果是<code>NodeList</code>实例或<code>HTMLCollection</code>实例。主要区别是，<code>NodeList</code>可以包含各种类型的节点，<code>HTMLCollection</code>只能包含 HTML 元素节点。</p>
+<!-- more -->
+<h2 id="nodelist-接口">NodeList 接口</h2>
+<h3 id="概述">概述</h3>
+<p><code>NodeList</code>实例是一个类似数组的对象，它的成员是节点对象。通过以下方法可以得到<code>NodeList</code>实例。</p>
+<ul>
+<li><code>Node.childNodes</code></li>
+<li><code>document.querySelectorAll()</code>等节点搜索方法</li>
+</ul>
+<pre><code class="language-javascript">document.body.childNodes instanceof NodeList // true
+</code></pre>
+<p><code>NodeList</code>实例很像数组，可以使用<code>length</code>属性和<code>forEach</code>方法。但是，它不是数组，不能使用<code>pop</code>或<code>push</code>之类数组特有的方法。</p>
+<pre><code class="language-javascript">var children = document.body.childNodes;
+
+Array.isArray(children) // false
+
+children.length // 34
+children.forEach(console.log)
+</code></pre>
+<p>上面代码中，NodeList 实例<code>children</code>不是数组，但是具有<code>length</code>属性和<code>forEach</code>方法。</p>
+<p>如果<code>NodeList</code>实例要使用数组方法，可以将其转为真正的数组。</p>
+<pre><code class="language-javascript">var children = document.body.childNodes;
+var nodeArr = Array.prototype.slice.call(children);
+</code></pre>
+<p>除了使用<code>forEach</code>方法遍历 NodeList 实例，还可以使用<code>for</code>循环。</p>
+<pre><code class="language-javascript">var children = document.body.childNodes;
+
+for (var i = 0; i &lt; children.length; i++) {
+  var item = children[i];
+}
+</code></pre>
+<p>注意，NodeList 实例可能是动态集合，也可能是静态集合。所谓动态集合就是一个活的集合，DOM 删除或新增一个相关节点，都会立刻反映在 NodeList 实例。目前，只有<code>Node.childNodes</code>返回的是一个动态集合，其他的 NodeList 都是静态集合。</p>
+<pre><code class="language-javascript">var children = document.body.childNodes;
+children.length // 18
+document.body.appendChild(document.createElement('p'));
+children.length // 19
+</code></pre>
+<p>上面代码中，文档增加一个子节点，NodeList 实例<code>children</code>的<code>length</code>属性就增加了1。</p>
+<h3 id="nodelistprototypelength">NodeList.prototype.length</h3>
+<p><code>length</code>属性返回 NodeList 实例包含的节点数量。</p>
+<pre><code class="language-javascript">document.querySelectorAll('xxx').length
+// 0
+</code></pre>
+<p>上面代码中，<code>document.querySelectorAll</code>返回一个 NodeList 集合。对于那些不存在的 HTML 标签，<code>length</code>属性返回<code>0</code>。</p>
+<h3 id="nodelistprototypeforeach">NodeList.prototype.forEach()</h3>
+<p><code>forEach</code>方法用于遍历 NodeList 的所有成员。它接受一个回调函数作为参数，每一轮遍历就执行一次这个回调函数，用法与数组实例的<code>forEach</code>方法完全一致。</p>
+<pre><code class="language-javascript">var children = document.body.childNodes;
+children.forEach(function f(item, i, list) {
+  // ...
+}, this);
+</code></pre>
+<p>上面代码中，回调函数<code>f</code>的三个参数依次是当前成员、位置和当前 NodeList 实例。<code>forEach</code>方法的第二个参数，用于绑定回调函数内部的<code>this</code>，该参数可省略。</p>
+<h3 id="nodelistprototypeitem">NodeList.prototype.item()</h3>
+<p><code>item</code>方法接受一个整数值作为参数，表示成员的位置，返回该位置上的成员。</p>
+<pre><code class="language-javascript">document.body.childNodes.item(0)
+</code></pre>
+<p>上面代码中，<code>item(0)</code>返回第一个成员。</p>
+<p>如果参数值大于实际长度，或者索引不合法（比如负数），<code>item</code>方法返回<code>null</code>。如果省略参数，<code>item</code>方法会报错。</p>
+<p>所有类似数组的对象，都可以使用方括号运算符取出成员。一般情况下，都是使用方括号运算符，而不使用<code>item</code>方法。</p>
+<pre><code class="language-javascript">document.body.childNodes[0]
+</code></pre>
+<h3 id="nodelistprototypekeysnodelistprototypevaluesnodelistprototypeentries">NodeList.prototype.keys()，NodeList.prototype.values()，NodeList.prototype.entries()</h3>
+<p>这三个方法都返回一个 ES6 的遍历器对象，可以通过<code>for...of</code>循环遍历获取每一个成员的信息。区别在于，<code>keys()</code>返回键名的遍历器，<code>values()</code>返回键值的遍历器，<code>entries()</code>返回的遍历器同时包含键名和键值的信息。</p>
+<pre><code class="language-javascript">var children = document.body.childNodes;
+
+for (var key of children.keys()) {
+  console.log(key);
+}
+// 0
+// 1
+// 2
+// ...
+
+for (var value of children.values()) {
+  console.log(value);
+}
+// #text
+// &lt;script&gt;
+// ...
+
+for (var entry of children.entries()) {
+  console.log(entry);
+}
+// Array [ 0, #text ]
+// Array [ 1, &lt;script&gt; ]
+// ...
+</code></pre>
+<h2 id="htmlcollection-接口">HTMLCollection 接口</h2>
+<h3 id="概述-2">概述</h3>
+<p><code>HTMLCollection</code>是一个节点对象的集合，只能包含元素节点（element），不能包含其他类型的节点。它的返回值是一个类似数组的对象，但是与<code>NodeList</code>接口不同，<code>HTMLCollection</code>没有<code>forEach</code>方法，只能使用<code>for</code>循环遍历。</p>
+<p>返回<code>HTMLCollection</code>实例的，主要是一些<code>Document</code>对象的集合属性，比如<code>document.links</code>、<code>document.forms</code>、<code>document.images</code>等。</p>
+<pre><code class="language-javascript">document.links instanceof HTMLCollection // true
+</code></pre>
+<p><code>HTMLCollection</code>实例都是动态集合，节点的变化会实时反映在集合中。</p>
+<p>如果元素节点有<code>id</code>或<code>name</code>属性，那么<code>HTMLCollection</code>实例上面，可以使用<code>id</code>属性或<code>name</code>属性引用该节点元素。如果没有对应的节点，则返回<code>null</code>。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;img id=&quot;pic&quot; src=&quot;http://example.com/foo.jpg&quot;&gt;
+
+var pic = document.getElementById('pic');
+document.images.pic === pic // true
+</code></pre>
+<p>上面代码中，<code>document.images</code>是一个<code>HTMLCollection</code>实例，可以通过<code>&lt;img&gt;</code>元素的<code>id</code>属性值，从<code>HTMLCollection</code>实例上取到这个元素。</p>
+<h3 id="htmlcollectionprototypelength">HTMLCollection.prototype.length</h3>
+<p><code>length</code>属性返回<code>HTMLCollection</code>实例包含的成员数量。</p>
+<pre><code class="language-javascript">document.links.length // 18
+</code></pre>
+<h3 id="htmlcollectionprototypeitem">HTMLCollection.prototype.item()</h3>
+<p><code>item</code>方法接受一个整数值作为参数，表示成员的位置，返回该位置上的成员。</p>
+<pre><code class="language-javascript">var c = document.images;
+var img0 = c.item(0);
+</code></pre>
+<p>上面代码中，<code>item(0)</code>表示返回0号位置的成员。由于方括号运算符也具有同样作用，而且使用更方便，所以一般情况下，总是使用方括号运算符。</p>
+<p>如果参数值超出成员数量或者不合法（比如小于0），那么<code>item</code>方法返回<code>null</code>。</p>
+<h3 id="htmlcollectionprototypenameditem">HTMLCollection.prototype.namedItem()</h3>
+<p><code>namedItem</code>方法的参数是一个字符串，表示<code>id</code>属性或<code>name</code>属性的值，返回当前集合中对应的元素节点。如果没有对应的节点，则返回<code>null</code>。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;img id=&quot;pic&quot; src=&quot;http://example.com/foo.jpg&quot;&gt;
+
+var pic = document.getElementById('pic');
+document.images.namedItem('pic') === pic // true
+</code></pre>
+<p><code>Collection.namedItem('value')</code>等同于<code>Collection['value']</code>。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-dom-node/" class="post-title gt-a-link">
+                    JavaScript 教程-DOM-Node 接口
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

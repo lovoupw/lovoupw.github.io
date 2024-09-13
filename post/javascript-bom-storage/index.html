@@ -1,0 +1,323 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-浏览器模型-Storage 接口 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1726225545706">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1726225545706" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-浏览器模型-Storage 接口
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#storage-%E6%8E%A5%E5%8F%A3">Storage 接口</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95">属性和方法</a>
+<ul>
+<li><a href="#storagesetitem">Storage.setItem()</a></li>
+<li><a href="#storagegetitem">Storage.getItem()</a></li>
+<li><a href="#storageremoveitem">Storage.removeItem()</a></li>
+<li><a href="#storageclear">Storage.clear()</a></li>
+<li><a href="#storagekey">Storage.key()</a></li>
+</ul>
+</li>
+<li><a href="#storage-%E4%BA%8B%E4%BB%B6">storage 事件</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="storage-接口">Storage 接口</h1>
+<h2 id="概述">概述</h2>
+<p>Storage 接口用于脚本在浏览器保存数据。两个对象部署了这个接口：<code>window.sessionStorage</code>和<code>window.localStorage</code>。</p>
+<p><code>sessionStorage</code>保存的数据用于浏览器的一次会话（session），当会话结束（通常是窗口关闭），数据被清空；<code>localStorage</code>保存的数据长期存在，下一次访问该网站的时候，网页可以直接读取以前保存的数据。除了保存期限的长短不同，这两个对象的其他方面都一致。</p>
+<!-- more -->
+<p>保存的数据都以“键值对”的形式存在。也就是说，每一项数据都有一个键名和对应的值。所有的数据都是以文本格式保存。</p>
+<p>这个接口很像 Cookie 的强化版，能够使用大得多的存储空间。目前，每个域名的存储上限视浏览器而定，Chrome 是 2.5MB，Firefox 和 Opera 是 5MB，IE 是 10MB。其中，Firefox 的存储空间由一级域名决定，而其他浏览器没有这个限制。也就是说，Firefox 中，<code>a.example.com</code>和<code>b.example.com</code>共享 5MB 的存储空间。另外，与 Cookie 一样，它们也受同域限制。某个网页存入的数据，只有同域下的网页才能读取，如果跨域操作会报错。</p>
+<h2 id="属性和方法">属性和方法</h2>
+<p>Storage 接口只有一个属性。</p>
+<ul>
+<li><code>Storage.length</code>：返回保存的数据项个数。</li>
+</ul>
+<pre><code class="language-javascript">window.localStorage.setItem('foo', 'a');
+window.localStorage.setItem('bar', 'b');
+window.localStorage.setItem('baz', 'c');
+
+window.localStorage.length // 3
+</code></pre>
+<p>该接口提供5个方法。</p>
+<h3 id="storagesetitem">Storage.setItem()</h3>
+<p><code>Storage.setItem()</code>方法用于存入数据。它接受两个参数，第一个是键名，第二个是保存的数据。如果键名已经存在，该方法会更新已有的键值。该方法没有返回值。</p>
+<pre><code class="language-javascript">window.sessionStorage.setItem('key', 'value');
+window.localStorage.setItem('key', 'value');
+</code></pre>
+<p>注意，<code>Storage.setItem()</code>两个参数都是字符串。如果不是字符串，会自动转成字符串，再存入浏览器。</p>
+<pre><code class="language-javascript">window.sessionStorage.setItem(3, { foo: 1 });
+window.sessionStorage.getItem('3') // &quot;[object Object]&quot;
+</code></pre>
+<p>上面代码中，<code>setItem</code>方法的两个参数都不是字符串，但是存入的值都是字符串。</p>
+<p>如果储存空间已满，该方法会抛错。</p>
+<p>写入不一定要用这个方法，直接赋值也是可以的。</p>
+<pre><code class="language-javascript">// 下面三种写法等价
+window.localStorage.foo = '123';
+window.localStorage['foo'] = '123';
+window.localStorage.setItem('foo', '123');
+</code></pre>
+<h3 id="storagegetitem">Storage.getItem()</h3>
+<p><code>Storage.getItem()</code>方法用于读取数据。它只有一个参数，就是键名。如果键名不存在，该方法返回<code>null</code>。</p>
+<pre><code class="language-javascript">window.sessionStorage.getItem('key')
+window.localStorage.getItem('key')
+</code></pre>
+<p>键名应该是一个字符串，否则会被自动转为字符串。</p>
+<h3 id="storageremoveitem">Storage.removeItem()</h3>
+<p><code>Storage.removeItem()</code>方法用于清除某个键名对应的键值。它接受键名作为参数，如果键名不存在，该方法不会做任何事情。</p>
+<pre><code class="language-javascript">sessionStorage.removeItem('key');
+localStorage.removeItem('key');
+</code></pre>
+<h3 id="storageclear">Storage.clear()</h3>
+<p><code>Storage.clear()</code>方法用于清除所有保存的数据。该方法的返回值是<code>undefined</code>。</p>
+<pre><code class="language-javascript">window.sessionStorage.clear()
+window.localStorage.clear()
+</code></pre>
+<h3 id="storagekey">Storage.key()</h3>
+<p><code>Storage.key()</code>方法接受一个整数作为参数（从零开始），返回该位置对应的键名。</p>
+<pre><code class="language-javascript">window.sessionStorage.setItem('key', 'value');
+window.sessionStorage.key(0) // &quot;key&quot;
+</code></pre>
+<p>结合使用<code>Storage.length</code>属性和<code>Storage.key()</code>方法，可以遍历所有的键。</p>
+<pre><code class="language-javascript">for (var i = 0; i &lt; window.localStorage.length; i++) {
+  console.log(localStorage.key(i));
+}
+</code></pre>
+<h2 id="storage-事件">storage 事件</h2>
+<p>Storage 接口储存的数据发生变化时，会触发 storage 事件，可以指定这个事件的监听函数。</p>
+<pre><code class="language-javascript">window.addEventListener('storage', onStorageChange);
+</code></pre>
+<p>监听函数接受一个<code>event</code>实例对象作为参数。这个实例对象继承了 StorageEvent 接口，有几个特有的属性，都是只读属性。</p>
+<ul>
+<li><code>StorageEvent.key</code>：字符串，表示发生变动的键名。如果 storage 事件是由<code>clear()</code>方法引起，该属性返回<code>null</code>。</li>
+<li><code>StorageEvent.newValue</code>：字符串，表示新的键值。如果 storage 事件是由<code>clear()</code>方法或删除该键值对引发的，该属性返回<code>null</code>。</li>
+<li><code>StorageEvent.oldValue</code>：字符串，表示旧的键值。如果该键值对是新增的，该属性返回<code>null</code>。</li>
+<li><code>StorageEvent.storageArea</code>：对象，返回键值对所在的整个对象。也说是说，可以从这个属性上面拿到当前域名储存的所有键值对。</li>
+<li><code>StorageEvent.url</code>：字符串，表示原始触发 storage 事件的那个网页的网址。</li>
+</ul>
+<p>下面是<code>StorageEvent.key</code>属性的例子。</p>
+<pre><code class="language-javascript">function onStorageChange(e) {
+  console.log(e.key);
+}
+
+window.addEventListener('storage', onStorageChange);
+</code></pre>
+<p>注意，该事件有一个很特别的地方，就是它不在导致数据变化的当前页面触发，而是在同一个域名的其他窗口触发。也就是说，如果浏览器只打开一个窗口，可能观察不到这个事件。比如同时打开多个窗口，当其中的一个窗口导致储存的数据发生改变时，只有在其他窗口才能观察到监听函数的执行。可以通过这种机制，实现多个窗口之间的通信。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>Ryan Stewart，<a href="http://www.adobe.com/devnet/html5/articles/html5-storage-apis.html">Introducing the HTML5 storage APIs</a></li>
+<li><a href="http://codular.com/localstorage">Getting Started with LocalStorage</a></li>
+<li>Feross Aboukhadijeh, <a href="http://feross.org/fill-disk/">Introducing the HTML5 Hard Disk Filler™ API</a></li>
+<li>Ben Summers, <a href="http://bens.me.uk/2013/localstorage-inter-window-messaging">Inter-window messaging using localStorage</a></li>
+<li>Stack Overflow, <a href="http://stackoverflow.com/questions/18265556/why-does-internet-explorer-fire-the-window-storage-event-on-the-window-that-st">Why does Internet Explorer fire the window “storage” event on the window that stored the data?</a></li>
+<li>Stack Overflow, <a href="https://stackoverflow.com/questions/5370784/localstorage-eventlistener-is-not-called">localStorage eventListener is not called</a></li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-bom-cors/" class="post-title gt-a-link">
+                    JavaScript 教程-浏览器模型-CORS 通信
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1726225545706">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1726225545706" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>此教程转载自开源项目 <code>网道(WangDoc.com)</code> <a href="https://github.com/wangdoc/javascript-tutorial">https://github.com/wangdoc/javascript-tutorial</a>,感谢大佬整理分享<br>
+<ul class="markdownIt-TOC">
+<li><a href="#1-%E5%85%A5%E9%97%A8%E7%AF%87">1. 入门篇</a></li>
+<li><a href="#2-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">2. 数据类型</a></li>
+<li><a href="#3-%E8%BF%90%E7%AE%97%E7%AC%A6">3. 运算符</a></li>
+<li><a href="#4-%E8%AF%AD%E6%B3%95%E4%B8%93%E9%A2%98">4. 语法专题</a></li>
+<li><a href="#5-%E6%A0%87%E5%87%86%E5%BA%93">5. 标准库</a></li>
+<li><a href="#6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B">6. 面向对象编程</a></li>
+<li><a href="#7-%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C">7. 异步操作</a></li>
+<li><a href="#8-dom">8. DOM</a></li>
+<li><a href="#9-%E4%BA%8B%E4%BB%B6">9. 事件</a></li>
+<li><a href="#10-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9E%8B">10. 浏览器模型</a></li>
+<li><a href="#11-%E9%99%84%E5%BD%95%E7%BD%91%E9%A1%B5%E5%85%83%E7%B4%A0%E6%8E%A5%E5%8F%A3">11. 附录：网页元素接口</a></li>
+</ul>
+</p>
+<h1 id="1-入门篇">1. 入门篇</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-basic-introduction/">导论</a></li>
+<li><a href="https://0520.eu.org/post/javascript-basic-history/">历史</a></li>
+<li><a href="https://0520.eu.org/post/javascript-basic-grammar/">基本语法</a></li>
+</ul>
+<h1 id="2-数据类型">2. 数据类型</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-types-general/">概述</a></li>
+<li><a href="https://0520.eu.org/post/javascript-types-null-undefined-boolean/">null，undefined 和布尔值</a></li>
+<li><a href="https://0520.eu.org/post/javascript-types-number/">数值</a></li>
+<li><a href="https://0520.eu.org/post/javascript-types-string/">字符串</a></li>
+<li><a href="https://0520.eu.org/post/javascript-types-object/">对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-types-function/">函数</a></li>
+<li><a href="https://0520.eu.org/post/javascript-types-array/">数组</a></li>
+</ul>
+<!-- more -->
+<h1 id="3-运算符">3. 运算符</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-operators-arithmetic/">算术运算符</a></li>
+<li><a href="https://0520.eu.org/post/javascript-operators-comparison/">比较运算符</a></li>
+<li><a href="https://0520.eu.org/post/javascript-operators-boolean/">布尔运算符</a></li>
+<li><a href="https://0520.eu.org/post/javascript-operators-bit/">二进制位运算符</a></li>
+<li><a href="https://0520.eu.org/post/javascript-operators-priority/">其他运算符，运算顺序</a></li>
+</ul>
+<h1 id="4-语法专题">4. 语法专题</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-features-conversion/">数据类型的转换</a></li>
+<li><a href="https://0520.eu.org/post/javascript-features-error/">错误处理机制</a></li>
+<li><a href="https://0520.eu.org/post/javascript-features-style/">编程风格</a></li>
+<li><a href="https://0520.eu.org/post/javascript-features-console/">console 对象与控制台</a></li>
+</ul>
+<h1 id="5-标准库">5. 标准库</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-object/">Object 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-attributes/">属性描述对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-array/">Array 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-wrapper/">包装对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-boolean/">Boolean 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-number/">Number 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-string/">String 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-math/">Math 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-date/">Date 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-regexp/">RegExp 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-stdlib-json/">JSON 对象</a></li>
+</ul>
+<h1 id="6-面向对象编程">6. 面向对象编程</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-oop-new/">实例对象与 new 命令</a></li>
+<li><a href="https://0520.eu.org/post/javascript-oop-this/">this 关键字</a></li>
+<li><a href="https://0520.eu.org/post/javascript-oop-prototype/">对象的继承</a></li>
+<li><a href="https://0520.eu.org/post/javascript-oop-object/">Object 对象的相关方法</a></li>
+<li><a href="https://0520.eu.org/post/javascript-oop-strict/">严格模式</a></li>
+</ul>
+<h1 id="7-异步操作">7. 异步操作</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-async-general/">概述</a></li>
+<li><a href="https://0520.eu.org/post/javascript-async-timer/">定时器</a></li>
+<li><a href="https://0520.eu.org/post/javascript-async-promise/">Promise 对象</a></li>
+</ul>
+<h1 id="8-dom">8. DOM</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-dom-general/">概述</a></li>
+<li><a href="https://0520.eu.org/post/javascript-dom-node/">Node 接口</a></li>
+<li><a href="https://0520.eu.org/post/javascript-dom-nodelist/">NodeList 接口，HTMLCollection 接口</a></li>
+<li><a href="https://0520.eu.org/post/javascript-dom-parentnode/">ParentNode 接口，ChildNode 接口</a></li>
+<li><a href="https://0520.eu.org/post/javascript-dom-document/">Document 节点</a></li>
+<li><a href="https://0520.eu.org/post/javascript-dom-element/">Element 节点</a></li>
+<li><a href="https://0520.eu.org/post/javascript-dom-attributes/">属性的操作</a></li>
+<li><a href="https://0520.eu.org/post/javascript-dom-text/">Text 节点和 DocumentFragment 节点</a></li>
+<li><a href="https://0520.eu.org/post/javascript-dom-css/">CSS 操作</a></li>
+<li><a href="https://0520.eu.org/post/javascript-dom-mutationobserver/">Mutation Observer API</a></li>
+</ul>
+<h1 id="9-事件">9. 事件</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-events-eventtarget/">EventTarget 接口</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-model/">事件模型</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-event/">Event 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-mouse/">鼠标事件</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-keyboard/">键盘事件</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-progress/">进度事件</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-form/">表单事件</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-touch/">触摸事件</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-drag/">拖拉事件</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-common/">其他常见事件</a></li>
+<li><a href="https://0520.eu.org/post/javascript-events-globaleventhandlers/">GlobalEventHandlers 接口</a></li>
+</ul>
+<h1 id="10-浏览器模型">10. 浏览器模型</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-bom-engine/">浏览器模型概述</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-window/">window 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-navigator/">Navigator 对象，Screen 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-cookie/">Cookie</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-xmlhttprequest/">XMLHttpRequest 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-same-origin/">同源限制</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-cors/">CORS 通信</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-storage/">Storage 接口</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-history/">History 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-location/">Location 对象，URL 对象，URLSearchParams 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-arraybuffer/">ArrayBuffer 对象，Blob 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-file/">File 对象，FileList 对象，FileReader 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-form/">表单，FormData 对象</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-indexeddb/">IndexedDB API</a></li>
+<li><a href="https://0520.eu.org/post/javascript-bom-webworker/">Web Worker</a></li>
+</ul>
+<h1 id="11-附录网页元素接口">11. 附录：网页元素接口</h1>
+<ul>
+<li><a href="https://0520.eu.org/post/javascript-elements-a/"><code>&lt;a&gt;</code>元素</a></li>
+<li><a href="https://0520.eu.org/post/javascript-elements-image/"><code>&lt;img&gt;</code>元素</a></li>
+<li><a href="https://0520.eu.org/post/javascript-elements-form/"><code>&lt;form&gt;</code>元素</a></li>
+<li><a href="https://0520.eu.org/post/javascript-elements-input/"><code>&lt;input&gt;</code>元素</a></li>
+<li><a href="https://0520.eu.org/post/javascript-elements-button/"><code>&lt;button&gt;</code>元素</a></li>
+<li><a href="https://0520.eu.org/post/javascript-elements-option/"><code>&lt;option&gt;</code>元素</a></li>
+<li><a href="https://0520.eu.org/post/javascript-elements-video/"><code>&lt;video&gt;，&lt;audio&gt;</code>元素</a></li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-elements-video/" class="post-title gt-a-link">
+                    JavaScript 教程-附录：网页元素接口-&lt;video&gt;，&lt;audio&gt;元素
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-附录：网页元素接口-&lt;a&gt; 元素 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1726225545706">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1726225545706" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-附录：网页元素接口-&lt;a&gt; 元素
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#a-%E5%85%83%E7%B4%A0"><code>&lt;a&gt;</code> 元素</a>
+<ul>
+<li><a href="#%E5%B1%9E%E6%80%A7">属性</a>
+<ul>
+<li><a href="#url-%E7%9B%B8%E5%85%B3%E5%B1%9E%E6%80%A7">URL 相关属性</a></li>
+<li><a href="#accesskey-%E5%B1%9E%E6%80%A7">accessKey 属性</a></li>
+<li><a href="#download-%E5%B1%9E%E6%80%A7">download 属性</a></li>
+<li><a href="#hreflang-%E5%B1%9E%E6%80%A7">hreflang 属性</a></li>
+<li><a href="#referrerpolicy-%E5%B1%9E%E6%80%A7">referrerPolicy 属性</a></li>
+<li><a href="#rel-%E5%B1%9E%E6%80%A7">rel 属性</a></li>
+<li><a href="#tabindex-%E5%B1%9E%E6%80%A7">tabIndex 属性</a></li>
+<li><a href="#target-%E5%B1%9E%E6%80%A7">target 属性</a></li>
+<li><a href="#text-%E5%B1%9E%E6%80%A7">text 属性</a></li>
+<li><a href="#type-%E5%B1%9E%E6%80%A7">type 属性</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B9%E6%B3%95">方法</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="a-元素"><code>&lt;a&gt;</code> 元素</h1>
+<p><code>&lt;a&gt;</code>元素用来设置链接。除了网页元素的通用接口（<code>Node</code>接口、<code>Element</code>接口、<code>HTMLElement</code>接口），它还继承了<code>HTMLAnchorElement</code>接口和<code>HTMLHyperlinkElementUtils</code>接口。</p>
+<h2 id="属性">属性</h2>
+<h3 id="url-相关属性">URL 相关属性</h3>
+<!-- more -->
+<p><code>&lt;a&gt;</code>元素有一系列 URL 相关属性，可以用来操作链接地址。这些属性的含义，可以参见<code>Location</code>对象的实例属性。</p>
+<ul>
+<li>hash：片段识别符（以<code>#</code>开头）</li>
+<li>host：主机和端口（默认端口80和443会省略）</li>
+<li>hostname：主机名</li>
+<li>href：完整的 URL</li>
+<li>origin：协议、域名和端口</li>
+<li>password：主机名前的密码</li>
+<li>pathname：路径（以<code>/</code>开头）</li>
+<li>port：端口</li>
+<li>protocol：协议（包含尾部的冒号<code>:</code>）</li>
+<li>search：查询字符串（以<code>?</code>开头）</li>
+<li>username：主机名前的用户名</li>
+</ul>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; href=&quot;http://user:passwd@example.com:8081/index.html?bar=1#foo&quot;&gt;test&lt;/a&gt;
+var a = document.getElementById('test');
+a.hash // &quot;#foo&quot;
+a.host // &quot;example.com:8081&quot;
+a.hostname // &quot;example.com&quot;
+a.href // &quot;http://user:passed@example.com:8081/index.html?bar=1#foo&quot;
+a.origin // &quot;http://example.com:8081&quot;
+a.password // &quot;passwd&quot;
+a.pathname // &quot;/index.html&quot;
+a.port // &quot;8081&quot;
+a.protocol // &quot;http:&quot;
+a.search // &quot;?bar=1&quot;
+a.username // &quot;user&quot;
+</code></pre>
+<p>除了<code>origin</code>属性是只读的，上面这些属性都是可读写的。</p>
+<h3 id="accesskey-属性">accessKey 属性</h3>
+<p><code>accessKey</code>属性用来读写<code>&lt;a&gt;</code>元素的快捷键。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; href=&quot;http://example.com&quot;&gt;test&lt;/a&gt;
+var a = document.getElementById('test');
+a.accessKey = 'k';
+</code></pre>
+<p>上面代码设置<code>&lt;a&gt;</code>元素的快捷键为<code>k</code>，以后只要按下这个快捷键，浏览器就会跳转到<code>example.com</code>。</p>
+<p>注意，不同的浏览器在不同的操作系统下，唤起快捷键的功能键组合是<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey">不一样</a>的。比如，Chrome 浏览器在 Linux 系统下，需要按下<code>Alt + k</code>，才会跳转到<code>example.com</code>。</p>
+<h3 id="download-属性">download 属性</h3>
+<p><code>download</code>属性表示当前链接不是用来浏览，而是用来下载的。它的值是一个字符串，表示用户下载得到的文件名。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; href=&quot;foo.jpg&quot;&gt;下载&lt;/a&gt;
+var a = document.getElementById('test');
+a.download = 'bar.jpg';
+</code></pre>
+<p>上面代码中，<code>&lt;a&gt;</code>元素是一个图片链接，默认情况下，点击后图片会在当前窗口加载。设置了<code>download</code>属性以后，再点击这个链接，就会下载对话框，询问用户保存位置，而且下载的文件名为<code>bar.jpg</code>。</p>
+<h3 id="hreflang-属性">hreflang 属性</h3>
+<p><code>hreflang</code>属性用来读写<code>&lt;a&gt;</code>元素的 HTML 属性<code>hreflang</code>，表示链接指向的资源的语言，比如<code>hreflang=&quot;en&quot;</code>。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; href=&quot;https://example.com&quot; hreflang=&quot;en&quot;&gt;test&lt;/a&gt;
+var a = document.getElementById('test');
+a.hreflang // &quot;en&quot;
+</code></pre>
+<h3 id="referrerpolicy-属性">referrerPolicy 属性</h3>
+<p><code>referrerPolicy</code>属性用来读写<code>&lt;a&gt;</code>元素的 HTML 属性<code>referrerPolicy</code>，指定当用户点击链接时，如何发送 HTTP 头信息的<code>referer</code>字段。</p>
+<p>HTTP 头信息的<code>referer</code>字段，表示当前请求是从哪里来的。它的格式可以由<code>&lt;a&gt;</code>元素的<code>referrerPolicy</code>属性指定，共有三个值可以选择。</p>
+<ul>
+<li><code>no-referrer</code>：不发送<code>referer</code>字段。</li>
+<li><code>origin</code>：<code>referer</code>字段的值是<code>&lt;a&gt;</code>元素的<code>origin</code>属性，即协议 + 主机名 + 端口。</li>
+<li><code>unsafe-url</code>：<code>referer</code>字段的值是<code>origin</code>属性再加上路径，但不包含<code>#</code>片段。这种格式提供的信息最详细，可能存在信息泄漏的风险。</li>
+</ul>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; href=&quot;https://example.com&quot; referrerpolicy=&quot;no-referrer&quot;&gt;test&lt;/a&gt;
+var a = document.getElementById('test');
+a.referrerPolicy // &quot;no-referrer&quot;
+</code></pre>
+<h3 id="rel-属性">rel 属性</h3>
+<p><code>rel</code>属性用来读写<code>&lt;a&gt;</code>元素的 HTML 属性<code>rel</code>，表示链接与当前文档的关系。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; href=&quot;https://example.com&quot; rel=&quot;license&quot;&gt;license.html&lt;/a&gt;
+var a = document.getElementById('test');
+a.rel // &quot;license&quot;
+</code></pre>
+<h3 id="tabindex-属性">tabIndex 属性</h3>
+<p><code>tabIndex</code>属性的值是一个整数，用来读写当前<code>&lt;a&gt;</code>元素在文档里面的 Tab 键遍历顺序。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; href=&quot;https://example.com&quot;&gt;test&lt;/a&gt;
+var a = document.getElementById('test');
+a.tabIndex // 0
+</code></pre>
+<h3 id="target-属性">target 属性</h3>
+<p><code>target</code>属性用来读写<code>&lt;a&gt;</code>元素的 HTML 属性<code>target</code>。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; href=&quot;https://example.com&quot; target=&quot;_blank&quot;&gt;test&lt;/a&gt;
+var a = document.getElementById('test');
+a.target // &quot;_blank&quot;
+</code></pre>
+<h3 id="text-属性">text 属性</h3>
+<p><code>text</code>属性用来读写<code>&lt;a&gt;</code>元素的链接文本，等同于当前节点的<code>textContent</code>属性。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; href=&quot;https://example.com&quot;&gt;test&lt;/a&gt;
+var a = document.getElementById('test');
+a.text // &quot;test&quot;
+</code></pre>
+<h3 id="type-属性">type 属性</h3>
+<p><code>type</code>属性用来读写<code>&lt;a&gt;</code>元素的 HTML 属性<code>type</code>，表示链接目标的 MIME 类型。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;a id=&quot;test&quot; type=&quot;video/mp4&quot; href=&quot;example.mp4&quot;&gt;video&lt;/a&gt;
+var a = document.getElementById('test');
+a.type // &quot;video/mp4&quot;
+</code></pre>
+<h2 id="方法">方法</h2>
+<p><code>&lt;a&gt;</code>元素的方法都是继承的，主要有以下三个。</p>
+<ul>
+<li><code>blur()</code>：从当前元素移除键盘焦点，详见<code>HTMLElement</code>接口的介绍。</li>
+<li><code>focus()</code>：当前元素得到键盘焦点，详见<code>HTMLElement</code>接口的介绍。</li>
+<li><code>toString()</code>：返回当前<code>&lt;a&gt;</code>元素的 HTML 属性<code>href</code>。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-bom-webworker/" class="post-title gt-a-link">
+                    JavaScript 教程-浏览器模型-Web Worker
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
