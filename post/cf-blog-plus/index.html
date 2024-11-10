@@ -1,0 +1,1552 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>CF-Blog-Plus项目：建立在CF Works Kv的无服务器静态博客 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1731204974435">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1731204974435" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    CF-Blog-Plus项目：建立在CF Works Kv的无服务器静态博客
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-03 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>本项目<strong>CFBlog-Plus</strong>是由基于<a href="https://github.com/gdtool/cloudflare-workers-blog">gdtool/cloudflare-workers-blog</a>二次开发而来，主要是对cf worker中的js进行自主开源，并扩展了许多功能。</p>
+<h2 id="与cf-blog相比有哪些变更">与CF-Blog相比，有哪些变更：</h2>
+<!-- more -->
+<ol>
+<li>开源部署在workers中的js，根据自己的理解，进行自主开发并开源，详见<a href="https://github.com/Arronlong/cfblog-plus/blob/master/index_plus.js">index_plus.js</a></li>
+<li>扩展md编辑器配置，可以自行根据需要修改配置。目前可配置支持html标签解析（默认关闭），更多设置参考<a href="https://pandao.github.io/editor.md/">editormd官网</a></li>
+<li>后台新建页和编辑页，自动设置时间和默认图片(使用JustNews主题时必须设置，否则样式大变)，默认图片为：<img src="https://cdn.jsdelivr.net/gh/Arronlong/cdn@master/cfblog/cfblog-plus.png" alt="" loading="lazy"></li>
+<li>添加文章置顶设置功能</li>
+<li>添加后台首页选择功能</li>
+<li>添加文章隐藏功能</li>
+<li>静态搜索</li>
+</ol>
+<p>一些功能还在规划中：</p>
+<ol>
+<li>文章独立密码</li>
+</ol>
+<h2 id="演示地址-httpsblogarrontgcf">演示地址: <a href="https://xongyi.eu.org" title="cf-blog演示站点">https://blog.arrontg.cf</a></h2>
+<h2 id="部署教程-cfblog-plus搭建教程">部署教程:  <a href="https://blog.arrontg.cf/article/000004/.html">CFBlog-Plus搭建教程</a></h2>
+<h2 id="更新日志-cfblog-plus更新日志">更新日志: <a href="https://blog.arrontg.cf/article/000006/.html">CFBLOG-PLUS更新日志</a></h2>
+<p><strong>想了解index_plus.js的源码吗？看作者的源码解读文章《<a href="https://blog.arrontg.cf/article/000008/.html">解读CFBlog-Plus的源码</a>》</strong></p>
+<pre><code class="language-javascript">/**------【①.谋而后定：配置区】-----**/
+
+'use strict';
+const ACCOUNT = { //账号相关，安全性更高
+
+  &quot;user&quot; : &quot;admin&quot;, //博客后台用户名
+  &quot;password&quot; : &quot;cfblog-plus&quot;, //博客后台密码
+  &quot;third_token&quot; : &quot;cfblog&quot;, //开放token，当前仅允许访问/admin/search.xml，/admin/sitemap.xml时可用，在cfblog_token的头信息中传递
+  &quot;cacheZoneId&quot;:&quot;935xxxxxxxxxxxx&quot;,//区域 ID
+  &quot;cacheToken&quot;:&quot;AQxxxxxxxx&quot;,//API token
+
+  &quot;kv_var&quot;: this['CFBLOG'],//workers绑定kv时用的变量名
+}
+
+const OPT = { //网站配置
+
+  /*--前台参数--*/
+  &quot;siteDomain&quot; : &quot;域名&quot;,// 域名(不带https 也不带/)
+  &quot;siteName&quot; : &quot;CFBLOG-Plus&quot;,//博客名称
+  &quot;siteDescription&quot;:&quot;CFBLOG-Plus&quot; ,//博客描述
+  &quot;keyWords&quot;:&quot;cloudflare,KV,workers,blog&quot;,//关键字
+  &quot;logo&quot;:&quot;https://cdn.jsdelivr.net/gh/Arronlong/cfblog-plus@master/themes/JustNews/files/logo2.png&quot;,//JustNews主题的logo
+
+  &quot;theme_github_path&quot;:&quot;https://cdn.jsdelivr.net/gh/Arronlong/cfblog-plus@master/themes/&quot;,//主题路径
+  &quot;themeURL&quot; : &quot;https://raw.githubusercontent.com/Arronlong/cfblog-plus/master/themes/JustNews/&quot;, // 模板地址,以 &quot;/&quot;&quot; 结尾
+  //&quot;search_xml_url&quot;:&quot;&quot;, //search.xml外部链接，可通过github的action自动生成，不设置则实时生成
+  //&quot;sitemap_xml_url&quot;:&quot;&quot;, //sitemap.xml外部链接，可通过github的action自动生成，不设置则实时生成
+  
+  &quot;pageSize&quot; : 5,//每页文章数
+  &quot;recentlySize&quot; : 6,//最近文章数
+  &quot;recentlyType&quot; : 1,//最近文章类型：1-按创建时间倒序（按id倒序），2-按修改时间排序
+  &quot;readMoreLength&quot;:150,//阅读更多截取长度
+  &quot;cacheTime&quot; : 60*60*24*2, //文章在浏览器的缓存时长(秒),建议=文章更新频率
+  &quot;html404&quot; : `&lt;b&gt;404&lt;/b&gt;`,//404页面代码
+  &quot;codeBeforHead&quot;:`
+  &lt;script src=&quot;https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js&quot;&gt;&lt;/script&gt;
+  `,//其他代码,显示在&lt;/head&gt;前
+  &quot;codeBeforBody&quot;:`
+  `,//其他代码,显示在&lt;/body&gt;前
+  &quot;commentCode&quot;:`
+  &lt;script&gt;
+    //文章浏览页 添加编辑直达功能
+    $(&quot;.entry-info&quot;).append('&lt;a style=&quot;float:right;margin-left:5px;&quot; href=&quot;'+location.href.replace('/article/','/admin/edit/')+'&quot; target=&quot;_blank&quot;&gt;编辑&lt;/a&gt;')
+  &lt;/script&gt;
+  `,//评论区代码
+  &quot;widgetOther&quot;:`
+  `,//20201224新增参数,用于右侧 小部件扩展
+  &quot;otherCodeA&quot;:`热度`,//模板开发用的其他自定义变量
+  &quot;otherCodeB&quot;:``,//
+  &quot;otherCodeC&quot;:``,//
+  &quot;otherCodeD&quot;:``,//
+  &quot;otherCodeE&quot;:``,//
+  &quot;copyRight&quot; :`Powered by &lt;a href=&quot;https://www.cloudflare.com&quot;&gt;Cloudflare&lt;/a&gt; &amp; &lt;a href=&quot;https://blog.arrontg.cf&quot;&gt;CFBlog-Plus&lt;/a&gt; &amp; &lt;a href=&quot;https://blog.gezhong.vip&quot;&gt;CF-Blog &lt;/a&gt;`,//自定义版权信息,建议保留大公无私的 Coudflare 和 作者 的链接
+  &quot;robots&quot;:`User-agent: *
+Disallow: /admin`,//robots.txt设置
+  
+  /*--前后台共用参数--*/
+  
+  &quot;top_flag&quot;:`&lt;topflag&gt;[置顶]&lt;/topflag&gt;`,//置顶标志
+  &quot;top_flag_style&quot;:`&lt;style&gt;topflag {color:#ff5722}&lt;/style&gt;`,//置顶标志的样式
+
+
+  /*--后台参数--*/
+
+  &quot;hidden_flag&quot;:`&lt;hiddenflag&gt;[隐藏]&lt;/hiddenflag&gt;`,//隐藏标志
+  &quot;hidden_flag_style&quot;:`&lt;style&gt;hiddenflag {color:#000000;background-color: #ffff00;}&lt;/style&gt;`,//隐藏标志的样式
+  
+  &quot;admin_home_idx&quot;: 1, //后台首页tab索引设置：1-我的文章,2-新建,3-设置,4-发布
+  &quot;editor_page_scripts&quot;: `
+    //置顶设置
+    let top_setting=\`
+      &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label for=&quot;exampleInputEmail2&quot;&gt;是否置顶&lt;/label&gt;
+      &lt;input type=&quot;hidden&quot; class=&quot;form-control&quot; id=&quot;top_timestamp&quot; name=&quot;top_timestamp&quot;&gt;
+      &lt;select class=&quot;form-control&quot; id=&quot;istop&quot; name=&quot;istop&quot;&gt;
+        &lt;option value=&quot;0&quot; selected &gt;否&lt;/option&gt;
+        &lt;option value=&quot;1&quot; &gt;是&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;/div&gt;\`
+    $('form#addNewForm div.form-group,form#editForm div.form-group').last().after(top_setting);//新建和编辑页面添加置顶设置
+    $(&quot;#istop&quot;).change(function(){
+      $(&quot;#top_timestamp&quot;).val($(this).val()*1?new Date().getTime():0);
+    });
+    if(location.pathname.startsWith('/admin/edit')){//修改文章页面，自动设置置顶
+      $(&quot;#istop&quot;).val(articleJson.top_timestamp?1:0);
+      $(&quot;#top_timestamp&quot;).val(articleJson.top_timestamp?articleJson.top_timestamp:0);
+    }
+    $(&quot;#istop&quot;).trigger('change')
+    //隐藏设置
+    let hidden_setting=\`
+      &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label for=&quot;exampleInputEmail2&quot;&gt;是否隐藏&lt;/label&gt;
+      &lt;select class=&quot;form-control&quot; id=&quot;hidden&quot; name=&quot;hidden&quot;&gt;
+        &lt;option value=&quot;0&quot; selected &gt;否&lt;/option&gt;
+        &lt;option value=&quot;1&quot; &gt;是&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;/div&gt;\`
+    $('form#addNewForm div.form-group,form#editForm div.form-group').last().after(hidden_setting);//新建和编辑页面添加隐藏设置
+    if(location.pathname.startsWith('/admin/edit')){//修改文章页面，自动设置隐藏
+      $(&quot;#hidden&quot;).val(articleJson.hidden?1:0);
+    }
+    let sitemapxml=\`&lt;a  tabindex=&quot;0&quot;  role=&quot;button&quot;  type=&quot;submit&quot; id=&quot;btn_export&quot; class=&quot;btn btn-default&quot;  href=&quot;/admin/sitemap.xml&quot; &gt;导出sitemap.xml&lt;/a&gt;\`
+    $('form#importForm a').last().after(sitemapxml);//设置页面添加导出sitemap.xml导出按钮
+    let searchxml=\`&lt;a  tabindex=&quot;0&quot;  role=&quot;button&quot;  type=&quot;submit&quot; id=&quot;btn_export&quot; class=&quot;btn btn-default&quot;  href=&quot;/admin/search.xml&quot; &gt;导出search.xml&lt;/a&gt;\`
+    $('form#importForm a').last().after(searchxml);//设置页面添加导出search.xml导出按钮
+    
+    //关闭email匹配和@匹配，否则图片使用jsdelivr的cdn，如果有版本号会匹配成“mailto:xxx”从而导致显示异常
+    mdEditor.settings.emailLink=false;
+    mdEditor.settings.atLink=false;
+
+    //mdEditor.settings.toc=false
+    //mdEditor.settings.tocm=true  // Using [TOCM]
+    //mdEditor.settings.tocContainer=&quot;#custom-toc-container&quot; // 自定义 ToC 容器层
+    //mdEditor.settings.gfm=false
+    //mdEditor.settings.tocDropdown=true
+    //mdEditor.settings.markdownSourceCode=true // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+    mdEditor.settings.emoji=true
+    mdEditor.settings.taskList=true;// 默认不解析
+    mdEditor.settings.tex=true;// 默认不解析
+    mdEditor.settings.flowChart=true; // 默认不解析
+    mdEditor.settings.sequenceDiagram=true;// 默认不解析
+    
+    //开启全局html标签解析-不推荐
+    //mdEditor.settings.htmlDecode=true;
+    
+    window.mdEditor=mdEditor;    
+    //editormd工具栏上添加html标签解析开关
+    mdEditor.getToolbarHandles().parseHtml=function(){
+      let ele = $(&quot;.editormd-menu li a i:last&quot;);
+      if(ele.hasClass('fa-toggle-off')){
+        ele.removeClass('fa-toggle-off').addClass('fa-toggle-on');
+        mdEditor.settings.htmlDecode = true;
+      }else if(ele.hasClass('fa-toggle-on')){
+        ele.removeClass('fa-toggle-on').addClass('fa-toggle-off')
+        mdEditor.settings.htmlDecode = false;
+      }
+      mdEditor.setMarkdown(mdEditor.getMarkdown());
+    }
+    setTimeout(function(){
+      $(&quot;.editormd-menu&quot;).append('&lt;li class=&quot;divider&quot; unselectable=&quot;on&quot;&gt;|&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;javascript:;&quot; title=&quot;解析HTML标签&quot; unselectable=&quot;on&quot;&gt;&lt;i class=&quot;fa fa-toggle-off&quot; name=&quot;parseHtml&quot; unselectable=&quot;on&quot;&gt; 解析HTML标签 &lt;/i&gt;&lt;/a&gt;&lt;/li&gt;')
+      mdEditor.setToolbarHandler(mdEditor.getToolbarHandles())
+    },300)
+
+    //默认图片，工具：https://tool.lu/imageholder/
+    if($('#img').val()==&quot;&quot;)$('#img').val('https://cdn.jsdelivr.net/gh/Arronlong/cdn@master/cfblog/cfblog-plus.png');
+    //默认时间设置为当前时间
+    if($('#createDate').val()==&quot;&quot;)$('#createDate').val(new Date(new Date().getTime()+8*60*60*1000).toJSON().substr(0,16));
+    `, //后台编辑页面脚本
+
+};
+
+//---对部分配置进行处理---
+{
+  //CFBLOG 通用变量
+  this.CFBLOG = ACCOUNT.kv_var;
+  
+  //默认为非私密博客
+  if(null==OPT.privateBlog){
+    OPT.privateBlog=false;
+  }
+  //处理themeURL、theme_github_path参数设定
+  if(OPT.themeURL.substr(-1)!='/'){
+    OPT.themeURL=OPT.themeURL+'/';
+  }
+  if(OPT.theme_github_path.substr(-1)!='/'){
+    OPT.theme_github_path=OPT.theme_github_path+'/';
+  }
+  //置顶样式对于前台来说，与codeBeforHead结合即可
+  if(OPT.top_flag_style){
+  OPT.codeBeforHead += OPT.top_flag_style
+  }
+}
+
+/**------【②.猎杀时刻：请求处理入口】-----**/
+
+//监听请求
+addEventListener(&quot;fetch&quot;,event=&gt;{
+  //处理请求
+  event.respondWith(handlerRequest(event))
+})
+
+// 处理请求
+async function handlerRequest(event){
+  let request = event.request
+  //获取url请求对象
+  let url=new URL(request.url)
+  let paths=url.pathname.trim(&quot;/&quot;).split(&quot;/&quot;)
+
+  //校验权限
+  if((&quot;admin&quot;==paths[0]||true===OPT.privateBlog) &amp;&amp;!parseBasicAuth(request)){
+    return new Response(&quot;Unauthorized&quot;,{
+      headers:{
+        &quot;WWW-Authenticate&quot;:'Basic realm=&quot;cfblog&quot;',
+        &quot;Access-Control-Allow-Origin&quot;:&quot;*&quot;
+      },
+      status:401
+    });
+  }
+
+  //组装请求url，查看是否有缓存
+  const D=caches.default,
+      M=&quot;https://&quot;+OPT.siteDomain+url.pathname,
+      x=new Request(M, request);
+  console.log(&quot;cacheFullPath:&quot;,M);
+  let k=await D.match(x);
+  if(k){
+    console.log(&quot;hit cache!&quot;)
+    return k;
+  }
+
+  switch(paths[0]){
+    case &quot;favicon.ico&quot;: //图标
+      k = await handle_favicon(request);
+      break;
+    case &quot;robots.txt&quot;:
+      k = await handle_robots(request);
+      break;
+    case &quot;sitemap.xml&quot;:
+      k = await handle_sitemap(request);
+      break;
+    case &quot;search.xml&quot;:
+      k = await handle_search(request);
+      break;
+    case &quot;admin&quot;: //后台
+      k = await handle_admin(request);
+      break;
+    case &quot;article&quot;: //文章内容页
+      k = await handle_article(paths[1]);
+      break;
+    case &quot;&quot;: //文章 首页
+    case &quot;page&quot;: //文章 分页
+    case &quot;category&quot;: //分类 分页
+    case &quot;tags&quot;: //标签 分页
+      k = await renderBlog(url);
+      break;
+    default:
+      //其他页面返回404
+      k= new Response(OPT.html404,{
+        headers:{
+          &quot;content-type&quot;:&quot;text/html;charset=UTF-8&quot;
+        },
+        status:200
+      })
+      break;
+  }  
+  //设置浏览器缓存时间:后台不缓存、只缓存前台
+  try{
+    if(&quot;admin&quot;==paths[0]){
+      k.headers.set(&quot;Cache-Control&quot;,&quot;no-store&quot;)
+    }else{
+      k.headers.set(&quot;Cache-Control&quot;,&quot;public, max-age=&quot;+OPT.cacheTime),
+      event.waitUntil(D.put(M,k.clone()))
+    }
+  }catch(e){}
+  
+  return k
+}
+
+/**------【③.分而治之：各种请求分开处理】-----**/
+
+//访问: favicon.ico
+async function handle_favicon(request){
+  /*
+  想要自定义，或者用指定的ico，可将此请求置为404，并在codeBeforHead中自行添加类似代码：
+    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;https://cdn.jsdelivr.net/gh/gdtool/zhaopp/cfblog/favicon.ico&quot; /&gt;
+    &lt;link rel=&quot;Shortcut Icon&quot; href=&quot;https://cdn.jsdelivr.net/gh/gdtool/zhaopp/cfblog/favicon.ico&quot;&gt;
+  */
+  /*
+  return new Response(&quot;404&quot;,{
+      headers:{
+          &quot;content-type&quot;:&quot;text/plain;charset=UTF-8&quot;
+      },
+      status:404
+  });
+  */
+  let url = new URL(request.url)
+  url.host=&quot;dash.cloudflare.com&quot;
+  return await fetch(new Request(url, request));
+}
+
+//访问: robots.txt
+async function handle_robots(request){
+  return new Response(OPT.robots+&quot;\nSitemap: https://&quot;+OPT.siteDomain+&quot;/sitemap.xml&quot;,{
+    headers:{
+      &quot;content-type&quot;:&quot;text/plain;charset=UTF-8&quot;
+    },
+    status:200
+  });
+}
+
+//访问: sitemap.xml
+async function handle_sitemap(request){
+  //如果设置了参数，则使用参数指定的url
+  //可使用github action方式自动定期更新
+  let xml;
+  if(OPT.sitemap_xml_url){
+    
+    //cf代理方式，速度可以，实时性更好
+    let url = new URL(request.url)
+    url.href = OPT.sitemap_xml_url.replace('cdn.jsdelivr.net/gh','raw.githubusercontent.com').replace('@','/');
+    xml = await fetch(new Request(url, request));
+    xml = await xml.text();
+    
+    ////302方式，如果使用jsdelivr作为cdn，速度快，但更新有延迟
+    //return new Response(&quot;&quot;,{
+    //    headers:{
+    //        &quot;location&quot;:OPT.sitemap_xml_url
+    //    },
+    //    status:302
+    //});
+  
+  }else{ //未配置参数，则实时获取结构
+  
+    //读取文章列表，并按照特定的xml格式进行组装
+    let articles_all=await getArticlesList()
+    xml='&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n&lt;urlset xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot; xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;';
+    for(var i=0;i&lt;articles_all.length;i++){
+      xml+=&quot;\n\t&lt;url&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;loc&gt;https://&quot;+OPT.siteDomain+&quot;/article/&quot;+articles_all[i].id+&quot;/&quot;+articles_all[i].link+&quot;.html&lt;/loc&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;lastmod&gt;&quot;+articles_all[i].createDate.substr(0,10)+&quot;&lt;/lastmod&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;changefreq&gt;&quot;+(void 0===articles_all[i].changefreq?&quot;daily&quot;:articles_all[i].changefreq)+&quot;&lt;/changefreq&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;priority&gt;&quot;+(void 0===articles_all[i].priority?&quot;0.5&quot;:articles_all[i].priority)+&quot;&lt;/priority&gt;&quot;,
+      xml+=&quot;\n\t&lt;/url&gt;&quot;;
+    }
+    xml+=&quot;\n&lt;/urlset&gt;&quot;
+  }
+  return new Response(xml,{
+    headers:{
+        &quot;content-type&quot;:&quot;text/xml;charset=UTF-8&quot;
+    },
+    status:200
+  });
+}
+
+//访问: search.xml
+async function handle_search(request){
+  //如果设置了参数，则使用参数指定的url
+  //可使用github action方式自动定期更新
+  let xml;
+  if(OPT.search_xml_url){
+    
+    //cf代理方式，速度可以，实时性更好
+    let url = new URL(request.url)
+    url.href = OPT.search_xml_url.replace('cdn.jsdelivr.net/gh','raw.githubusercontent.com').replace('@','/');
+    xml = await fetch(new Request(url, request));
+    xml = await xml.text();
+    
+    ////302方式，如果使用jsdelivr作为cdn，速度快，但更新有延迟
+    //return new Response(&quot;&quot;,{
+    //    headers:{
+    //        &quot;location&quot;:OPT.search_xml_url
+    //    },
+    //    status:302
+    //});
+  
+  }else{ //未配置参数，则实时获取结构
+  
+    //读取文章列表，并按照特定的xml格式进行组装
+    let articles_all=await getArticlesList()
+    xml='&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n&lt;blogs&gt;';
+    for(var i=0;i&lt;articles_all.length;i++){
+      xml+=&quot;\n\t&lt;blog&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;title&gt;&quot;+articles_all[i].title+&quot;&lt;/title&gt;&quot;;
+      let article = await getArticle(articles_all[i].id);
+      if(null != article){
+        xml+=&quot;\n\t\t&lt;content&gt;&quot;+article.contentMD.replaceAll('&lt;','&amp;lt;').replaceAll('&gt;','&amp;gt;').replaceAll('&amp;','&amp;amp;')+&quot;&lt;/content&gt;&quot;
+      }
+      xml+=&quot;\n\t\t&lt;url&gt;https://&quot;+OPT.siteDomain+&quot;/article/&quot;+articles_all[i].id+&quot;/&quot;+articles_all[i].link+&quot;.html&lt;/url&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;time&gt;&quot;+articles_all[i].createDate.substr(0,10)+&quot;&lt;/time&gt;&quot;,
+      xml+=&quot;\n\t&lt;/blog&gt;&quot;;
+    }
+    xml+=&quot;\n&lt;/blogs&gt;&quot;
+  }
+  return new Response(xml,{
+    headers:{
+      &quot;content-type&quot;:&quot;text/xml;charset=UTF-8&quot;
+    },
+    status:200
+  });
+}
+
+//渲染前端博客：指定一级路径page\tags\category，二级路径value，以及页码，默认第一页
+async function renderBlog(url){
+  console.log(&quot;---进入renderBlog函数---，path=&quot;, url.href.substr(url.origin.length))
+  
+  //处理主题预览及分页
+  let theme=url.searchParams.get(&quot;theme&quot;),
+      pageSize=url.searchParams.get(&quot;pageSize&quot;);
+  if(theme){
+    OPT.themeURL=OPT.theme_github_path+theme+&quot;/&quot;;
+  }
+  if(pageSize){
+    OPT.pageSize=parseInt(pageSize);
+  }
+  //如果采用默认default主题，则改为加载default2.0主题
+  if(OPT.theme_github_path+&quot;default/&quot;==OPT.themeURL){
+    OPT.themeURL=OPT.theme_github_path+&quot;default2.0/&quot;;
+  }
+  console.log(&quot;theme pageSize&quot;,OPT.pageSize,OPT.themeURL)
+  
+  //获取主页模板源码
+  let theme_html=await getThemeHtml(&quot;index&quot;),
+      //KV中读取导航栏、分类目录、标签、链接、所有文章、近期文章等配置信息
+      menus=await getWidgetMenu(),
+      categories=await getWidgetCategory(),
+      tags=await getWidgetTags(),
+      links=await getWidgetLink(),
+      articles_all=await getArticlesList(),
+      articles_recently=await getRecentlyArticles(articles_all);
+  
+  /** 前台博客
+   *  路径格式：
+   *  域名/              文章列表首页，等价于域名/page/1
+   *  域名/page/xxx      文章列表翻页
+   * 
+   *  域名/category/xxx  分类页，等价于域名/category/xxx/page/1
+   *  域名/category/xxx/page/xxx  分类页+翻页
+   * 
+   *  域名/tags/xxx      标签页，等价于域名/tags/xxx/page/1
+   *  域名/tags/xxx/page/xxx  分类页+翻页
+   * 
+   */
+  let paths = url.pathname.trim(&quot;/&quot;).split(&quot;/&quot;)
+  let articles=[],
+      pageNo=1
+  //获取文章列表
+  switch(paths[0]||&quot;page&quot;){
+  case &quot;page&quot;:
+    articles = articles_all
+    pageNo = paths[1]||1
+    break;
+  case &quot;tags&quot;:
+  case &quot;category&quot;:
+    let category_tag = paths.slice(1).join(&quot;&quot;);//如果无分页，tags、category后面都是标签、分类名
+    if(paths.length&gt;3 &amp;&amp; paths.includes(&quot;page&quot;)){
+      pageNo = paths[paths.indexOf(&quot;page&quot;)+1] //分页的页码
+      category_tag = paths.slice(1, paths.lastIndexOf(&quot;page&quot;)-1).join(&quot;&quot;) //tags、category后，分页前的为标签、分类名
+    }
+    category_tag = decodeURIComponent(category_tag)
+    articles = articles_all.filter(a =&gt; a[paths[0]].includes(category_tag))
+    break;
+  }
+  pageNo = parseInt(pageNo)
+  // console.log(pageNo)
+  // console.log(articles)
+
+  //获取当页要显示文章列表
+  let articles_show = articles.slice((pageNo-1)*OPT.pageSize,pageNo*OPT.pageSize);
+  // console.log(articles_show)
+  
+  //处理文章属性（年月日、url等）
+  processArticleProp(articles_show);
+
+  // console.log(url.pathname)
+  let url_prefix = url.pathname.replace(/(.*)\/page\/\d+/,'$1/')
+  if(url_prefix.substr(-1)=='/'){
+    url_prefix=url_prefix.substr(0,url_prefix.length-1);
+  }
+  // console.log(url_prefix)
+  //组装各种参数
+  let newer=[{title:&quot;上一页&quot;,url:url_prefix+&quot;/page/&quot;+(pageNo-1)}];
+  if(1==pageNo){
+    newer=[];
+  }
+  let older=[{title:&quot;下一页&quot;,url:url_prefix+&quot;/page/&quot;+(pageNo+1)}];
+  if(pageNo*OPT.pageSize&gt;=articles.length){
+    older=[];
+  }
+  // console.log(newer)
+  // console.log(older)
+
+  //文章标题、关键字
+  let title=(pageNo&gt;1 ? &quot;page &quot;+pageNo+&quot; - &quot; : &quot;&quot;)+OPT.siteName,
+      keyWord=OPT.keyWords,
+      cfg={};
+  cfg.widgetMenuList=menus,//导航
+  cfg.widgetCategoryList=categories,//分类目录
+  cfg.widgetTagsList=tags,//标签
+  cfg.widgetLinkList=links,//链接
+  cfg.widgetRecentlyList=articles_recently,//近期文章
+  cfg.articleList=articles_show,//当前页文章列表
+  cfg.pageNewer=newer,//上翻页链接
+  cfg.pageOlder=older,//下翻页链接
+  cfg.title=title,//网页title
+  cfg.keyWords=keyWord;//SEO关键字
+  
+  //使用mustache.js进行页面渲染（参数替换）
+  cfg.OPT=OPT
+  
+  let html = Mustache.render(theme_html,cfg)
+  
+  return new Response(html,{
+    headers:{
+      &quot;content-type&quot;:&quot;text/html;charset=UTF-8&quot;
+    },
+    status:200
+  })
+}
+
+//渲染前端博客的文章内容页
+async function handle_article(id){
+  //获取内容页模板源码
+  let theme_html=await getThemeHtml(&quot;article&quot;),
+      //KV中读取导航栏、分类目录、标签、链接、近期文章等配置信息
+      menus=await getWidgetMenu(),
+      categories=await getWidgetCategory(),
+      tags=await getWidgetTags(),
+      links=await getWidgetLink(),
+      articles_recently=await getRecentlyArticles();
+
+  //获取上篇、本篇、下篇文章
+  let articles_sibling=await getSiblingArticle(id);
+  
+  //处理文章属性（年月日、url等）
+  processArticleProp(articles_sibling);
+  
+  //获取本篇文章
+  let article=articles_sibling[1];
+
+  //组装文章详情页各参数
+  let title=article.title.replace(nullToEmpty(OPT.top_flag),'').replace(nullToEmpty(OPT.hidden_flag),'')+&quot; - &quot;+OPT.siteName, 
+      keyWord=article.tags.concat(article.category).join(&quot;,&quot;),
+      cfg={};
+  cfg.widgetMenuList=menus,//导航
+  cfg.widgetCategoryList=categories,//分类目录
+  cfg.widgetTagsList=tags,//标签
+  cfg.widgetLinkList=links,//链接
+  cfg.widgetRecentlyList=articles_recently,//近期文章
+  cfg.articleOlder=articles_sibling[0]?[articles_sibling[0]]:[],//上篇文章
+  cfg.articleSingle=article,//本篇文章
+  cfg.articleNewer=articles_sibling[2]?[articles_sibling[2]]:[],//下篇文章
+  cfg.title=title,//网页title
+  cfg.keyWords=keyWord;//SEO关键字
+  
+  //使用mustache.js渲染页面（参数替换）
+  cfg.OPT=OPT
+  
+  let html = Mustache.render(theme_html,cfg)
+
+  //以html格式返回
+  return new Response(html,{
+    headers:{
+      &quot;content-type&quot;:&quot;text/html;charset=UTF-8&quot;
+    },
+    status:200
+  })
+}
+
+//后台请求处理
+async function handle_admin(request){
+  let url = new URL(request.url),
+      paths = url.pathname.trim(&quot;/&quot;).split(&quot;/&quot;),
+      html,//返回html
+      json,//返回json
+      file;//返回文件
+  //新建页
+  if(1==paths.length||&quot;list&quot;==paths[1]){
+    //读取主题的admin/index.html源码
+    let theme_html=await getThemeHtml(&quot;admin/index&quot;),
+        //KV中读取导航栏、分类目录、链接、近期文章等配置信息
+        categoryJson=await getWidgetCategory(),
+        menuJson=await getWidgetMenu(),
+        linkJson=await getWidgetLink();
+    
+    //手动替换&lt;!--{xxx}--&gt;格式的参数
+    html = theme_html.replaceHtmlPara(&quot;categoryJson&quot;,JSON.stringify(categoryJson))
+                    .replaceHtmlPara(&quot;menuJson&quot;,JSON.stringify(menuJson))
+                    .replaceHtmlPara(&quot;linkJson&quot;,JSON.stringify(linkJson))
+                    
+    //添加后台首页配置
+    if(OPT.admin_home_idx &amp;&amp; OPT.admin_home_idx&gt;=1 &amp;&amp; OPT.admin_home_idx&lt;=4){
+      html = html.replace(&quot;$('#myTab li:eq(0) 1').tab('show')&quot;,&quot;$($('#myTab a[href*=\&quot;'+location.hash+'\&quot;]')[0]||$('#myTab a:eq(&quot;+OPT.admin_home_idx+&quot;)')).tab('show')&quot;)
+    }
+    //添加置顶样式
+    if(OPT.top_flag_style){
+      html += OPT.top_flag_style
+    }
+    //添加隐藏样式
+    if(OPT.hidden_flag_style){
+      html += OPT.hidden_flag_style
+    }
+  }
+
+  //发布
+  if(&quot;publish&quot;==paths[1]){
+    //KV中获取文章列表
+    let articles_all=await getAllArticlesList(),
+        tags=[]; //操作标签
+    
+    //遍历所有文章，汇集所有的tag
+    for(var i=0;i&lt;articles_all.length;i++){
+      //若文章设定了标签
+      if(&quot;object&quot;==typeof articles_all[i].tags){
+        //将所有tags存入e中
+        for(var j=0;j&lt;articles_all[i].tags.length;j++){
+          if(articles_all[i].tags[j] 
+            &amp;&amp; articles_all[i].tags[j].length&gt;0 
+            &amp;&amp; -1==tags.indexOf(articles_all[i].tags[j])){
+            tags.push(articles_all[i].tags[j]);
+          }
+        }
+      }
+    }
+    console.log(articles_all)
+    //将所有标签一次性写入到KV中，并清除缓存
+    await saveWidgetTags(JSON.stringify(tags))
+    
+    json = await purge()?'{&quot;msg&quot;:&quot;published ,purge Cache true&quot;,&quot;rst&quot;:true}':'{&quot;msg&quot;:&quot;published ,buuuuuuuuuuuut purge Cache false !!!!!!&quot;,&quot;rst&quot;:true}'
+      
+  }
+
+  //文章列表
+  if(&quot;getList&quot;==paths[1]){
+    //默认取第一页，每页20篇
+    let pageNo=(undefined===paths[2]) ? 1 : parseInt(paths[2]),
+        list=await admin_nextPage(pageNo, 20);//每次加载20个
+    json = JSON.stringify(list)
+  }
+  
+  //修改文章
+  if(&quot;edit&quot;==paths[1]){
+    let id=paths[2],
+        //获取主题admin/edit源码
+        theme_html=await getThemeHtml(&quot;admin/edit&quot;),
+        //KV中读取分类
+        categoryJson=JSON.stringify(await getWidgetCategory()),
+        //KV中读取文章内容
+        articleJson=JSON.stringify(await getArticle(id));
+    
+    //手动替换&lt;!--{xxx}--&gt;格式的参数
+    html = theme_html.replaceHtmlPara(&quot;categoryJson&quot;,categoryJson).replaceHtmlPara(&quot;articleJson&quot;,articleJson.replaceAll(&quot;script&gt;&quot;,&quot;script＞&quot;))
+  }
+  
+  //保存配置
+  if(&quot;saveConfig&quot;==paths[1]){
+    const ret=await parseReq(request);
+    let widgetCategory=ret.WidgetCategory,//分类
+        widgetMenu=ret.WidgetMenu,//导航
+        widgetLink=ret.WidgetLink;//链接
+    
+    //判断格式，写入分类、导航、链接到KV中
+    if(checkFormat(widgetCategory) &amp;&amp; checkFormat(widgetMenu) &amp;&amp; checkFormat(widgetLink)){
+      let success = await saveWidgetCategory(widgetCategory)
+      success = success &amp;&amp; await saveWidgetMenu(widgetMenu)
+      success = success &amp;&amp; await saveWidgetLink(widgetLink)
+      json = success ? '{&quot;msg&quot;:&quot;saved&quot;,&quot;rst&quot;:true}' : '{&quot;msg&quot;:&quot;Save Faild!!!&quot;,&quot;ret&quot;:false}'
+    }else{
+      json = '{&quot;msg&quot;:&quot;Not a JSON object&quot;,&quot;rst&quot;:false}'
+    }
+  }
+  
+  //导入
+  if(&quot;import&quot;==paths[1]){
+    let importJsone=(await parseReq(request)).importJson;
+    console.log(&quot;开始导入&quot;,typeof importJson)
+    
+    if(checkFormat(importJson)){
+      let importJson=JSON.parse(importJson),
+          keys=Object.keys(importJson);
+      for(let i=0;i&lt;keys.length;++i){
+        console.log(keys[i],importJson[keys[i]]),
+        await saveArticle(keys[i],importJson[keys[i]]);
+      }
+      json = '{&quot;msg&quot;:&quot;import success!&quot;,&quot;rst&quot;:true}'
+    }else{
+      json = '{&quot;msg&quot;:&quot; importJson Not a JSON object&quot;,&quot;rst&quot;:false}'
+    }        
+  }
+  
+  //导出
+  if(&quot;export&quot;===paths[1]){
+    console.log(&quot;开始导出&quot;);
+    async function exportArticle(arr=[],cursor=&quot;&quot;,limit=1){
+      //分页获取文章内容
+      const list=await CFBLOG.list({limit:limit,cursor:cursor});
+      if(!1 in list) return {};
+      arr=arr.concat(list.keys)
+      console.log(&quot;导出: &quot;,typeof list, JSON.stringify(list))
+      //判断是否导出完毕
+      if(list.list_complete){
+        let ret = {OPT:OPT};
+        for(let i=0;i&lt;arr.length;++i){
+          const article = await CFBLOG.get(arr[i].name);
+          if(null != article){
+            ret[arr[i].name] = checkFormat(article)?JSON.parse(article):article
+          }
+        }
+        return ret
+      }
+      return await exportArticle(arr,list.cursor,limit)
+    }
+    
+    let articles=await exportArticle();
+    file = {
+      name: &quot;cfblog-&quot;+new Date().getTime()+&quot;.json&quot;,
+      content: JSON.stringify(articles)
+    }
+  }
+  
+  //导出search.xml 
+  if(&quot;search.xml&quot;===paths[1]){
+    console.log(&quot;开始导出&quot;);
+    //读取文章列表，并按照特定的xml格式进行组装
+    let articles_all=await getArticlesList()
+    let xml='&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n&lt;blogs&gt;';
+    for(var i=0;i&lt;articles_all.length;i++){
+      xml+=&quot;\n\t&lt;blog&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;title&gt;&quot;+articles_all[i].title+&quot;&lt;/title&gt;&quot;;
+      let article = await getArticle(articles_all[i].id);
+      if(null != article){
+        xml+=&quot;\n\t\t&lt;content&gt;&quot;+article.contentMD.replaceAll('&lt;','&amp;lt;').replaceAll('&gt;','&amp;gt;').replaceAll('&amp;','&amp;amp;')+&quot;&lt;/content&gt;&quot;
+      }
+      xml+=&quot;\n\t\t&lt;url&gt;https://&quot;+OPT.siteDomain+&quot;/article/&quot;+articles_all[i].id+&quot;/&quot;+articles_all[i].link+&quot;.html&lt;/url&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;time&gt;&quot;+articles_all[i].createDate.substr(0,10)+&quot;&lt;/time&gt;&quot;,
+      xml+=&quot;\n\t&lt;/blog&gt;&quot;;
+    }
+    xml+=&quot;\n&lt;/blogs&gt;&quot;
+    file = {
+      name: &quot;search.xml&quot;,
+      content: xml
+    }
+  }
+  
+  //导出sitemap.xml 
+  if(&quot;sitemap.xml&quot;===paths[1]){
+    console.log(&quot;开始导出&quot;);
+    //读取文章列表，并按照特定的xml格式进行组装
+    let articles_all=await getArticlesList()
+    let xml='&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n&lt;urlset xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot; xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;';
+    for(var i=0;i&lt;articles_all.length;i++){
+      xml+=&quot;\n\t&lt;url&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;loc&gt;https://&quot;+OPT.siteDomain+&quot;/article/&quot;+articles_all[i].id+&quot;/&quot;+articles_all[i].link+&quot;.html&lt;/loc&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;lastmod&gt;&quot;+articles_all[i].createDate.substr(0,10)+&quot;&lt;/lastmod&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;changefreq&gt;&quot;+(void 0===articles_all[i].changefreq?&quot;daily&quot;:articles_all[i].changefreq)+&quot;&lt;/changefreq&gt;&quot;,
+      xml+=&quot;\n\t\t&lt;priority&gt;&quot;+(void 0===articles_all[i].priority?&quot;0.5&quot;:articles_all[i].priority)+&quot;&lt;/priority&gt;&quot;,
+      xml+=&quot;\n\t&lt;/url&gt;&quot;;
+    }
+    xml+=&quot;\n&lt;/urlset&gt;&quot;
+    file = {
+      name: &quot;sitemap.xml&quot;,
+      content: xml
+    }
+  }
+  
+  //新建文章
+  if(&quot;saveAddNew&quot;==paths[1]){
+    const ret=await parseReq(request);
+    let title=ret.title,//文章标题
+        img=ret.img,//插图
+        link=ret.link,//永久链接
+        createDate=ret.createDate.replace('T',' '),//发布日期
+        category=ret.category,//分类
+        tags=ret.tags,//标签
+        priority=void 0===ret.priority?&quot;0.5&quot;:ret.priority,//权重
+        changefreq=void 0===ret.changefreq?&quot;daily&quot;:ret.changefreq,//更新频率
+        contentMD=ret[&quot;content-markdown-doc&quot;],//文章内容-md格式
+        contentHtml=ret[&quot;content-html-code&quot;],//文章内容-html格式
+        contentText=&quot;&quot;,//文章摘要
+        top_timestamp=ret.top_timestamp*1,//置顶时间戳，不置顶时为0
+        modify_timestamp=new Date().getTime()+8*60*60*1000,//修改时间戳
+        hidden=ret.hidden*1,//是否隐藏
+        id=&quot;&quot;;//文章id
+    
+    //校验参数完整性
+    if(title.length&gt;0
+      &amp;&amp; createDate.length&gt;0
+      &amp;&amp; category.length&gt;0
+      &amp;&amp; contentMD.length&gt;0
+      &amp;&amp; contentHtml.length&gt;0){
+
+      id=await generateId(),
+      contentText=contentHtml.replace(/&lt;\/?[^&gt;]*&gt;/g,&quot;&quot;).trim().substring(0,OPT.readMoreLength);//摘要
+      //组装文章json
+      let article={
+        id:id,
+        title:title,
+        img:img,
+        link:link,
+        createDate:createDate,
+        category:category,
+        tags:tags,
+        contentMD:contentMD,
+        contentHtml:contentHtml,
+        contentText:contentText,
+        priority:priority,
+        top_timestamp:top_timestamp,
+        modify_timestamp:modify_timestamp,
+        hidden:hidden,
+        changefreq:changefreq
+      };
+      
+      //将文章json写入KV（key为文章id，value为文章json字符串）
+      await saveArticle(id,JSON.stringify(article));
+      
+      //组装文章json
+      let articleWithoutHtml={
+        id:id,
+        title:title,
+        img:img,
+        link:link,
+        createDate:createDate,
+        category:category,
+        tags:tags,
+        contentText:contentText,
+        priority:priority,
+        top_timestamp:top_timestamp,
+        modify_timestamp:modify_timestamp,
+        hidden:hidden,
+        changefreq:changefreq
+      },
+      articles_all_old=await getAllArticlesList(),//读取文章列表
+      articles_all=[];
+    
+      //将最新的文章写入文章列表中，并按id排序后，再次回写到KV中
+      articles_all.push(articleWithoutHtml),
+      articles_all=articles_all.concat(articles_all_old),
+      articles_all=sortArticle(articles_all),
+      await saveArticlesList(JSON.stringify(articles_all))
+      
+      json = '{&quot;msg&quot;:&quot;added OK&quot;,&quot;rst&quot;:true,&quot;id&quot;:&quot;'+id+'&quot;}'
+    }else{
+      json = '{&quot;msg&quot;:&quot;信息不全&quot;,&quot;rst&quot;:false}'
+    }
+  }
+  
+  //删除
+  if(&quot;delete&quot;==paths[1]){
+    let id=paths[2]
+    if(6==id.length){
+      await CFBLOG.delete(id);
+      let e=await getAllArticlesList();
+      for(r=0;r&lt;e.length;r++){
+        if(id==e[r].id){
+          e.splice(r,1);
+          
+          await saveArticlesList(JSON.stringify(e))
+          json = '{&quot;msg&quot;:&quot;Delete ('+id+')  OK&quot;,&quot;rst&quot;:true,&quot;id&quot;:&quot;'+id+'&quot;}'
+          break;
+        }
+      }
+    }else{
+      json = '{&quot;msg&quot;:&quot;Delete  false &quot;,&quot;rst&quot;:false,&quot;id&quot;:&quot;'+id+'&quot;}'
+    }
+  }
+  
+  //保存编辑的文章
+  if(&quot;saveEdit&quot;==paths[1]){
+    const ret=await parseReq(request);
+    let title=ret.title,//文章标题
+        img=ret.img,//插图
+        link=ret.link,//永久链接
+        createDate=ret.createDate.replace('T',' '),//发布日期
+        category=ret.category,//分类
+        tags=ret.tags,//标签
+        priority=void 0===ret.priority?&quot;0.5&quot;:ret.priority,//权重
+        changefreq=void 0===ret.changefreq?&quot;daily&quot;:ret.changefreq,//更新频率
+        contentMD=ret[&quot;content-markdown-doc&quot;],//文章内容-md格式
+        contentHtml=ret[&quot;content-html-code&quot;],//文章内容-html格式
+        contentText=&quot;&quot;,//文章摘要
+        top_timestamp=ret.top_timestamp*1,//置顶则设置时间戳,不置顶时为0
+        modify_timestamp=new Date().getTime()+8*60*60*1000,//修改时间戳
+        hidden=ret.hidden*1,//是否隐藏
+        id=ret.id;//文章id
+        
+    //校验参数完整性
+    if(title.length&gt;0
+      &amp;&amp; createDate.length&gt;0
+      &amp;&amp; category.length&gt;0
+      &amp;&amp; contentMD.length&gt;0
+      &amp;&amp; contentHtml.length&gt;0){
+          
+      contentText=contentHtml.replace(/&lt;\/?[^&gt;]*&gt;/g,&quot;&quot;).trim().substring(0,OPT.readMoreLength);//摘要
+      //组装文章json
+      let article={
+        id:id,
+        title:title,
+        img:img,
+        link:link,
+        createDate:createDate,
+        category:category,
+        tags:tags,
+        contentMD:contentMD,
+        contentHtml:contentHtml,
+        contentText:contentText,
+        priority:priority,
+        top_timestamp:top_timestamp,
+        modify_timestamp:modify_timestamp,
+        hidden:hidden,
+        changefreq:changefreq
+      };
+      
+      //将文章json写入KV（key为文章id，value为文章json字符串）
+      await saveArticle(id,JSON.stringify(article));
+      
+      //组装文章json
+      let articleWithoutHtml={
+        id:id,
+        title:title,
+        img:img,
+        link:link,
+        createDate:createDate,
+        category:category,
+        tags:tags,
+        contentText:contentText,
+        priority:priority,
+        top_timestamp:top_timestamp,
+        modify_timestamp:modify_timestamp,
+        hidden:hidden,
+        changefreq:changefreq
+      },
+      articles_all=await getAllArticlesList();//读取文章列表
+      //console.log(articles_all)
+      //将原对象删掉，将最新的文章加入文章列表中，并重新按id排序后，再次回写到KV中
+      for(var i=articles_all.length-1;i&gt;=0;i--){//按索引删除，要倒序，否则索引值会变
+        if(articles_all[i].id == id){
+          articles_all.splice(i,1);
+          break;
+        }
+      }
+      articles_all.push(articleWithoutHtml),
+      articles_all=sortArticle(articles_all),
+      await saveArticlesList(JSON.stringify(articles_all))
+      json = '{&quot;msg&quot;:&quot;Edit OK&quot;,&quot;rst&quot;:true,&quot;id&quot;:&quot;'+id+'&quot;}'
+    }else{
+      json = '{&quot;msg&quot;:&quot;信息不全&quot;,&quot;rst&quot;:false}'
+    }
+  }
+  
+  //返回结果
+  if(!json &amp;&amp;!html &amp;&amp; !file){
+    json = '{&quot;msg&quot;:&quot;some errors&quot;,&quot;rst&quot;:false}'
+  }
+  if(file){
+    return new Response(file.content,{
+      headers:{
+        &quot;content-type&quot;:&quot;application/octet-stream;charset=utf-8&quot;,
+        &quot;Content-Disposition&quot;:&quot;attachment; filename=&quot;+file.name
+      },
+      status:200
+    })
+  }
+  if(html){
+    return new Response(html,{
+      headers:{
+        &quot;content-type&quot;:&quot;text/html;charset=UTF-8&quot;
+      },
+      status:200
+    })
+  }
+  if(json){
+    return new Response(json ,{
+      headers:{
+        &quot;content-type&quot;:&quot;application/json;charset=UTF-8&quot;
+      },
+      status:200
+    })
+  }
+}
+
+/**------【④.抽丝剥茧，抽取公用的业务方法】-----**/
+
+//访问管理后台或私密博客，则进行Base Auth
+function parseBasicAuth(request){
+    const auth=request.headers.get(&quot;Authorization&quot;);
+    if(!auth||!/^Basic [A-Za-z0-9._~+/-]+=*$/i.test(auth)){
+        const token = request.headers.get(&quot;cfblog_token&quot;);
+        if(token){
+            //获取url请求对象
+            let url=new URL(request.url)
+            let paths=url.pathname.trim(&quot;/&quot;).split(&quot;/&quot;)
+
+            //校验权限
+            if(&quot;admin&quot;==paths[0] &amp;&amp; (&quot;search.xml&quot;==paths[1]||&quot;sitemap.xml&quot;==paths[1])){
+                return token === ACCOUNT.third_token
+            }
+        }
+        return false;
+    }
+    const[user,pwd]=atob(auth.split(&quot; &quot;).pop()).split(&quot;:&quot;);
+    console.log(&quot;-----parseBasicAuth----- &quot;, user, pwd)
+    return user===ACCOUNT.user &amp;&amp; pwd===ACCOUNT.password
+}
+
+//获取所有【公开】文章：仅前台使用
+async function getArticlesList(){
+  let articles_all = await getAllArticlesList();
+  
+  for(var i=0;i&lt;articles_all.length;i++)
+    if(articles_all[i].hidden){
+        articles_all.splice(i,1);
+    }
+  return articles_all;
+}
+
+//文章排序：先按id倒排，再按置顶时间倒排
+function sortArticle(articles){
+  return sort(sort(articles,'id'),'top_timestamp');
+}
+
+//获取近期文章列表
+async function getRecentlyArticles(articles){
+  if(!articles){
+    articles = await getArticlesList();
+  }
+  if(OPT.recentlyType == 2){//按修改时间倒序
+    articles = sort([].concat(articles),'modify_timestamp');
+  }
+  let articles_recently = articles.slice(0,OPT.recentlySize);
+
+  for(var i=0;i&lt;articles_recently.length;i++){
+      //调整文章的日期(yyyy-MM-dd)和url
+      if(articles_recently[i].top_timestamp &amp;&amp; !articles_recently[i].title.startsWith(OPT.top_flag)){
+        articles_recently[i].title = OPT.top_flag + articles_recently[i].title
+      }
+      articles_recently[i].createDate10=articles_recently[i].createDate.substr(0,10),
+      articles_recently[i].url=&quot;/article/&quot;+articles_recently[i].id+&quot;/&quot;+articles_recently[i].link+&quot;.html&quot;;
+  }
+  return articles_recently;
+}
+
+//处理文章的属性信息：日期(yyyy-MM-dd)、年、月、日、内容长度和url
+function processArticleProp(articles){
+    for(var i=0;i&lt;articles.length;i++){
+        //调整文章的日期(yyyy-MM-dd)、文章长度和url
+        if(articles[i]){
+            if(articles[i].top_timestamp &amp;&amp; !articles[i].title.startsWith(OPT.top_flag)){
+              articles[i].title = OPT.top_flag + articles[i].title
+            }
+            //调整文章的日期(yyyy-MM-dd)、年、月、日、内容长度和url
+            articles[i].createDate10=articles[i].createDate.substr(0,10),
+            articles[i].createDateYear=articles[i].createDate.substr(0,4),
+            articles[i].createDateMonth=articles[i].createDate.substr(5,7),
+            articles[i].createDateDay=articles[i].createDate.substr(8,10),
+            articles[i].contentLength=articles[i].contentText.length,
+            articles[i].url=&quot;/article/&quot;+articles[i].id+&quot;/&quot;+articles[i].link+&quot;.html&quot;;
+        }
+    }
+}
+
+//获取前台模板源码, template_path:模板的相对路径
+async function getThemeHtml(template_path){
+  template_path=template_path.replace(&quot;.html&quot;,&quot;&quot;)
+  let html = await (await fetch(OPT.themeURL+template_path+&quot;.html&quot;,{cf:{cacheTtl:600}})).text();
+  
+  //对后台编辑页下手
+  if(&quot;admin/index|admin/editor&quot;.includes(template_path)){
+      html = html.replace(&quot;$('#WidgetCategory').val(JSON.stringify(categoryJson))&quot;,OPT.editor_page_scripts+&quot;$('#WidgetCategory').val(JSON.stringify(categoryJson))&quot;)
+  }
+  
+  return html
+}
+
+//根据文章id，返回上篇、下篇文章，文章内容页底部会用到
+async function getSiblingArticle(id){
+    id=(&quot;00000&quot;+parseInt(id)).substr(-6);
+    //读取文章列表，查找指定id的文章
+    let articles_all=await getArticlesList(),
+        article_idx=-1;
+    for(var i=0,len=articles_all.length;i&lt;len;i++)
+      if(articles_all[i].id==id){
+          article_idx=i;
+          break
+      }
+    let value=await getArticle(id);
+    return null==value||0===value.length?[void 0,void 0,void 0]:[articles_all[article_idx-1],value,articles_all[article_idx+1]]
+}
+
+//清除缓存
+async function purge(cacheZoneId=ACCOUNT.cacheZoneId,cacheToken=ACCOUNT.cacheToken){
+    if(null==cacheZoneId||null==cacheToken||cacheZoneId.length&lt;5||cacheToken.length&lt;5){
+        return false;
+    }
+    let ret=await fetch(`https://api.cloudflare.com/client/v4/zones/${cacheZoneId}/purge_cache`,{
+        method:&quot;POST&quot;,
+        headers:{
+            &quot;Authorization&quot;:&quot;Bearer &quot;+cacheToken,
+            &quot;Content-Type&quot;:&quot;application/json&quot;
+        },
+        body:'{&quot;purge_everything&quot;:true}'
+    });
+    return (await ret.json()).success
+}
+
+//后台文章列表页的分页加载，返回[文章列表,是否无下一页]
+async function admin_nextPage(pageNo,pageSize=OPT.pageSize){
+    pageNo=pageNo&lt;=1?1:pageNo;
+    let articles_all=await getAllArticlesList(),
+        articles=[];
+    for(var i=(pageNo-1)*pageSize,s=Math.min(pageNo*pageSize,articles_all.length);i&lt;s;i++){
+      if(articles_all[i].top_timestamp &amp;&amp; !articles_all[i].title.startsWith(OPT.top_flag)){
+        articles_all[i].title = OPT.top_flag + articles_all[i].title
+      }
+      if(articles_all[i].hidden &amp;&amp; !articles_all[i].title.startsWith(OPT.hidden_flag)){
+        articles_all[i].title = OPT.hidden_flag + articles_all[i].title
+      }
+      articles.push(articles_all[i]);
+    }
+    //articles=sortArticle(articles);
+    return articles
+}
+
+//解析后台请求的参数
+async function parseReq(request){
+    const content_type=request.headers.get(&quot;content-type&quot;)||&quot;&quot;;
+    //json格式
+    if(content_type.includes(&quot;application/json&quot;)){
+    let json=JSON.stringify(await request.json()),
+        content_type=JSON.parse(json),
+        settings={category:[],top_timestamp:0, hidden:0};
+        for(var i=0;i&lt;content_type.length;i++){
+            if(&quot;tags&quot;==content_type[i].name){//标签，用逗号分隔
+                settings[content_type[i].name]=content_type[i].value.split(&quot;,&quot;)
+            }else if(content_type[i].name.includes(&quot;category&quot;)){
+                settings.category.push(content_type[i].value)
+            }else{
+                settings[content_type[i].name]=content_type[i].value
+            }
+        }
+        return settings
+    }
+    if(content_type.includes(&quot;application/text&quot;)){
+        return await request.text();
+    }
+    if(content_type.includes(&quot;text/html&quot;)){
+        return await request.text();
+    }
+    if(content_type.includes(&quot;form&quot;)){
+        const formData=await request.formData(),
+                ret={};
+        for(const field of formData.entries())
+            ret[field[0]]=field[1];
+        return JSON.stringify(ret)
+    }
+    {
+        const blob=await request.blob();
+        return URL.createObjectURL(blob)
+    }
+}
+
+//为文章分配ID
+async function generateId(){
+    //KV中读取文章数量（初始化为1），并格式化为6位，不足6位前面补零
+    let article_id_seq=await getIndexNum();
+    if(&quot;&quot;===article_id_seq||null===article_id_seq||&quot;[]&quot;===article_id_seq||void 0===article_id_seq){
+        await saveIndexNum(1)
+        return &quot;000001&quot;
+    }else{
+        await saveIndexNum(parseInt(article_id_seq)+1)
+        return (&quot;00000&quot;+(parseInt(article_id_seq)+1)).substr(-6)
+    }
+}
+
+/**------【⑤.术业有专攻，读写KV方法集】-----**/
+
+/* 【KV的Key的含义】
+  SYSTEM_INDEX_LIST             文章列表(不包含内容)
+  SYSTEM_INDEX_NUM              最新文章序号（不删除文章时，等于文章数量）
+  SYSTEM_VALUE_WidgetMenu       导航栏
+  SYSTEM_VALUE_WidgetCategory   分类目录
+  SYSTEM_VALUE_WidgetTags       标签
+  SYSTEM_VALUE_WidgetLink       链接
+*/
+
+//KV读取，toJson是否转为json，默认false
+async function getKV(key, toJson=false){
+  console.log(&quot;------------KV读取------------key,toJson:&quot;, key, toJson);
+  let value=await CFBLOG.get(key);
+  if(!toJson)
+    return null==value?&quot;[]&quot;:value;
+  try{
+    return null==value?[]:JSON.parse(value)
+  }catch(e){
+    return[]
+  }
+}
+//KV读取，获取所有文章（含公开+隐藏）:仅后台使用
+async function getAllArticlesList(){
+  return await getKV(&quot;SYSTEM_INDEX_LIST&quot;, true);
+}
+//KV读取，最新文章序号（不删除文章时，等于文章数量），用于计算下个文章id
+async function getIndexNum(){
+  return await getKV(&quot;SYSTEM_INDEX_NUM&quot;, true);
+}
+//KV读取，获取导航栏
+async function getWidgetMenu(){
+  return await getKV(&quot;SYSTEM_VALUE_WidgetMenu&quot;, true);
+}
+//KV读取，获取分类目录
+async function getWidgetCategory(){
+  return await getKV(&quot;SYSTEM_VALUE_WidgetCategory&quot;, true);
+}
+//KV读取，获取标签
+async function getWidgetTags(){
+  return await getKV(&quot;SYSTEM_VALUE_WidgetTags&quot;, true);
+}
+//KV读取，获取链接
+async function getWidgetLink(){
+  return await getKV(&quot;SYSTEM_VALUE_WidgetLink&quot;, true);
+}
+//KV读取，获取文章详细信息
+async function getArticle(id){
+  return await getKV(id, true);
+}
+
+//写入KV，value如果未对象类型（数组或者json对象）需要序列化为字符串
+async function saveKV(key,value){
+    if(null!=value){
+        if(&quot;object&quot;==typeof value){
+            value=JSON.stringify(value)
+        }
+        await CFBLOG.put(key,value)
+        return true
+    }
+    return false;
+}
+
+//写入KV，获取所有文章（含公开+隐藏）:仅后台使用
+async function saveArticlesList(value){
+  return await saveKV(&quot;SYSTEM_INDEX_LIST&quot;,value);
+}
+//写入KV，最新文章序号（不删除文章时，等于文章数量），用于计算下个文章id
+async function saveIndexNum(value){
+  return await saveKV(&quot;SYSTEM_INDEX_NUM&quot;, value);
+}
+//写入KV，获取导航栏
+async function saveWidgetMenu(value){
+  return await saveKV(&quot;SYSTEM_VALUE_WidgetMenu&quot;, value);
+}
+//写入KV，获取分类目录
+async function saveWidgetCategory(value){
+  return await saveKV(&quot;SYSTEM_VALUE_WidgetCategory&quot;, value);
+}
+//写入KV，获取标签
+async function saveWidgetTags(value){
+  return await saveKV(&quot;SYSTEM_VALUE_WidgetTags&quot;, value);
+}
+//写入KV，获取链接
+async function saveWidgetLink(value){
+  return await saveKV(&quot;SYSTEM_VALUE_WidgetLink&quot;, value);
+}
+//写入KV，获取文章详细信息
+async function saveArticle(id,value){
+  return await saveKV(id, value);
+}
+
+/**------【⑥.站在巨人肩膀上，基础方法】-----**/
+
+//扩展String的方法：
+//trim清除前后空格
+String.prototype.trim=function(t){
+  return t?this.replace(new RegExp(&quot;^\\&quot;+t+&quot;+|\\&quot;+t+&quot;+$&quot;,&quot;g&quot;),&quot;&quot;):this.replace(/^\s+|\s+$/g,&quot;&quot;)
+}
+//replaceHtmlPara替换&lt;!--{参数}--&gt;
+String.prototype.replaceHtmlPara=function(t,e){
+  return null!=e&amp;&amp;(e=e.replace(new RegExp(&quot;[$]&quot;,&quot;g&quot;),&quot;$$$$&quot;)),this.replace(new RegExp(&quot;\x3c!--{&quot;+t+&quot;}--\x3e&quot;,&quot;g&quot;),e)
+}
+//replaceAll 替换全部
+String.prototype.replaceAll=function(t,e){
+  return this.replace(new RegExp(t,&quot;g&quot;),e)
+}
+
+//小于2位，前面补个0
+function pad(t){
+    return t&gt;=0&amp;&amp;t&lt;=9?&quot;0&quot;+t:t
+}
+
+//排序（默认倒序）
+function sort(arr, field, desc=true){
+    return arr.sort((function(m,n){
+        var a=m[field]||'0',
+            b=n[field]||'0';
+        return desc?(a&gt;b?-1:(a&lt;b?1:0)):(a&lt;b?-1:(a&gt;b?1:0))
+    }))
+}
+
+//undefined转空字符串
+function nullToEmpty(k){
+  return k==undefined?'':k
+}
+
+//判断格式:字符串是否为json，或者参数是否为对象
+function checkFormat(t){
+    if(&quot;string&quot;==typeof t){
+        try{
+            var e=JSON.parse(t);
+            return !(&quot;object&quot;!=typeof e||!e)
+        }catch(t){
+            return false
+        }
+    }
+    return !(&quot;object&quot;!=typeof t||!t)
+}
+
+//引入mustache.js，4.1.0：https://cdn.bootcdn.net/ajax/libs/mustache.js/4.1.0/mustache.min.js
+(function(global,factory){typeof exports===&quot;object&quot;&amp;&amp;typeof module!==&quot;undefined&quot;?module.exports=factory():typeof define===&quot;function&quot;&amp;&amp;define.amd?define(factory):(global=global||self,global.Mustache=factory())})(this,function(){&quot;use strict&quot;;var objectToString=Object.prototype.toString;var isArray=Array.isArray||function isArrayPolyfill(object){return objectToString.call(object)===&quot;[object Array]&quot;};function isFunction(object){return typeof object===&quot;function&quot;}function typeStr(obj){return isArray(obj)?&quot;array&quot;:typeof obj}function escapeRegExp(string){return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g,&quot;\\$&amp;&quot;)}function hasProperty(obj,propName){return obj!=null&amp;&amp;typeof obj===&quot;object&quot;&amp;&amp;propName in obj}function primitiveHasOwnProperty(primitive,propName){return primitive!=null&amp;&amp;typeof primitive!==&quot;object&quot;&amp;&amp;primitive.hasOwnProperty&amp;&amp;primitive.hasOwnProperty(propName)}var regExpTest=RegExp.prototype.test;function testRegExp(re,string){return regExpTest.call(re,string)}var nonSpaceRe=/\S/;function isWhitespace(string){return!testRegExp(nonSpaceRe,string)}var entityMap={&quot;&amp;&quot;:&quot;&amp;amp;&quot;,&quot;&lt;&quot;:&quot;&amp;lt;&quot;,&quot;&gt;&quot;:&quot;&amp;gt;&quot;,'&quot;':&quot;&amp;quot;&quot;,&quot;'&quot;:&quot;&amp;#39;&quot;,&quot;/&quot;:&quot;&amp;#x2F;&quot;,&quot;`&quot;:&quot;&amp;#x60;&quot;,&quot;=&quot;:&quot;&amp;#x3D;&quot;};function escapeHtml(string){return String(string).replace(/[&amp;&lt;&gt;&quot;'`=\/]/g,function fromEntityMap(s){return entityMap[s]})}var whiteRe=/\s*/;var spaceRe=/\s+/;var equalsRe=/\s*=/;var curlyRe=/\s*\}/;var tagRe=/#|\^|\/|&gt;|\{|&amp;|=|!/;function parseTemplate(template,tags){if(!template)return[];var lineHasNonSpace=false;var sections=[];var tokens=[];var spaces=[];var hasTag=false;var nonSpace=false;var indentation=&quot;&quot;;var tagIndex=0;function stripSpace(){if(hasTag&amp;&amp;!nonSpace){while(spaces.length)delete tokens[spaces.pop()]}else{spaces=[]}hasTag=false;nonSpace=false}var openingTagRe,closingTagRe,closingCurlyRe;function compileTags(tagsToCompile){if(typeof tagsToCompile===&quot;string&quot;)tagsToCompile=tagsToCompile.split(spaceRe,2);if(!isArray(tagsToCompile)||tagsToCompile.length!==2)throw new Error(&quot;Invalid tags: &quot;+tagsToCompile);openingTagRe=new RegExp(escapeRegExp(tagsToCompile[0])+&quot;\\s*&quot;);closingTagRe=new RegExp(&quot;\\s*&quot;+escapeRegExp(tagsToCompile[1]));closingCurlyRe=new RegExp(&quot;\\s*&quot;+escapeRegExp(&quot;}&quot;+tagsToCompile[1]))}compileTags(tags||mustache.tags);var scanner=new Scanner(template);var start,type,value,chr,token,openSection;while(!scanner.eos()){start=scanner.pos;value=scanner.scanUntil(openingTagRe);if(value){for(var i=0,valueLength=value.length;i&lt;valueLength;++i){chr=value.charAt(i);if(isWhitespace(chr)){spaces.push(tokens.length);indentation+=chr}else{nonSpace=true;lineHasNonSpace=true;indentation+=&quot; &quot;}tokens.push([&quot;text&quot;,chr,start,start+1]);start+=1;if(chr===&quot;\n&quot;){stripSpace();indentation=&quot;&quot;;tagIndex=0;lineHasNonSpace=false}}}if(!scanner.scan(openingTagRe))break;hasTag=true;type=scanner.scan(tagRe)||&quot;name&quot;;scanner.scan(whiteRe);if(type===&quot;=&quot;){value=scanner.scanUntil(equalsRe);scanner.scan(equalsRe);scanner.scanUntil(closingTagRe)}else if(type===&quot;{&quot;){value=scanner.scanUntil(closingCurlyRe);scanner.scan(curlyRe);scanner.scanUntil(closingTagRe);type=&quot;&amp;&quot;}else{value=scanner.scanUntil(closingTagRe)}if(!scanner.scan(closingTagRe))throw new Error(&quot;Unclosed tag at &quot;+scanner.pos);if(type==&quot;&gt;&quot;){token=[type,value,start,scanner.pos,indentation,tagIndex,lineHasNonSpace]}else{token=[type,value,start,scanner.pos]}tagIndex++;tokens.push(token);if(type===&quot;#&quot;||type===&quot;^&quot;){sections.push(token)}else if(type===&quot;/&quot;){openSection=sections.pop();if(!openSection)throw new Error('Unopened section &quot;'+value+'&quot; at '+start);if(openSection[1]!==value)throw new Error('Unclosed section &quot;'+openSection[1]+'&quot; at '+start)}else if(type===&quot;name&quot;||type===&quot;{&quot;||type===&quot;&amp;&quot;){nonSpace=true}else if(type===&quot;=&quot;){compileTags(value)}}stripSpace();openSection=sections.pop();if(openSection)throw new Error('Unclosed section &quot;'+openSection[1]+'&quot; at '+scanner.pos);return nestTokens(squashTokens(tokens))}function squashTokens(tokens){var squashedTokens=[];var token,lastToken;for(var i=0,numTokens=tokens.length;i&lt;numTokens;++i){token=tokens[i];if(token){if(token[0]===&quot;text&quot;&amp;&amp;lastToken&amp;&amp;lastToken[0]===&quot;text&quot;){lastToken[1]+=token[1];lastToken[3]=token[3]}else{squashedTokens.push(token);lastToken=token}}}return squashedTokens}function nestTokens(tokens){var nestedTokens=[];var collector=nestedTokens;var sections=[];var token,section;for(var i=0,numTokens=tokens.length;i&lt;numTokens;++i){token=tokens[i];switch(token[0]){case&quot;#&quot;:case&quot;^&quot;:collector.push(token);sections.push(token);collector=token[4]=[];break;case&quot;/&quot;:section=sections.pop();section[5]=token[2];collector=sections.length&gt;0?sections[sections.length-1][4]:nestedTokens;break;default:collector.push(token)}}return nestedTokens}function Scanner(string){this.string=string;this.tail=string;this.pos=0}Scanner.prototype.eos=function eos(){return this.tail===&quot;&quot;};Scanner.prototype.scan=function scan(re){var match=this.tail.match(re);if(!match||match.index!==0)return&quot;&quot;;var string=match[0];this.tail=this.tail.substring(string.length);this.pos+=string.length;return string};Scanner.prototype.scanUntil=function scanUntil(re){var index=this.tail.search(re),match;switch(index){case-1:match=this.tail;this.tail=&quot;&quot;;break;case 0:match=&quot;&quot;;break;default:match=this.tail.substring(0,index);this.tail=this.tail.substring(index)}this.pos+=match.length;return match};function Context(view,parentContext){this.view=view;this.cache={&quot;.&quot;:this.view};this.parent=parentContext}Context.prototype.push=function push(view){return new Context(view,this)};Context.prototype.lookup=function lookup(name){var cache=this.cache;var value;if(cache.hasOwnProperty(name)){value=cache[name]}else{var context=this,intermediateValue,names,index,lookupHit=false;while(context){if(name.indexOf(&quot;.&quot;)&gt;0){intermediateValue=context.view;names=name.split(&quot;.&quot;);index=0;while(intermediateValue!=null&amp;&amp;index&lt;names.length){if(index===names.length-1)lookupHit=hasProperty(intermediateValue,names[index])||primitiveHasOwnProperty(intermediateValue,names[index]);intermediateValue=intermediateValue[names[index++]]}}else{intermediateValue=context.view[name];lookupHit=hasProperty(context.view,name)}if(lookupHit){value=intermediateValue;break}context=context.parent}cache[name]=value}if(isFunction(value))value=value.call(this.view);return value};function Writer(){this.templateCache={_cache:{},set:function set(key,value){this._cache[key]=value},get:function get(key){return this._cache[key]},clear:function clear(){this._cache={}}}}Writer.prototype.clearCache=function clearCache(){if(typeof this.templateCache!==&quot;undefined&quot;){this.templateCache.clear()}};Writer.prototype.parse=function parse(template,tags){var cache=this.templateCache;var cacheKey=template+&quot;:&quot;+(tags||mustache.tags).join(&quot;:&quot;);var isCacheEnabled=typeof cache!==&quot;undefined&quot;;var tokens=isCacheEnabled?cache.get(cacheKey):undefined;if(tokens==undefined){tokens=parseTemplate(template,tags);isCacheEnabled&amp;&amp;cache.set(cacheKey,tokens)}return tokens};Writer.prototype.render=function render(template,view,partials,config){var tags=this.getConfigTags(config);var tokens=this.parse(template,tags);var context=view instanceof Context?view:new Context(view,undefined);return this.renderTokens(tokens,context,partials,template,config)};Writer.prototype.renderTokens=function renderTokens(tokens,context,partials,originalTemplate,config){var buffer=&quot;&quot;;var token,symbol,value;for(var i=0,numTokens=tokens.length;i&lt;numTokens;++i){value=undefined;token=tokens[i];symbol=token[0];if(symbol===&quot;#&quot;)value=this.renderSection(token,context,partials,originalTemplate,config);else if(symbol===&quot;^&quot;)value=this.renderInverted(token,context,partials,originalTemplate,config);else if(symbol===&quot;&gt;&quot;)value=this.renderPartial(token,context,partials,config);else if(symbol===&quot;&amp;&quot;)value=this.unescapedValue(token,context);else if(symbol===&quot;name&quot;)value=this.escapedValue(token,context,config);else if(symbol===&quot;text&quot;)value=this.rawValue(token);if(value!==undefined)buffer+=value}return buffer};Writer.prototype.renderSection=function renderSection(token,context,partials,originalTemplate,config){var self=this;var buffer=&quot;&quot;;var value=context.lookup(token[1]);function subRender(template){return self.render(template,context,partials,config)}if(!value)return;if(isArray(value)){for(var j=0,valueLength=value.length;j&lt;valueLength;++j){buffer+=this.renderTokens(token[4],context.push(value[j]),partials,originalTemplate,config)}}else if(typeof value===&quot;object&quot;||typeof value===&quot;string&quot;||typeof value===&quot;number&quot;){buffer+=this.renderTokens(token[4],context.push(value),partials,originalTemplate,config)}else if(isFunction(value)){if(typeof originalTemplate!==&quot;string&quot;)throw new Error(&quot;Cannot use higher-order sections without the original template&quot;);value=value.call(context.view,originalTemplate.slice(token[3],token[5]),subRender);if(value!=null)buffer+=value}else{buffer+=this.renderTokens(token[4],context,partials,originalTemplate,config)}return buffer};Writer.prototype.renderInverted=function renderInverted(token,context,partials,originalTemplate,config){var value=context.lookup(token[1]);if(!value||isArray(value)&amp;&amp;value.length===0)return this.renderTokens(token[4],context,partials,originalTemplate,config)};Writer.prototype.indentPartial=function indentPartial(partial,indentation,lineHasNonSpace){var filteredIndentation=indentation.replace(/[^ \t]/g,&quot;&quot;);var partialByNl=partial.split(&quot;\n&quot;);for(var i=0;i&lt;partialByNl.length;i++){if(partialByNl[i].length&amp;&amp;(i&gt;0||!lineHasNonSpace)){partialByNl[i]=filteredIndentation+partialByNl[i]}}return partialByNl.join(&quot;\n&quot;)};Writer.prototype.renderPartial=function renderPartial(token,context,partials,config){if(!partials)return;var tags=this.getConfigTags(config);var value=isFunction(partials)?partials(token[1]):partials[token[1]];if(value!=null){var lineHasNonSpace=token[6];var tagIndex=token[5];var indentation=token[4];var indentedValue=value;if(tagIndex==0&amp;&amp;indentation){indentedValue=this.indentPartial(value,indentation,lineHasNonSpace)}var tokens=this.parse(indentedValue,tags);return this.renderTokens(tokens,context,partials,indentedValue,config)}};Writer.prototype.unescapedValue=function unescapedValue(token,context){var value=context.lookup(token[1]);if(value!=null)return value};Writer.prototype.escapedValue=function escapedValue(token,context,config){var escape=this.getConfigEscape(config)||mustache.escape;var value=context.lookup(token[1]);if(value!=null)return typeof value===&quot;number&quot;&amp;&amp;escape===mustache.escape?String(value):escape(value)};Writer.prototype.rawValue=function rawValue(token){return token[1]};Writer.prototype.getConfigTags=function getConfigTags(config){if(isArray(config)){return config}else if(config&amp;&amp;typeof config===&quot;object&quot;){return config.tags}else{return undefined}};Writer.prototype.getConfigEscape=function getConfigEscape(config){if(config&amp;&amp;typeof config===&quot;object&quot;&amp;&amp;!isArray(config)){return config.escape}else{return undefined}};var mustache={name:&quot;mustache.js&quot;,version:&quot;4.1.0&quot;,tags:[&quot;{{&quot;,&quot;}}&quot;],clearCache:undefined,escape:undefined,parse:undefined,render:undefined,Scanner:undefined,Context:undefined,Writer:undefined,set templateCache(cache){defaultWriter.templateCache=cache},get templateCache(){return defaultWriter.templateCache}};var defaultWriter=new Writer;mustache.clearCache=function clearCache(){return defaultWriter.clearCache()};mustache.parse=function parse(template,tags){return defaultWriter.parse(template,tags)};mustache.render=function render(template,view,partials,config){if(typeof template!==&quot;string&quot;){throw new TypeError('Invalid template! Template should be a &quot;string&quot; '+'but &quot;'+typeStr(template)+'&quot; was given as the first '+&quot;argument for mustache#render(template, view, partials)&quot;)}return defaultWriter.render(template,view,partials,config)};mustache.escape=escapeHtml;mustache.Scanner=Scanner;mustache.Context=Context;mustache.Writer=Writer;return mustache});
+</code></pre>
+<blockquote>
+<p>这是一个运行在cloudflare workers 上的博客程序,使用 cloudflare KV作为数据库,无其他依赖.<br>
+兼容静态博客的速度,以及动态博客的灵活性,方便搭建不折腾.<br>
+演示地址: <a href="https://xongyi.eu.org" title="cf-blog演示站点">https://xongyi.eu.org</a>，<a href="https://blog.gezhong.vip" title="cf-blog演示站点">https://blog.gezhong.vip</a></p>
+</blockquote>
+<h3 id="原cfblog-tg-讨论群-cloudflareblog">原CFBlog-TG 讨论群: <a href="https://t.me/cloudflareblog">@CloudflareBlog</a></h3>
+<h1 id="主要特点">主要特点</h1>
+<ul>
+<li>使用workers提供的KV作为数据库</li>
+<li>使用cloudflare缓存html来降低KV的读写</li>
+<li>所有html页面均为缓存,可达到静态博客的速度</li>
+<li>使用KV作为数据库,可达到wordpress的灵活性</li>
+<li>后台使用markdown语法,方便快捷</li>
+<li>一键发布(页面重构+缓存清理)</li>
+</ul>
+<h1 id="承载能力">承载能力</h1>
+<ul>
+<li>KV基本不存在瓶颈,因为使用了缓存,读写很少</li>
+<li>唯一瓶颈是 workers的日访问量10w,大约能承受2万IP /日</li>
+<li>文章数:1G存储空间,几万篇问题不大</li>
+</ul>
+<h1 id="原作者更新日志">原作者更新日志</h1>
+<p><a href="https://blog.gezhong.vip/article/009000/update-log.html">CFBLOG更新日志</a></p>
+<h3 id="前端演示">前端演示:</h3>
+<figure data-type="image" tabindex="1"><img src="https://s3.ax1x.com/2020/12/22/rrP81S.png" alt="" loading="lazy"></figure>
+<h3 id="后端演示">后端演示:</h3>
+<figure data-type="image" tabindex="2"><img src="https://s3.ax1x.com/2020/12/22/rrAWrD.png" alt="" loading="lazy"></figure>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/bandwagonhost/" class="post-title gt-a-link">
+                    搬瓦工VPS有哪些机房和线路，怎么选择比较好？
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

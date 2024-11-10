@@ -1,0 +1,688 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>CF-Workers-docker.io：Docker仓库镜像代理工具 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1731204974435">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1731204974435" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    CF-Workers-docker.io：Docker仓库镜像代理工具
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-06-24 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/--1NG4SoC/" class="post-tags">
+                            # cloudflare
+                        </a>
+                    
+                        <a href="https://0520.eu.org/tag/ypzrjhYlii/" class="post-tags">
+                            # docker
+                        </a>
+                    
+                        <a href="https://0520.eu.org/tag/yZmK4JDVM/" class="post-tags">
+                            # cloudflare workers
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><a href="https://github.com/cmliu/CF-Workers-docker.io?tab=readme-ov-file#%E7%AC%AC%E4%B8%89%E6%96%B9-dockerhub-%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1"><strong>第三方 DockerHub 镜像服务列表</strong></a></p>
+<h1 id="cf-workers-dockeriodocker仓库镜像代理工具">CF-Workers-docker.io：Docker仓库镜像代理工具</h1>
+<p>这个项目是一个基于 Cloudflare Workers 的 Docker 镜像代理工具。它能够中转对 Docker 官方镜像仓库的请求，解决一些访问限制和加速访问的问题。</p>
+<!-- more -->
+<h2 id="部署方式">部署方式</h2>
+<ul>
+<li><strong>Workers</strong> 部署：复制 <a href="https://github.com/cmliu/CF-Workers-docker.io/blob/main/_worker.js">_worker.js</a> 代码，<code>保存并部署</code>即可</li>
+<li><strong>Pages</strong> 部署：<code>Fork</code> 后 <code>连接GitHub</code> 一键部署即可</li>
+</ul>
+<h2 id="如何使用">如何使用？</h2>
+<p>例如您的Workers项目域名为：<code>docker.fxxk.dedyn.io</code>；</p>
+<h3 id="1官方镜像路径前面加域名">1.官方镜像路径前面加域名</h3>
+<pre><code class="language-shell">docker pull docker.fxxk.dedyn.io/stilleshan/frpc:latest
+</code></pre>
+<pre><code class="language-shell">docker pull docker.fxxk.dedyn.io/library/nginx:stable-alpine3.19-perl
+</code></pre>
+<h3 id="2一键设置镜像加速">2.一键设置镜像加速</h3>
+<p>修改文件 <code>/etc/docker/daemon.json</code>（如果不存在则创建）</p>
+<pre><code class="language-shell">sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+{
+  &quot;registry-mirrors&quot;: [&quot;https://docker.fxxk.dedyn.io&quot;]  # 请替换为您自己的Worker自定义域名
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre>
+<h2 id="变量说明">变量说明</h2>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>示例</th>
+<th>必填</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL302</td>
+<td>https://t.me/CMLiussss</td>
+<td>❌</td>
+<td>主页302跳转</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://www.baidu.com/</td>
+<td>❌</td>
+<td>主页伪装(设为<code>nginx</code>则伪装为nginx默认页面)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="第三方-dockerhub-镜像服务">第三方 DockerHub 镜像服务</h1>
+<p><strong>注意:</strong></p>
+<ul>
+<li>以下内容仅做镜像服务的整理与搜集，未做任何安全性检测和验证。</li>
+<li>使用前请自行斟酌，并根据实际需求进行必要的安全审查。</li>
+<li>本列表中的任何服务都不做任何形式的安全承诺或保证。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>DockerHub 镜像仓库</th>
+<th>镜像加地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://t.me/bestcfipas/1900">bestcfipas镜像服务</a></td>
+<td><code>https://docker.registry.cyou</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>https://docker-cf.registry.cyou</code></td>
+</tr>
+<tr>
+<td><a href="https://t.me/zero_free/80">zero_free镜像服务</a></td>
+<td><code>https://docker.jsdelivr.fyi</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>https://dockercf.jsdelivr.fyi</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>https://dockertest.jsdelivr.fyi</code></td>
+</tr>
+<tr>
+<td><a href="https://dockerpull.com/">docker proxy</a></td>
+<td><code>https://dockerpull.com</code></td>
+</tr>
+<tr>
+<td><a href="https://dockerproxy.cn/">docker proxy</a></td>
+<td><code>https://dockerproxy.cn</code></td>
+</tr>
+<tr>
+<td><a href="https://hub.uuuadc.top/">Docker镜像加速站</a></td>
+<td><code>https://hub.uuuadc.top</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>https://docker.1panel.live</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>https://hub.rat.dev</code></td>
+</tr>
+<tr>
+<td><a href="https://docker.anyhub.us.kg/">DockerHub 镜像加速代理</a></td>
+<td><code>https://docker.anyhub.us.kg</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>https://docker.chenby.cn</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>https://dockerhub.jobcher.com</code></td>
+</tr>
+<tr>
+<td><a href="https://dockerhub.icu/">镜像使用说明</a></td>
+<td><code>https://dockerhub.icu</code></td>
+</tr>
+<tr>
+<td><a href="https://docker.ckyl.me/">Docker镜像加速站</a></td>
+<td><code>https://docker.ckyl.me</code></td>
+</tr>
+<tr>
+<td><a href="https://docker.awsl9527.cn/">镜像使用说明</a></td>
+<td><code>https://docker.awsl9527.cn</code></td>
+</tr>
+<tr>
+<td><a href="https://docker.hpcloud.cloud/">镜像使用说明</a></td>
+<td><code>https://docker.hpcloud.cloud</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/DaoCloud/public-image-mirror">DaoCloud 镜像站</a></td>
+<td><code>https://docker.m.daocloud.io</code></td>
+</tr>
+<tr>
+<td><a href="https://atomhub.openatom.cn/">AtomHub 可信镜像仓库平台</a> (只包含基础镜像，共336个)</td>
+<td><code>https://atomhub.openatom.cn</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="附件代码">附件代码</h1>
+<pre><code class="language-javascript">// _worker.js
+
+// Docker镜像仓库主机地址
+let hub_host = 'registry-1.docker.io'
+// Docker认证服务器地址
+const auth_url = 'https://auth.docker.io'
+// 自定义的工作服务器地址
+let workers_url = 'https://你的域名'
+
+// 根据主机名选择对应的上游地址
+function routeByHosts(host) {
+		// 定义路由表
+	const routes = {
+		// 生产环境
+		&quot;quay&quot;: &quot;quay.io&quot;,
+		&quot;gcr&quot;: &quot;gcr.io&quot;,
+		&quot;k8s-gcr&quot;: &quot;k8s.gcr.io&quot;,
+		&quot;k8s&quot;: &quot;registry.k8s.io&quot;,
+		&quot;ghcr&quot;: &quot;ghcr.io&quot;,
+		&quot;cloudsmith&quot;: &quot;docker.cloudsmith.io&quot;,
+		
+		// 测试环境
+		&quot;test&quot;: &quot;registry-1.docker.io&quot;,
+	};
+
+	if (host in routes) return [ routes[host], false ];
+	else return [ hub_host, true ];
+}
+
+/** @type {RequestInit} */
+const PREFLIGHT_INIT = {
+	// 预检请求配置
+	headers: new Headers({
+		'access-control-allow-origin': '*', // 允许所有来源
+		'access-control-allow-methods': 'GET,POST,PUT,PATCH,TRACE,DELETE,HEAD,OPTIONS', // 允许的HTTP方法
+		'access-control-max-age': '1728000', // 预检请求的缓存时间
+	}),
+}
+
+/**
+ * 构造响应
+ * @param {any} body 响应体
+ * @param {number} status 响应状态码
+ * @param {Object&lt;string, string&gt;} headers 响应头
+ */
+function makeRes(body, status = 200, headers = {}) {
+	headers['access-control-allow-origin'] = '*' // 允许所有来源
+	return new Response(body, { status, headers }) // 返回新构造的响应
+}
+
+/**
+ * 构造新的URL对象
+ * @param {string} urlStr URL字符串
+ */
+function newUrl(urlStr) {
+	try {
+		return new URL(urlStr) // 尝试构造新的URL对象
+	} catch (err) {
+		return null // 构造失败返回null
+	}
+}
+
+function isUUID(uuid) {
+	// 定义一个正则表达式来匹配 UUID 格式
+	const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[4][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+	
+	// 使用正则表达式测试 UUID 字符串
+	return uuidRegex.test(uuid);
+}
+
+async function nginx() {
+	const text = `
+	&lt;!DOCTYPE html&gt;
+	&lt;html&gt;
+	&lt;head&gt;
+	&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+	&lt;style&gt;
+		body {
+			width: 35em;
+			margin: 0 auto;
+			font-family: Tahoma, Verdana, Arial, sans-serif;
+		}
+	&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+	&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+	working. Further configuration is required.&lt;/p&gt;
+	
+	&lt;p&gt;For online documentation and support please refer to
+	&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+	Commercial support is available at
+	&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+	
+	&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+	&lt;/body&gt;
+	&lt;/html&gt;
+	`
+	return text ;
+}
+
+export default {
+	async fetch(request, env, ctx) {
+		const getReqHeader = (key) =&gt; request.headers.get(key); // 获取请求头
+
+		let url = new URL(request.url); // 解析请求URL
+		workers_url = `https://${url.hostname}`;
+		const pathname = url.pathname;
+		const hostname = url.searchParams.get('hubhost') || url.hostname; 
+		const hostTop = hostname.split('.')[0];// 获取主机名的第一部分
+		const checkHost = routeByHosts(hostTop);
+		hub_host = checkHost[0]; // 获取上游地址
+		const fakePage = checkHost[1];
+		console.log(`域名头部: ${hostTop}\n反代地址: ${hub_host}\n伪装首页: ${fakePage}`);
+		const isUuid = isUUID(pathname.split('/')[1].split('/')[0]);
+		
+		const conditions = [
+			isUuid,
+			pathname.includes('/_'),
+			pathname.includes('/r'),
+			pathname.includes('/v2/user'),
+			pathname.includes('/v2/orgs'),
+			pathname.includes('/v2/_catalog'),
+			pathname.includes('/v2/categories'),
+			pathname.includes('/v2/feature-flags'),
+			pathname.includes('search'),
+			pathname.includes('source'),
+			pathname === '/',
+			pathname === '/favicon.ico',
+			pathname === '/auth/profile',
+		];
+
+		if (conditions.some(condition =&gt; condition) &amp;&amp; (fakePage === true || hostTop == 'docker')) {
+			if (env.URL302){
+				return Response.redirect(env.URL302, 302);
+			} else if (env.URL){
+				if (env.URL.toLowerCase() == 'nginx'){
+					//首页改成一个nginx伪装页
+					return new Response(await nginx(), {
+						headers: {
+							'Content-Type': 'text/html; charset=UTF-8',
+						},
+					});
+				} else return fetch(new Request(env.URL, request));
+			}
+			
+			const newUrl = new URL(&quot;https://registry.hub.docker.com&quot; + pathname + url.search);
+
+			// 复制原始请求的标头
+			const headers = new Headers(request.headers);
+
+			// 确保 Host 头部被替换为 hub.docker.com
+			headers.set('Host', 'registry.hub.docker.com');
+
+			const newRequest = new Request(newUrl, {
+					method: request.method,
+					headers: headers,
+					body: request.method !== 'GET' &amp;&amp; request.method !== 'HEAD' ? await request.blob() : null,
+					redirect: 'follow'
+			});
+
+			return fetch(newRequest);
+		}
+
+		// 修改包含 %2F 和 %3A 的请求
+		if (!/%2F/.test(url.search) &amp;&amp; /%3A/.test(url.toString())) {
+			let modifiedUrl = url.toString().replace(/%3A(?=.*?&amp;)/, '%3Alibrary%2F');
+			url = new URL(modifiedUrl);
+			console.log(`handle_url: ${url}`)
+		}
+
+		// 处理token请求
+		if (url.pathname.includes('/token')) {
+			let token_parameter = {
+				headers: {
+					'Host': 'auth.docker.io',
+					'User-Agent': getReqHeader(&quot;User-Agent&quot;),
+					'Accept': getReqHeader(&quot;Accept&quot;),
+					'Accept-Language': getReqHeader(&quot;Accept-Language&quot;),
+					'Accept-Encoding': getReqHeader(&quot;Accept-Encoding&quot;),
+					'Connection': 'keep-alive',
+					'Cache-Control': 'max-age=0'
+				}
+			};
+			let token_url = auth_url + url.pathname + url.search
+			return fetch(new Request(token_url, request), token_parameter)
+		}
+
+		// 修改 /v2/ 请求路径
+		if (/^\/v2\/[^/]+\/[^/]+\/[^/]+$/.test(url.pathname) &amp;&amp; !/^\/v2\/library/.test(url.pathname)) {
+			url.pathname = url.pathname.replace(/\/v2\//, '/v2/library/');
+			console.log(`modified_url: ${url.pathname}`)
+		}
+
+		// 更改请求的主机名
+		url.hostname = hub_host;
+
+		// 构造请求参数
+		let parameter = {
+			headers: {
+				'Host': hub_host,
+				'User-Agent': getReqHeader(&quot;User-Agent&quot;),
+				'Accept': getReqHeader(&quot;Accept&quot;),
+				'Accept-Language': getReqHeader(&quot;Accept-Language&quot;),
+				'Accept-Encoding': getReqHeader(&quot;Accept-Encoding&quot;),
+				'Connection': 'keep-alive',
+				'Cache-Control': 'max-age=0'
+			},
+			cacheTtl: 3600 // 缓存时间
+		};
+
+		// 添加Authorization头
+		if (request.headers.has(&quot;Authorization&quot;)) {
+			parameter.headers.Authorization = getReqHeader(&quot;Authorization&quot;);
+		}
+
+		// 发起请求并处理响应
+		let original_response = await fetch(new Request(url, request), parameter)
+		let original_response_clone = original_response.clone();
+		let original_text = original_response_clone.body;
+		let response_headers = original_response.headers;
+		let new_response_headers = new Headers(response_headers);
+		let status = original_response.status;
+
+		// 修改 Www-Authenticate 头
+		if (new_response_headers.get(&quot;Www-Authenticate&quot;)) {
+			let auth = new_response_headers.get(&quot;Www-Authenticate&quot;);
+			let re = new RegExp(auth_url, 'g');
+			new_response_headers.set(&quot;Www-Authenticate&quot;, response_headers.get(&quot;Www-Authenticate&quot;).replace(re, workers_url));
+		}
+
+		// 处理重定向
+		if (new_response_headers.get(&quot;Location&quot;)) {
+			return httpHandler(request, new_response_headers.get(&quot;Location&quot;))
+		}
+
+		// 返回修改后的响应
+		let response = new Response(original_text, {
+			status,
+			headers: new_response_headers
+		})
+		return response;
+	}
+};
+
+/**
+ * 处理HTTP请求
+ * @param {Request} req 请求对象
+ * @param {string} pathname 请求路径
+ */
+function httpHandler(req, pathname) {
+	const reqHdrRaw = req.headers
+
+	// 处理预检请求
+	if (req.method === 'OPTIONS' &amp;&amp;
+		reqHdrRaw.has('access-control-request-headers')
+	) {
+		return new Response(null, PREFLIGHT_INIT)
+	}
+
+	let rawLen = ''
+
+	const reqHdrNew = new Headers(reqHdrRaw)
+
+	const refer = reqHdrNew.get('referer')
+
+	let urlStr = pathname
+
+	const urlObj = newUrl(urlStr)
+
+	/** @type {RequestInit} */
+	const reqInit = {
+		method: req.method,
+		headers: reqHdrNew,
+		redirect: 'follow',
+		body: req.body
+	}
+	return proxy(urlObj, reqInit, rawLen)
+}
+
+/**
+ * 代理请求
+ * @param {URL} urlObj URL对象
+ * @param {RequestInit} reqInit 请求初始化对象
+ * @param {string} rawLen 原始长度
+ */
+async function proxy(urlObj, reqInit, rawLen) {
+	const res = await fetch(urlObj.href, reqInit)
+	const resHdrOld = res.headers
+	const resHdrNew = new Headers(resHdrOld)
+
+	// 验证长度
+	if (rawLen) {
+		const newLen = resHdrOld.get('content-length') || ''
+		const badLen = (rawLen !== newLen)
+
+		if (badLen) {
+			return makeRes(res.body, 400, {
+				'--error': `bad len: ${newLen}, except: ${rawLen}`,
+				'access-control-expose-headers': '--error',
+			})
+		}
+	}
+	const status = res.status
+	resHdrNew.set('access-control-expose-headers', '*')
+	resHdrNew.set('access-control-allow-origin', '*')
+	resHdrNew.set('Cache-Control', 'max-age=1500')
+
+	// 删除不必要的头
+	resHdrNew.delete('content-security-policy')
+	resHdrNew.delete('content-security-policy-report-only')
+	resHdrNew.delete('clear-site-data')
+
+	return new Response(res.body, {
+		status,
+		headers: resHdrNew
+	})
+}
+</code></pre>
+<h1 id="鸣谢">鸣谢</h1>
+<p><a href="https://github.com/muzihuaner">muzihuaner</a>、<a href="https://global.v2ex.com/t/1007922">V2ex网友</a>、<a href="https://github.com/ciiiii/cloudflare-docker-proxy">ciiiii</a>、<a href="https://chatgpt.com/">ChatGPT</a>、<a href="https://t.me/bestcfipas/1900">白嫖哥</a>、<a href="https://t.me/zero_free/80">zero_free频道</a>、<a href="https://github.com/cmliu/CF-Workers-docker.io/issues/8">dongyubin</a>、<a href="https://github.com/cmliu/CF-Workers-docker.io/issues/5">kiko923</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript/" class="post-title gt-a-link">
+                    JavaScript 教程
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

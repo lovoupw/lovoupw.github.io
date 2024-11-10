@@ -1,0 +1,368 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-附录：网页元素接口-&lt;img&gt; 元素 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1731204974435">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1731204974435" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-附录：网页元素接口-&lt;img&gt; 元素
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#img-%E5%85%83%E7%B4%A0"><code>&lt;img&gt;</code> 元素</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E7%89%B9%E6%80%A7%E7%9B%B8%E5%85%B3%E7%9A%84%E5%B1%9E%E6%80%A7">特性相关的属性</a></li>
+<li><a href="#htmlimageelementwidthhtmlimageelementheight">HTMLImageElement.width，HTMLImageElement.height</a></li>
+<li><a href="#htmlimageelementnaturalwidthhtmlimageelementnaturalheight">HTMLImageElement.naturalWidth，HTMLImageElement.naturalHeight</a></li>
+<li><a href="#htmlimageelementcomplete">HTMLImageElement.complete</a></li>
+<li><a href="#htmlimageelementcrossorigin">HTMLImageElement.crossOrigin</a></li>
+<li><a href="#htmlimageelementreferrerpolicy">HTMLImageElement.referrerPolicy</a></li>
+<li><a href="#htmlimageelementxhtmlimageelementy">HTMLImageElement.x，HTMLImageElement.y</a></li>
+<li><a href="#%E4%BA%8B%E4%BB%B6%E5%B1%9E%E6%80%A7">事件属性</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="img-元素"><code>&lt;img&gt;</code> 元素</h1>
+<h2 id="概述">概述</h2>
+<p><code>&lt;img&gt;</code>元素用于插入图片，主要继承了 HTMLImageElement 接口。</p>
+<p>浏览器提供一个原生构造函数<code>Image</code>，用于生成<code>HTMLImageElement</code>实例。</p>
+<pre><code class="language-javascript">var img = new Image();
+img instanceof Image // true
+img instanceof HTMLImageElement // true
+</code></pre>
+<!-- more -->
+<p><code>Image</code>构造函数可以接受两个整数作为参数，分别表示<code>&lt;img&gt;</code>元素的宽度和高度。</p>
+<pre><code class="language-javascript">// 语法
+Image(width, height)
+
+// 用法
+var myImage = new Image(100, 200);
+</code></pre>
+<p><code>&lt;img&gt;</code>实例的<code>src</code>属性可以定义图像的网址。</p>
+<pre><code class="language-javascript">var img = new Image();
+img.src = 'picture.jpg';
+</code></pre>
+<p>新生成的<code>&lt;img&gt;</code>实例并不属于文档的一部分。如果想让它显示在文档中，必须手动插入文档。</p>
+<pre><code class="language-javascript">var img = new Image();
+img.src = 'image1.png';
+document.body.appendChild(img);
+</code></pre>
+<p>除了使用<code>Image</code>构造，下面的方法也可以得到<code>HTMLImageElement</code>实例。</p>
+<ul>
+<li><code>document.images</code>的成员</li>
+<li>节点选取方法（比如<code>document.getElementById</code>）得到的<code>&lt;img&gt;</code>节点</li>
+<li><code>document.createElement('img')</code>生成的<code>&lt;img&gt;</code>节点</li>
+</ul>
+<pre><code class="language-javascript">document.images[0] instanceof HTMLImageElement
+// true
+
+var img = document.getElementById('myImg');
+img instanceof HTMLImageElement
+// true
+
+var img = document.createElement('img');
+img instanceof HTMLImageElement
+// true
+</code></pre>
+<p><code>HTMLImageElement</code>实例除了具有 Node、Element、HTMLElement 接口以外，还拥有一些独有的属性。这个接口没有定义自己的方法。</p>
+<h2 id="特性相关的属性">特性相关的属性</h2>
+<p><strong>（1）HTMLImageElement.src</strong></p>
+<p><code>HTMLImageElement.src</code>属性返回图像的完整网址。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;img width=&quot;300&quot; height=&quot;400&quot; id=&quot;myImg&quot; src=&quot;http://example.com/pic.jpg&quot;&gt;
+var img = document.getElementById('img');
+img.src // http://example.com/pic.jpg
+</code></pre>
+<p><strong>（2）HTMLImageElement.currentSrc</strong></p>
+<p><code>HTMLImageElement.currentSrc</code>属性返回当前正在展示的图像的网址。JavaScript 和 CSS 的 mediaQuery 都可能改变正在展示的图像。</p>
+<p><strong>（3）HTMLImageElement.alt</strong></p>
+<p><code>HTMLImageElement.alt</code>属性可以读写<code>&lt;img&gt;</code>的 HTML 属性<code>alt</code>，表示对图片的文字说明。</p>
+<p><strong>（4）HTMLImageElement.isMap，HTMLImageElement.useMap</strong></p>
+<p><code>HTMLImageElement.isMap</code>属性对应<code>&lt;img&gt;</code>元素的 HTML 属性<code>ismap</code>，返回一个布尔值，表示图像是否为服务器端的图像映射的一部分。</p>
+<p><code>HTMLImageElement.useMap</code>属性对应<code>&lt;img&gt;</code>元素的 HTML 属性<code>usemap</code>，表示当前图像对应的<code>&lt;map&gt;</code>元素。</p>
+<p><strong>（5）HTMLImageElement.srcset，HTMLImageElement.sizes</strong></p>
+<p><code>HTMLImageElement.srcset</code>属性和<code>HTMLImageElement.sizes</code>属性，分别用于读写<code>&lt;img&gt;</code>元素的<code>srcset</code>属性和<code>sizes</code>属性。它们用于<code>&lt;img&gt;</code>元素的响应式加载。<code>srcset</code>属性可以单独使用，但是<code>sizes</code>属性必须与<code>srcset</code>属性同时使用。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;img srcset=&quot;example-320w.jpg 320w,
+//              example-480w.jpg 480w,
+//              example-800w.jpg 800w&quot;
+//      sizes=&quot;(max-width: 320px) 280px,
+//             (max-width: 480px) 440px,
+//             800px&quot;
+//      id=&quot;myImg&quot;
+//      src=&quot;example-800w.jpg&quot;&gt;
+var img = document.getElementById('myImg');
+img.srcset
+// &quot;example-320w.jpg 320w,
+//  example-480w.jpg 480w,
+//  example-800w.jpg 800w&quot;
+
+img.sizes
+// &quot;(max-width: 320px) 280px,
+//  (max-width: 480px) 440px,
+//  800px&quot;
+</code></pre>
+<p>上面代码中，<code>sizes</code>属性指定，对于小于<code>320px</code>的屏幕，图像的宽度为<code>280px</code>；对于小于<code>480px</code>的屏幕，图像宽度为<code>440px</code>；其他情况下，图像宽度为<code>800px</code>。然后，浏览器会根据当前屏幕下的图像宽度，到<code>srcset</code>属性加载宽度最接近的图像。</p>
+<h2 id="htmlimageelementwidthhtmlimageelementheight">HTMLImageElement.width，HTMLImageElement.height</h2>
+<p><code>width</code>属性表示<code>&lt;img&gt;</code>的 HTML 宽度，<code>height</code>属性表示高度。这两个属性返回的都是整数。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;img width=&quot;300&quot; height=&quot;400&quot; id=&quot;myImg&quot; src=&quot;pic.jpg&quot;&gt;
+var img = document.getElementById('img');
+img.width // 300
+img.height // 400
+</code></pre>
+<p>如果图像还没有加载，这两个属性返回的都是<code>0</code>。</p>
+<p>如果 HTML 代码没有设置<code>width</code>和<code>height</code>属性，则它们返回的是图像的实际宽度和高度，即<code>HTMLImageElement.naturalWidth</code>属性和<code>HTMLImageElement.naturalHeight</code>属性。</p>
+<h2 id="htmlimageelementnaturalwidthhtmlimageelementnaturalheight">HTMLImageElement.naturalWidth，HTMLImageElement.naturalHeight</h2>
+<p><code>HTMLImageElement.naturalWidth</code>属性表示图像的实际宽度（单位像素），<code>HTMLImageElement.naturalHeight</code>属性表示实际高度。这两个属性返回的都是整数。</p>
+<p>如果图像还没有指定或不可得，这两个属性都等于<code>0</code>。</p>
+<pre><code class="language-javascript">var img = document.getElementById('img');
+if (img.naturalHeight &gt; img.naturalWidth) {
+  img.classList.add('portrait');
+}
+</code></pre>
+<p>上面代码中，如果图片的高度大于宽度，则设为<code>portrait</code>模式。</p>
+<h2 id="htmlimageelementcomplete">HTMLImageElement.complete</h2>
+<p><code>HTMLImageElement.complete</code>属性返回一个布尔值，表示图表是否已经加载完成。如果<code>&lt;img&gt;</code>元素没有<code>src</code>属性，也会返回<code>true</code>。</p>
+<h2 id="htmlimageelementcrossorigin">HTMLImageElement.crossOrigin</h2>
+<p><code>HTMLImageElement.crossOrigin</code>属性用于读写<code>&lt;img&gt;</code>元素的<code>crossorigin</code>属性，表示跨域设置。</p>
+<p>这个属性有两个可能的值。</p>
+<ul>
+<li><code>anonymous</code>：跨域请求不要求用户身份（credentials），这是默认值。</li>
+<li><code>use-credentials</code>：跨域请求要求用户身份。</li>
+</ul>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;img crossorigin=&quot;anonymous&quot; id=&quot;myImg&quot; src=&quot;pic.jpg&quot;&gt;
+var img = document.getElementById('img');
+img.crossOrigin // &quot;anonymous&quot;
+</code></pre>
+<h2 id="htmlimageelementreferrerpolicy">HTMLImageElement.referrerPolicy</h2>
+<p><code>HTMLImageElement.referrerPolicy</code>用来读写<code>&lt;img&gt;</code>元素的 HTML 属性<code>referrerpolicy</code>，表示请求图像资源时，如何处理 HTTP 请求的<code>referrer</code>字段。</p>
+<p>它有五个可能的值。</p>
+<ul>
+<li><code>no-referrer</code>：不带有<code>referrer</code>字段。</li>
+<li><code>no-referrer-when-downgrade</code>：如果请求的地址不是 HTTPS 协议，就不带有<code>referrer</code>字段，这是默认值。</li>
+<li><code>origin</code>：<code>referrer</code>字段是当前网页的地址，包含协议、域名和端口。</li>
+<li><code>origin-when-cross-origin</code>：如果请求的地址与当前网页是同源关系，那么<code>referrer</code>字段将带有完整路径，否则将只包含协议、域名和端口。</li>
+<li><code>unsafe-url</code>：<code>referrer</code>字段包含当前网页的地址，除了协议、域名和端口以外，还包括路径。这个设置是不安全的，因为会泄漏路径信息。</li>
+</ul>
+<h2 id="htmlimageelementxhtmlimageelementy">HTMLImageElement.x，HTMLImageElement.y</h2>
+<p><code>HTMLImageElement.x</code>属性返回图像左上角相对于页面左上角的横坐标，<code>HTMLImageElement.y</code>属性返回纵坐标。</p>
+<h2 id="事件属性">事件属性</h2>
+<p>图像加载完成，会触发<code>onload</code>属性指定的回调函数。</p>
+<pre><code class="language-javascript">// HTML 代码为 &lt;img src=&quot;example.jpg&quot; onload=&quot;loadImage()&quot;&gt;
+function loadImage() {
+  console.log('Image is loaded');
+}
+</code></pre>
+<p>图像加载过程中发生错误，会触发<code>onerror</code>属性指定的回调函数。</p>
+<pre><code class="language-javascript">// HTML 代码为 &lt;img src=&quot;image.gif&quot; onerror=&quot;myFunction()&quot;&gt;
+function myFunction() {
+  console.log('There is something wrong');
+}
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-elements-a/" class="post-title gt-a-link">
+                    JavaScript 教程-附录：网页元素接口-&lt;a&gt; 元素
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

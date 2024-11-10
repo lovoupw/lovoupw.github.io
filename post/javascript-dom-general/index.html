@@ -1,0 +1,256 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-DOM-DOM 概述 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1731204974435">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1731204974435" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-DOM-DOM 概述
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#dom-%E6%A6%82%E8%BF%B0">DOM 概述</a>
+<ul>
+<li><a href="#dom">DOM</a></li>
+<li><a href="#%E8%8A%82%E7%82%B9">节点</a></li>
+<li><a href="#%E8%8A%82%E7%82%B9%E6%A0%91">节点树</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="dom-概述">DOM 概述</h1>
+<h2 id="dom">DOM</h2>
+<p>DOM 是 JavaScript 操作网页的接口，全称为“文档对象模型”（Document Object Model）。它的作用是将网页转为一个 JavaScript 对象，从而可以用脚本进行各种操作（比如增删内容）。</p>
+<p>浏览器会根据 DOM 模型，将结构化文档（比如 HTML 和 XML）解析成一系列的节点，再由这些节点组成一个树状结构（DOM Tree）。所有的节点和最终的树状结构，都有规范的对外接口。</p>
+<!-- more -->
+<p>DOM 只是一个接口规范，可以用各种语言实现。所以严格地说，DOM 不是 JavaScript 语法的一部分，但是 DOM 操作是 JavaScript 最常见的任务，离开了 DOM，JavaScript 就无法控制网页。另一方面，JavaScript 也是最常用于 DOM 操作的语言。后面介绍的就是 JavaScript 对 DOM 标准的实现和用法。</p>
+<h2 id="节点">节点</h2>
+<p>DOM 的最小组成单位叫做节点（node）。文档的树形结构（DOM 树），就是由各种不同类型的节点组成。每个节点可以看作是文档树的一片叶子。</p>
+<p>节点的类型有七种。</p>
+<ul>
+<li><code>Document</code>：整个文档树的顶层节点</li>
+<li><code>DocumentType</code>：<code>doctype</code>标签（比如<code>&lt;!DOCTYPE html&gt;</code>）</li>
+<li><code>Element</code>：网页的各种HTML标签（比如<code>&lt;body&gt;</code>、<code>&lt;a&gt;</code>等）</li>
+<li><code>Attr</code>：网页元素的属性（比如<code>class=&quot;right&quot;</code>）</li>
+<li><code>Text</code>：标签之间或标签包含的文本</li>
+<li><code>Comment</code>：注释</li>
+<li><code>DocumentFragment</code>：文档的片段</li>
+</ul>
+<p>浏览器提供一个原生的节点对象<code>Node</code>，上面这七种节点都继承了<code>Node</code>，因此具有一些共同的属性和方法。</p>
+<h2 id="节点树">节点树</h2>
+<p>一个文档的所有节点，按照所在的层级，可以抽象成一种树状结构。这种树状结构就是 DOM 树。它有一个顶层节点，下一层都是顶层节点的子节点，然后子节点又有自己的子节点，就这样层层衍生出一个金字塔结构，又像一棵树。</p>
+<p>浏览器原生提供<code>document</code>节点，代表整个文档。</p>
+<pre><code class="language-javascript">document
+// 整个文档树
+</code></pre>
+<p>文档的第一层有两个节点，第一个是文档类型节点（<code>&lt;!doctype html&gt;</code>），第二个是 HTML 网页的顶层容器标签<code>&lt;html&gt;</code>。后者构成了树结构的根节点（root node），其他 HTML 标签节点都是它的下级节点。</p>
+<p>除了根节点，其他节点都有三种层级关系。</p>
+<ul>
+<li>父节点关系（parentNode）：直接的那个上级节点</li>
+<li>子节点关系（childNodes）：直接的下级节点</li>
+<li>同级节点关系（sibling）：拥有同一个父节点的节点</li>
+</ul>
+<p>DOM 提供操作接口，用来获取这三种关系的节点。比如，子节点接口包括<code>firstChild</code>（第一个子节点）和<code>lastChild</code>（最后一个子节点）等属性，同级节点接口包括<code>nextSibling</code>（紧邻在后的那个同级节点）和<code>previousSibling</code>（紧邻在前的那个同级节点）属性。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-async-promise/" class="post-title gt-a-link">
+                    JavaScript 教程-异步操作-Promise 对象
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-数据类型-null, undefined 和布尔值 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1731204974435">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1731204974435" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-数据类型-null, undefined 和布尔值
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-30 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#null-undefined-%E5%92%8C%E5%B8%83%E5%B0%94%E5%80%BC">null, undefined 和布尔值</a>
+<ul>
+<li><a href="#null-%E5%92%8C-undefined">null 和 undefined</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95%E5%92%8C%E5%90%AB%E4%B9%89">用法和含义</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B8%83%E5%B0%94%E5%80%BC">布尔值</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="null-undefined-和布尔值">null, undefined 和布尔值</h1>
+<h2 id="null-和-undefined">null 和 undefined</h2>
+<h3 id="概述">概述</h3>
+<p><code>null</code>与<code>undefined</code>都可以表示“没有”，含义非常相似。将一个变量赋值为<code>undefined</code>或<code>null</code>，老实说，语法效果几乎没区别。</p>
+<!-- more -->
+<pre><code class="language-javascript">var a = undefined;
+// 或者
+var a = null;
+</code></pre>
+<p>上面代码中，变量<code>a</code>分别被赋值为<code>undefined</code>和<code>null</code>，这两种写法的效果几乎等价。</p>
+<p>在<code>if</code>语句中，它们都会被自动转为<code>false</code>，相等运算符（<code>==</code>）甚至直接报告两者相等。</p>
+<pre><code class="language-javascript">if (!undefined) {
+  console.log('undefined is false');
+}
+// undefined is false
+
+if (!null) {
+  console.log('null is false');
+}
+// null is false
+
+undefined == null
+// true
+</code></pre>
+<p>从上面代码可见，两者的行为是何等相似！谷歌公司开发的 JavaScript 语言的替代品 Dart 语言，就明确规定只有<code>null</code>，没有<code>undefined</code>！</p>
+<p>既然含义与用法都差不多，为什么要同时设置两个这样的值，这不是无端增加复杂度，令初学者困扰吗？这与历史原因有关。</p>
+<p>1995年 JavaScript 诞生时，最初像 Java 一样，只设置了<code>null</code>表示&quot;无&quot;。根据 C 语言的传统，<code>null</code>可以自动转为<code>0</code>。</p>
+<pre><code class="language-javascript">Number(null) // 0
+5 + null // 5
+</code></pre>
+<p>上面代码中，<code>null</code>转为数字时，自动变成0。</p>
+<p>但是，JavaScript 的设计者 Brendan Eich，觉得这样做还不够。首先，第一版的 JavaScript 里面，<code>null</code>就像在 Java 里一样，被当成一个对象，Brendan Eich 觉得表示“无”的值最好不是对象。其次，那时的 JavaScript 不包括错误处理机制，Brendan Eich 觉得，如果<code>null</code>自动转为0，很不容易发现错误。</p>
+<p>因此，他又设计了一个<code>undefined</code>。区别是这样的：<code>null</code>是一个表示“空”的对象，转为数值时为<code>0</code>；<code>undefined</code>是一个表示&quot;此处无定义&quot;的原始值，转为数值时为<code>NaN</code>。</p>
+<pre><code class="language-javascript">Number(undefined) // NaN
+5 + undefined // NaN
+</code></pre>
+<h3 id="用法和含义">用法和含义</h3>
+<p>对于<code>null</code>和<code>undefined</code>，大致可以像下面这样理解。</p>
+<p><code>null</code>表示空值，即该处的值现在为空。调用函数时，某个参数未设置任何值，这时就可以传入<code>null</code>，表示该参数为空。比如，某个函数接受引擎抛出的错误作为参数，如果运行过程中未出错，那么这个参数就会传入<code>null</code>，表示未发生错误。</p>
+<p><code>undefined</code>表示“未定义”，下面是返回<code>undefined</code>的典型场景。</p>
+<pre><code class="language-javascript">// 变量声明了，但没有赋值
+var i;
+i // undefined
+
+// 调用函数时，应该提供的参数没有提供，该参数等于 undefined
+function f(x) {
+  return x;
+}
+f() // undefined
+
+// 对象没有赋值的属性
+var  o = new Object();
+o.p // undefined
+
+// 函数没有返回值时，默认返回 undefined
+function f() {}
+f() // undefined
+</code></pre>
+<h2 id="布尔值">布尔值</h2>
+<p>布尔值代表“真”和“假”两个状态。“真”用关键字<code>true</code>表示，“假”用关键字<code>false</code>表示。布尔值只有这两个值。</p>
+<p>下列运算符会返回布尔值：</p>
+<ul>
+<li>前置逻辑运算符： <code>!</code> (Not)</li>
+<li>相等运算符：<code>===</code>，<code>!==</code>，<code>==</code>，<code>!=</code></li>
+<li>比较运算符：<code>&gt;</code>，<code>&gt;=</code>，<code>&lt;</code>，<code>&lt;=</code></li>
+</ul>
+<p>如果 JavaScript 预期某个位置应该是布尔值，会将该位置上现有的值自动转为布尔值。转换规则是除了下面六个值被转为<code>false</code>，其他值都视为<code>true</code>。</p>
+<ul>
+<li><code>undefined</code></li>
+<li><code>null</code></li>
+<li><code>false</code></li>
+<li><code>0</code></li>
+<li><code>NaN</code></li>
+<li><code>&quot;&quot;</code>或<code>''</code>（空字符串）</li>
+</ul>
+<p>布尔值往往用于程序流程的控制，请看一个例子。</p>
+<pre><code class="language-javascript">if ('') {
+  console.log('true');
+}
+// 没有任何输出
+</code></pre>
+<p>上面代码中，<code>if</code>命令后面的判断条件，预期应该是一个布尔值，所以 JavaScript 自动将空字符串，转为布尔值<code>false</code>，导致程序不会进入代码块，所以没有任何输出。</p>
+<p>注意，空数组（<code>[]</code>）和空对象（<code>{}</code>）对应的布尔值，都是<code>true</code>。</p>
+<pre><code class="language-javascript">if ([]) {
+  console.log('true');
+}
+// true
+
+if ({}) {
+  console.log('true');
+}
+// true
+</code></pre>
+<p>更多关于数据类型转换的介绍，参见《数据类型转换》一章。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>Axel Rauschmayer, <a href="http://www.2ality.com/2013/01/categorizing-values.html">Categorizing values in JavaScript</a></li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-types-general/" class="post-title gt-a-link">
+                    JavaScript 教程-数据类型-概述
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

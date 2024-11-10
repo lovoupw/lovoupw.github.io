@@ -1,0 +1,333 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-事件-表单事件 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1731204974435">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1731204974435" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-事件-表单事件
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#%E8%A1%A8%E5%8D%95%E4%BA%8B%E4%BB%B6">表单事件</a>
+<ul>
+<li><a href="#%E8%A1%A8%E5%8D%95%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%A7%8D%E7%B1%BB">表单事件的种类</a>
+<ul>
+<li><a href="#input-%E4%BA%8B%E4%BB%B6">input 事件</a></li>
+<li><a href="#select-%E4%BA%8B%E4%BB%B6">select 事件</a></li>
+<li><a href="#change-%E4%BA%8B%E4%BB%B6">change 事件</a></li>
+<li><a href="#invalid-%E4%BA%8B%E4%BB%B6">invalid 事件</a></li>
+<li><a href="#reset-%E4%BA%8B%E4%BB%B6submit-%E4%BA%8B%E4%BB%B6">reset 事件，submit 事件</a></li>
+</ul>
+</li>
+<li><a href="#inputevent-%E6%8E%A5%E5%8F%A3">InputEvent 接口</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="表单事件">表单事件</h1>
+<h2 id="表单事件的种类">表单事件的种类</h2>
+<h3 id="input-事件">input 事件</h3>
+<p><code>input</code>事件当<code>&lt;input&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;textarea&gt;</code>的值发生变化时触发。对于复选框（<code>&lt;input type=checkbox&gt;</code>）或单选框（<code>&lt;input type=radio&gt;</code>），用户改变选项时，也会触发这个事件。另外，对于打开<code>contenteditable</code>属性的元素，只要值发生变化，也会触发<code>input</code>事件。</p>
+<!-- more -->
+<p><code>input</code>事件的一个特点，就是会连续触发，比如用户每按下一次按键，就会触发一次<code>input</code>事件。</p>
+<p><code>input</code>事件对象继承了<code>InputEvent</code>接口。</p>
+<p>该事件跟<code>change</code>事件很像，不同之处在于<code>input</code>事件在元素的值发生变化后立即发生，而<code>change</code>在元素失去焦点时发生，而内容此时可能已经变化多次。也就是说，如果有连续变化，<code>input</code>事件会触发多次，而<code>change</code>事件只在失去焦点时触发一次。</p>
+<p>下面是<code>&lt;select&gt;</code>元素的例子。</p>
+<pre><code class="language-javascript">/* HTML 代码如下
+&lt;select id=&quot;mySelect&quot;&gt;
+  &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;
+  &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
+  &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
+&lt;/select&gt;
+*/
+
+function inputHandler(e) {
+  console.log(e.target.value)
+}
+
+var mySelect = document.querySelector('#mySelect');
+mySelect.addEventListener('input', inputHandler);
+</code></pre>
+<p>上面代码中，改变下拉框选项时，会触发<code>input</code>事件，从而执行回调函数<code>inputHandler</code>。</p>
+<h3 id="select-事件">select 事件</h3>
+<p><code>select</code>事件当在<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>里面选中文本时触发。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;input id=&quot;test&quot; type=&quot;text&quot; value=&quot;Select me!&quot; /&gt;
+
+var elem = document.getElementById('test');
+elem.addEventListener('select', function (e) {
+  console.log(e.type); // &quot;select&quot;
+}, false);
+</code></pre>
+<p>选中的文本可以通过<code>event.target</code>元素的<code>selectionDirection</code>、<code>selectionEnd</code>、<code>selectionStart</code>和<code>value</code>属性拿到。</p>
+<h3 id="change-事件">change 事件</h3>
+<p><code>change</code>事件当<code>&lt;input&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;textarea&gt;</code>的值发生变化时触发。它与<code>input</code>事件的最大不同，就是不会连续触发，只有当全部修改完成时才会触发，另一方面<code>input</code>事件必然伴随<code>change</code>事件。具体来说，分成以下几种情况。</p>
+<ul>
+<li>激活单选框（radio）或复选框（checkbox）时触发。</li>
+<li>用户提交时触发。比如，从下列列表（select）完成选择，在日期或文件输入框完成选择。</li>
+<li>当文本框或<code>&lt;textarea&gt;</code>元素的值发生改变，并且丧失焦点时触发。</li>
+</ul>
+<p>下面是一个例子。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;select size=&quot;1&quot; onchange=&quot;changeEventHandler(event);&quot;&gt;
+//   &lt;option&gt;chocolate&lt;/option&gt;
+//   &lt;option&gt;strawberry&lt;/option&gt;
+//   &lt;option&gt;vanilla&lt;/option&gt;
+// &lt;/select&gt;
+
+function changeEventHandler(event) {
+  console.log(event.target.value);
+}
+</code></pre>
+<p>如果比较一下上面<code>input</code>事件的例子，你会发现对于<code>&lt;select&gt;</code>元素来说，<code>input</code>和<code>change</code>事件基本是等价的。</p>
+<h3 id="invalid-事件">invalid 事件</h3>
+<p>用户提交表单时，如果表单元素的值不满足校验条件，就会触发<code>invalid</code>事件。</p>
+<pre><code class="language-html">&lt;form&gt;
+  &lt;input type=&quot;text&quot; required oninvalid=&quot;console.log('invalid input')&quot; /&gt;
+  &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>上面代码中，输入框是必填的。如果不填，用户点击按钮提交时，就会触发输入框的<code>invalid</code>事件，导致提交被取消。</p>
+<h3 id="reset-事件submit-事件">reset 事件，submit 事件</h3>
+<p>这两个事件发生在表单对象<code>&lt;form&gt;</code>上，而不是发生在表单的成员上。</p>
+<p><code>reset</code>事件当表单重置（所有表单成员变回默认值）时触发。</p>
+<p><code>submit</code>事件当表单数据向服务器提交时触发。注意，<code>submit</code>事件的发生对象是<code>&lt;form&gt;</code>元素，而不是<code>&lt;button&gt;</code>元素，因为提交的是表单，而不是按钮。</p>
+<h2 id="inputevent-接口">InputEvent 接口</h2>
+<p><code>InputEvent</code>接口主要用来描述<code>input</code>事件的实例。该接口继承了<code>Event</code>接口，还定义了一些自己的实例属性和实例方法。</p>
+<p>浏览器原生提供<code>InputEvent()</code>构造函数，用来生成实例对象。</p>
+<pre><code class="language-javascript">new InputEvent(type, options)
+</code></pre>
+<p><code>InputEvent</code>构造函数可以接受两个参数。第一个参数是字符串，表示事件名称，该参数是必需的。第二个参数是一个配置对象，用来设置事件实例的属性，该参数是可选的。配置对象的字段除了<code>Event</code>构造函数的配置属性，还可以设置下面的字段，这些字段都是可选的。</p>
+<ul>
+<li><code>inputType</code>：字符串，表示发生变更的类型（详见下文）。</li>
+<li><code>data</code>：字符串，表示插入的字符串。如果没有插入的字符串（比如删除操作），则返回<code>null</code>或空字符串。</li>
+<li><code>dataTransfer</code>：返回一个 DataTransfer 对象实例，该属性通常只在输入框接受富文本输入时有效。</li>
+</ul>
+<p><code>InputEvent</code>的实例属性主要就是上面三个属性，这三个实例属性都是只读的。</p>
+<p><strong>（1）InputEvent.data</strong></p>
+<p><code>InputEvent.data</code>属性返回一个字符串，表示变动的内容。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;input type=&quot;text&quot; id=&quot;myInput&quot;&gt;
+var input = document.getElementById('myInput');
+input.addEventListener('input', myFunction, false);
+
+function myFunction(e) {
+  console.log(e.data);
+}
+</code></pre>
+<p>上面代码中，如果手动在输入框里面输入<code>abc</code>，控制台会先输出<code>a</code>，再在下一行输出<code>b</code>，再在下一行输出<code>c</code>。然后选中<code>abc</code>，一次性将它们删除，控制台会输出<code>null</code>或一个空字符串。</p>
+<p><strong>（2）InputEvent.inputType</strong></p>
+<p><code>InputEvent.inputType</code>属性返回一个字符串，表示字符串发生变更的类型。</p>
+<p>对于常见情况，Chrome 浏览器的返回值如下。完整列表可以参考<a href="https://w3c.github.io/input-events/index.html#dom-inputevent-inputtype">文档</a>。</p>
+<ul>
+<li>手动插入文本：<code>insertText</code></li>
+<li>粘贴插入文本：<code>insertFromPaste</code></li>
+<li>向后删除：<code>deleteContentBackward</code></li>
+<li>向前删除：<code>deleteContentForward</code></li>
+</ul>
+<p><strong>（3）InputEvent.dataTransfer</strong></p>
+<p><code>InputEvent.dataTransfer</code>属性返回一个 DataTransfer 实例。该属性只在文本框接受粘贴内容（insertFromPaste）或拖拽内容（<code>insertFromDrop</code>）时才有效。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-events-progress/" class="post-title gt-a-link">
+                    JavaScript 教程-事件-进度事件
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

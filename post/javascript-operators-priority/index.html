@@ -1,0 +1,359 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-运算符-其他运算符，运算顺序 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1731204974435">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1731204974435" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-运算符-其他运算符，运算顺序
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#%E5%85%B6%E4%BB%96%E8%BF%90%E7%AE%97%E7%AC%A6%E8%BF%90%E7%AE%97%E9%A1%BA%E5%BA%8F">其他运算符，运算顺序</a>
+<ul>
+<li><a href="#void-%E8%BF%90%E7%AE%97%E7%AC%A6">void 运算符</a></li>
+<li><a href="#%E9%80%97%E5%8F%B7%E8%BF%90%E7%AE%97%E7%AC%A6">逗号运算符</a></li>
+<li><a href="#%E8%BF%90%E7%AE%97%E9%A1%BA%E5%BA%8F">运算顺序</a>
+<ul>
+<li><a href="#%E4%BC%98%E5%85%88%E7%BA%A7">优先级</a></li>
+<li><a href="#%E5%9C%86%E6%8B%AC%E5%8F%B7%E7%9A%84%E4%BD%9C%E7%94%A8">圆括号的作用</a></li>
+<li><a href="#%E5%B7%A6%E7%BB%93%E5%90%88%E4%B8%8E%E5%8F%B3%E7%BB%93%E5%90%88">左结合与右结合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="其他运算符运算顺序">其他运算符，运算顺序</h1>
+<h2 id="void-运算符">void 运算符</h2>
+<p><code>void</code>运算符的作用是执行一个表达式，然后不返回任何值，或者说返回<code>undefined</code>。</p>
+<pre><code class="language-javascript">void 0 // undefined
+void(0) // undefined
+</code></pre>
+<!-- more -->
+<p>上面是<code>void</code>运算符的两种写法，都正确。建议采用后一种形式，即总是使用圆括号。因为<code>void</code>运算符的优先性很高，如果不使用括号，容易造成错误的结果。比如，<code>void 4 + 7</code>实际上等同于<code>(void 4) + 7</code>。</p>
+<p>下面是<code>void</code>运算符的一个例子。</p>
+<pre><code class="language-javascript">var x = 3;
+void (x = 5) //undefined
+x // 5
+</code></pre>
+<p>这个运算符的主要用途是浏览器的书签工具（Bookmarklet），以及在超级链接中插入代码防止网页跳转。</p>
+<p>请看下面的代码。</p>
+<pre><code class="language-html">&lt;script&gt;
+function f() {
+  console.log('Hello World');
+}
+&lt;/script&gt;
+&lt;a href=&quot;http://example.com&quot; onclick=&quot;f(); return false;&quot;&gt;点击&lt;/a&gt;
+</code></pre>
+<p>上面代码中，点击链接后，会先执行<code>onclick</code>的代码，由于<code>onclick</code>返回<code>false</code>，所以浏览器不会跳转到 example.com。</p>
+<p><code>void</code>运算符可以取代上面的写法。</p>
+<pre><code class="language-html">&lt;a href=&quot;javascript: void(f())&quot;&gt;文字&lt;/a&gt;
+</code></pre>
+<p>下面是一个更实际的例子，用户点击链接提交表单，但是不产生页面跳转。</p>
+<pre><code class="language-html">&lt;a href=&quot;javascript: void(document.form.submit())&quot;&gt;
+  提交
+&lt;/a&gt;
+</code></pre>
+<h2 id="逗号运算符">逗号运算符</h2>
+<p>逗号运算符用于对两个表达式求值，并返回后一个表达式的值。</p>
+<pre><code class="language-javascript">'a', 'b' // &quot;b&quot;
+
+var x = 0;
+var y = (x++, 10);
+x // 1
+y // 10
+</code></pre>
+<p>上面代码中，逗号运算符返回后一个表达式的值。</p>
+<p>逗号运算符的一个用途是，在返回一个值之前，进行一些辅助操作。</p>
+<pre><code class="language-javascript">var value = (console.log('Hi!'), true);
+// Hi!
+
+value // true
+</code></pre>
+<p>上面代码中，先执行逗号之前的操作，然后返回逗号后面的值。</p>
+<h2 id="运算顺序">运算顺序</h2>
+<h3 id="优先级">优先级</h3>
+<p>JavaScript 各种运算符的优先级别（Operator Precedence）是不一样的。优先级高的运算符先执行，优先级低的运算符后执行。</p>
+<pre><code class="language-javascript">4 + 5 * 6 // 34
+</code></pre>
+<p>上面的代码中，乘法运算符（<code>*</code>）的优先性高于加法运算符（<code>+</code>），所以先执行乘法，再执行加法，相当于下面这样。</p>
+<pre><code class="language-javascript">4 + (5 * 6) // 34
+</code></pre>
+<p>如果多个运算符混写在一起，常常会导致令人困惑的代码。</p>
+<pre><code class="language-javascript">var x = 1;
+var arr = [];
+
+var y = arr.length &lt;= 0 || arr[0] === undefined ? x : arr[0];
+</code></pre>
+<p>上面代码中，变量<code>y</code>的值就很难看出来，因为这个表达式涉及5个运算符，到底谁的优先级最高，实在不容易记住。</p>
+<p>根据语言规格，这五个运算符的优先级从高到低依次为：小于等于（<code>&lt;=</code>)、严格相等（<code>===</code>）、或（<code>||</code>）、三元（<code>?:</code>）、等号（<code>=</code>）。因此上面的表达式，实际的运算顺序如下。</p>
+<pre><code class="language-javascript">var y = ((arr.length &lt;= 0) || (arr[0] === undefined)) ? x : arr[0];
+</code></pre>
+<p>记住所有运算符的优先级，是非常难的，也是没有必要的。</p>
+<h3 id="圆括号的作用">圆括号的作用</h3>
+<p>圆括号（<code>()</code>）可以用来提高运算的优先级，因为它的优先级是最高的，即圆括号中的表达式会第一个运算。</p>
+<pre><code class="language-javascript">(4 + 5) * 6 // 54
+</code></pre>
+<p>上面代码中，由于使用了圆括号，加法会先于乘法执行。</p>
+<p>运算符的优先级别十分繁杂，且都是硬性规定，因此建议总是使用圆括号，保证运算顺序清晰可读，这对代码的维护和除错至关重要。</p>
+<p>顺便说一下，圆括号不是运算符，而是一种语法结构。它一共有两种用法：一种是把表达式放在圆括号之中，提升运算的优先级；另一种是跟在函数的后面，作用是调用函数。</p>
+<p>注意，因为圆括号不是运算符，所以不具有求值作用，只改变运算的优先级。</p>
+<pre><code class="language-javascript">var x = 1;
+(x) = 2;
+</code></pre>
+<p>上面代码的第二行，如果圆括号具有求值作用，那么就会变成<code>1 = 2</code>，这是会报错了。但是，上面的代码可以运行，这验证了圆括号只改变优先级，不会求值。</p>
+<p>这也意味着，如果整个表达式都放在圆括号之中，那么不会有任何效果。</p>
+<pre><code class="language-javascript">(expression)
+// 等同于
+expression
+</code></pre>
+<p>函数放在圆括号中，会返回函数本身。如果圆括号紧跟在函数的后面，就表示调用函数。</p>
+<pre><code class="language-javascript">function f() {
+  return 1;
+}
+
+(f) // function f(){return 1;}
+f() // 1
+</code></pre>
+<p>上面代码中，函数放在圆括号之中会返回函数本身，圆括号跟在函数后面则是调用函数。</p>
+<p>圆括号之中，只能放置表达式，如果将语句放在圆括号之中，就会报错。</p>
+<pre><code class="language-javascript">(var a = 1)
+// SyntaxError: Unexpected token var
+</code></pre>
+<h3 id="左结合与右结合">左结合与右结合</h3>
+<p>对于优先级别相同的运算符，同时出现的时候，就会有计算顺序的问题。</p>
+<pre><code class="language-javascript">a OP b OP c
+</code></pre>
+<p>上面代码中，<code>OP</code>表示运算符。它可以有两种解释方式。</p>
+<pre><code class="language-javascript">// 方式一
+(a OP b) OP c
+
+// 方式二
+a OP (b OP c)
+</code></pre>
+<p>上面的两种方式，得到的计算结果往往是不一样的。方式一是将左侧两个运算数结合在一起，采用这种解释方式的运算符，称为“左结合”（left-to-right associativity）运算符；方式二是将右侧两个运算数结合在一起，这样的运算符称为“右结合”运算符（right-to-left associativity）。</p>
+<p>JavaScript 语言的大多数运算符是“左结合”，请看下面加法运算符的例子。</p>
+<pre><code class="language-javascript">x + y + z
+
+// 引擎解释如下
+(x + y) + z
+</code></pre>
+<p>上面代码中，<code>x</code>与<code>y</code>结合在一起，它们的预算结果再与<code>z</code>进行运算。</p>
+<p>少数运算符是“右结合”，其中最主要的是赋值运算符（<code>=</code>）和三元条件运算符（<code>?:</code>）。</p>
+<pre><code class="language-javascript">w = x = y = z;
+q = a ? b : c ? d : e ? f : g;
+</code></pre>
+<p>上面代码的解释方式如下。</p>
+<pre><code class="language-javascript">w = (x = (y = z));
+q = a ? b : (c ? d : (e ? f : g));
+</code></pre>
+<p>上面的两行代码，都是右侧的运算数结合在一起。</p>
+<p>另外，指数运算符（<code>**</code>）也是右结合。</p>
+<pre><code class="language-javascript">2 ** 3 ** 2
+// 相当于 2 ** (3 ** 2)
+// 512
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-operators-bit/" class="post-title gt-a-link">
+                    JavaScript 教程-运算符-二进制位运算符
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-语法专题-数据类型的转换 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1731204974435">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1731204974435" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-语法专题-数据类型的转换
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2">数据类型的转换</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2">强制转换</a>
+<ul>
+<li><a href="#number">Number()</a></li>
+<li><a href="#string">String()</a></li>
+<li><a href="#boolean">Boolean()</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2">自动转换</a>
+<ul>
+<li><a href="#%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%B8%83%E5%B0%94%E5%80%BC">自动转换为布尔值</a></li>
+<li><a href="#%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2">自动转换为字符串</a></li>
+<li><a href="#%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E5%80%BC">自动转换为数值</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="数据类型的转换">数据类型的转换</h1>
+<h2 id="概述">概述</h2>
+<p>JavaScript 是一种动态类型语言，变量没有类型限制，可以随时赋予任意值。</p>
+<pre><code class="language-javascript">var x = y ? 1 : 'a';
+</code></pre>
+<!-- more -->
+<p>上面代码中，变量<code>x</code>到底是数值还是字符串，取决于另一个变量<code>y</code>的值。<code>y</code>为<code>true</code>时，<code>x</code>是一个数值；<code>y</code>为<code>false</code>时，<code>x</code>是一个字符串。这意味着，<code>x</code>的类型没法在编译阶段就知道，必须等到运行时才能知道。</p>
+<p>虽然变量的数据类型是不确定的，但是各种运算符对数据类型是有要求的。如果运算符发现，运算子的类型与预期不符，就会自动转换类型。比如，减法运算符预期左右两侧的运算子应该是数值，如果不是，就会自动将它们转为数值。</p>
+<pre><code class="language-javascript">'4' - '3' // 1
+</code></pre>
+<p>上面代码中，虽然是两个字符串相减，但是依然会得到结果数值<code>1</code>，原因就在于 JavaScript 将运算子自动转为了数值。</p>
+<p>本章讲解数据类型自动转换的规则。在此之前，先讲解如何手动强制转换数据类型。</p>
+<h2 id="强制转换">强制转换</h2>
+<p>强制转换主要指使用<code>Number()</code>、<code>String()</code>和<code>Boolean()</code>三个函数，手动将各种类型的值，分别转换成数字、字符串或者布尔值。</p>
+<h3 id="number">Number()</h3>
+<p>使用<code>Number</code>函数，可以将任意类型的值转化成数值。</p>
+<p>下面分成两种情况讨论，一种是参数是原始类型的值，另一种是参数是对象。</p>
+<p><strong>（1）原始类型值</strong></p>
+<p>原始类型值的转换规则如下。</p>
+<pre><code class="language-javascript">// 数值：转换后还是原来的值
+Number(324) // 324
+
+// 字符串：如果可以被解析为数值，则转换为相应的数值
+Number('324') // 324
+
+// 字符串：如果不可以被解析为数值，返回 NaN
+Number('324abc') // NaN
+
+// 空字符串转为0
+Number('') // 0
+
+// 布尔值：true 转成 1，false 转成 0
+Number(true) // 1
+Number(false) // 0
+
+// undefined：转成 NaN
+Number(undefined) // NaN
+
+// null：转成0
+Number(null) // 0
+</code></pre>
+<p><code>Number</code>函数将字符串转为数值，要比<code>parseInt</code>函数严格很多。基本上，只要有一个字符无法转成数值，整个字符串就会被转为<code>NaN</code>。</p>
+<pre><code class="language-javascript">parseInt('42 cats') // 42
+Number('42 cats') // NaN
+</code></pre>
+<p>上面代码中，<code>parseInt</code>逐个解析字符，而<code>Number</code>函数整体转换字符串的类型。</p>
+<p>另外，<code>parseInt</code>和<code>Number</code>函数都会自动过滤一个字符串前导和后缀的空格。</p>
+<pre><code class="language-javascript">parseInt('\t\v\r12.34\n') // 12
+Number('\t\v\r12.34\n') // 12.34
+</code></pre>
+<p><strong>（2）对象</strong></p>
+<p>简单的规则是，<code>Number</code>方法的参数是对象时，将返回<code>NaN</code>，除非是包含单个数值的数组。</p>
+<pre><code class="language-javascript">Number({a: 1}) // NaN
+Number([1, 2, 3]) // NaN
+Number([5]) // 5
+</code></pre>
+<p>之所以会这样，是因为<code>Number</code>背后的转换规则比较复杂。</p>
+<p>第一步，调用对象自身的<code>valueOf</code>方法。如果返回原始类型的值，则直接对该值使用<code>Number</code>函数，不再进行后续步骤。</p>
+<p>第二步，如果<code>valueOf</code>方法返回的还是对象，则改为调用对象自身的<code>toString</code>方法。如果<code>toString</code>方法返回原始类型的值，则对该值使用<code>Number</code>函数，不再进行后续步骤。</p>
+<p>第三步，如果<code>toString</code>方法返回的是对象，就报错。</p>
+<p>请看下面的例子。</p>
+<pre><code class="language-javascript">var obj = {x: 1};
+Number(obj) // NaN
+
+// 等同于
+if (typeof obj.valueOf() === 'object') {
+  Number(obj.toString());
+} else {
+  Number(obj.valueOf());
+}
+</code></pre>
+<p>上面代码中，<code>Number</code>函数将<code>obj</code>对象转为数值。背后发生了一连串的操作，首先调用<code>obj.valueOf</code>方法, 结果返回对象本身；于是，继续调用<code>obj.toString</code>方法，这时返回字符串<code>[object Object]</code>，对这个字符串使用<code>Number</code>函数，得到<code>NaN</code>。</p>
+<p>默认情况下，对象的<code>valueOf</code>方法返回对象本身，所以一般总是会调用<code>toString</code>方法，而<code>toString</code>方法返回对象的类型字符串（比如<code>[object Object]</code>）。所以，会有下面的结果。</p>
+<pre><code class="language-javascript">Number({}) // NaN
+</code></pre>
+<p>如果<code>toString</code>方法返回的不是原始类型的值，结果就会报错。</p>
+<pre><code class="language-javascript">var obj = {
+  valueOf: function () {
+    return {};
+  },
+  toString: function () {
+    return {};
+  }
+};
+
+Number(obj)
+// TypeError: Cannot convert object to primitive value
+</code></pre>
+<p>上面代码的<code>valueOf</code>和<code>toString</code>方法，返回的都是对象，所以转成数值时会报错。</p>
+<p>从上例还可以看到，<code>valueOf</code>和<code>toString</code>方法，都是可以自定义的。</p>
+<pre><code class="language-javascript">Number({
+  valueOf: function () {
+    return 2;
+  }
+})
+// 2
+
+Number({
+  toString: function () {
+    return 3;
+  }
+})
+// 3
+
+Number({
+  valueOf: function () {
+    return 2;
+  },
+  toString: function () {
+    return 3;
+  }
+})
+// 2
+</code></pre>
+<p>上面代码对三个对象使用<code>Number</code>函数。第一个对象返回<code>valueOf</code>方法的值，第二个对象返回<code>toString</code>方法的值，第三个对象表示<code>valueOf</code>方法先于<code>toString</code>方法执行。</p>
+<h3 id="string">String()</h3>
+<p><code>String</code>函数可以将任意类型的值转化成字符串，转换规则如下。</p>
+<p><strong>（1）原始类型值</strong></p>
+<ul>
+<li><strong>数值</strong>：转为相应的字符串。</li>
+<li><strong>字符串</strong>：转换后还是原来的值。</li>
+<li><strong>布尔值</strong>：<code>true</code>转为字符串<code>&quot;true&quot;</code>，<code>false</code>转为字符串<code>&quot;false&quot;</code>。</li>
+<li><strong>undefined</strong>：转为字符串<code>&quot;undefined&quot;</code>。</li>
+<li><strong>null</strong>：转为字符串<code>&quot;null&quot;</code>。</li>
+</ul>
+<pre><code class="language-javascript">String(123) // &quot;123&quot;
+String('abc') // &quot;abc&quot;
+String(true) // &quot;true&quot;
+String(undefined) // &quot;undefined&quot;
+String(null) // &quot;null&quot;
+</code></pre>
+<p><strong>（2）对象</strong></p>
+<p><code>String</code>方法的参数如果是对象，返回一个类型字符串；如果是数组，返回该数组的字符串形式。</p>
+<pre><code class="language-javascript">String({a: 1}) // &quot;[object Object]&quot;
+String([1, 2, 3]) // &quot;1,2,3&quot;
+</code></pre>
+<p><code>String</code>方法背后的转换规则，与<code>Number</code>方法基本相同，只是互换了<code>valueOf</code>方法和<code>toString</code>方法的执行顺序。</p>
+<ol>
+<li>
+<p>先调用对象自身的<code>toString</code>方法。如果返回原始类型的值，则对该值使用<code>String</code>函数，不再进行以下步骤。</p>
+</li>
+<li>
+<p>如果<code>toString</code>方法返回的是对象，再调用原对象的<code>valueOf</code>方法。如果<code>valueOf</code>方法返回原始类型的值，则对该值使用<code>String</code>函数，不再进行以下步骤。</p>
+</li>
+<li>
+<p>如果<code>valueOf</code>方法返回的是对象，就报错。</p>
+</li>
+</ol>
+<p>下面是一个例子。</p>
+<pre><code class="language-javascript">String({a: 1})
+// &quot;[object Object]&quot;
+
+// 等同于
+String({a: 1}.toString())
+// &quot;[object Object]&quot;
+</code></pre>
+<p>上面代码先调用对象的<code>toString</code>方法，发现返回的是字符串<code>[object Object]</code>，就不再调用<code>valueOf</code>方法了。</p>
+<p>如果<code>toString</code>法和<code>valueOf</code>方法，返回的都是对象，就会报错。</p>
+<pre><code class="language-javascript">var obj = {
+  valueOf: function () {
+    return {};
+  },
+  toString: function () {
+    return {};
+  }
+};
+
+String(obj)
+// TypeError: Cannot convert object to primitive value
+</code></pre>
+<p>下面是通过自定义<code>toString</code>方法，改变返回值的例子。</p>
+<pre><code class="language-javascript">String({
+  toString: function () {
+    return 3;
+  }
+})
+// &quot;3&quot;
+
+String({
+  valueOf: function () {
+    return 2;
+  }
+})
+// &quot;[object Object]&quot;
+
+String({
+  valueOf: function () {
+    return 2;
+  },
+  toString: function () {
+    return 3;
+  }
+})
+// &quot;3&quot;
+</code></pre>
+<p>上面代码对三个对象使用<code>String</code>函数。第一个对象返回<code>toString</code>方法的值（数值3），第二个对象返回的还是<code>toString</code>方法的值（<code>[object Object]</code>），第三个对象表示<code>toString</code>方法先于<code>valueOf</code>方法执行。</p>
+<h3 id="boolean">Boolean()</h3>
+<p><code>Boolean()</code>函数可以将任意类型的值转为布尔值。</p>
+<p>它的转换规则相对简单：除了以下五个值的转换结果为<code>false</code>，其他的值全部为<code>true</code>。</p>
+<ul>
+<li><code>undefined</code></li>
+<li><code>null</code></li>
+<li><code>0</code>（包含<code>-0</code>和<code>+0</code>）</li>
+<li><code>NaN</code></li>
+<li><code>''</code>（空字符串）</li>
+</ul>
+<pre><code class="language-javascript">Boolean(undefined) // false
+Boolean(null) // false
+Boolean(0) // false
+Boolean(NaN) // false
+Boolean('') // false
+</code></pre>
+<p>当然，<code>true</code>和<code>false</code>这两个布尔值不会发生变化。</p>
+<pre><code class="language-javascript">Boolean(true) // true
+Boolean(false) // false
+</code></pre>
+<p>注意，所有对象（包括空对象）的转换结果都是<code>true</code>，甚至连<code>false</code>对应的布尔对象<code>new Boolean(false)</code>也是<code>true</code>（详见《原始类型值的包装对象》一章）。</p>
+<pre><code class="language-javascript">Boolean({}) // true
+Boolean([]) // true
+Boolean(new Boolean(false)) // true
+</code></pre>
+<p>所有对象的布尔值都是<code>true</code>，这是因为 JavaScript 语言设计的时候，出于性能的考虑，如果对象需要计算才能得到布尔值，对于<code>obj1 &amp;&amp; obj2</code>这样的场景，可能会需要较多的计算。为了保证性能，就统一规定，对象的布尔值为<code>true</code>。</p>
+<h2 id="自动转换">自动转换</h2>
+<p>下面介绍自动转换，它是以强制转换为基础的。</p>
+<p>遇到以下三种情况时，JavaScript 会自动转换数据类型，即转换是自动完成的，用户不可见。</p>
+<p>第一种情况，不同类型的数据互相运算。</p>
+<pre><code class="language-javascript">123 + 'abc' // &quot;123abc&quot;
+</code></pre>
+<p>第二种情况，对非布尔值类型的数据求布尔值。</p>
+<pre><code class="language-javascript">if ('abc') {
+  console.log('hello')
+}  // &quot;hello&quot;
+</code></pre>
+<p>第三种情况，对非数值类型的值使用一元运算符（即<code>+</code>和<code>-</code>）。</p>
+<pre><code class="language-javascript">+ {foo: 'bar'} // NaN
+- [1, 2, 3] // NaN
+</code></pre>
+<p>自动转换的规则是这样的：预期什么类型的值，就调用该类型的转换函数。比如，某个位置预期为字符串，就调用<code>String()</code>函数进行转换。如果该位置既可以是字符串，也可能是数值，那么默认转为数值。</p>
+<p>由于自动转换具有不确定性，而且不易除错，建议在预期为布尔值、数值、字符串的地方，全部使用<code>Boolean()</code>、<code>Number()</code>和<code>String()</code>函数进行显式转换。</p>
+<h3 id="自动转换为布尔值">自动转换为布尔值</h3>
+<p>JavaScript 遇到预期为布尔值的地方（比如<code>if</code>语句的条件部分），就会将非布尔值的参数自动转换为布尔值。系统内部会自动调用<code>Boolean()</code>函数。</p>
+<p>因此除了以下五个值，其他都是自动转为<code>true</code>。</p>
+<ul>
+<li><code>undefined</code></li>
+<li><code>null</code></li>
+<li><code>+0</code>或<code>-0</code></li>
+<li><code>NaN</code></li>
+<li><code>''</code>（空字符串）</li>
+</ul>
+<p>下面这个例子中，条件部分的每个值都相当于<code>false</code>，使用否定运算符后，就变成了<code>true</code>。</p>
+<pre><code class="language-javascript">if ( !undefined
+  &amp;&amp; !null
+  &amp;&amp; !0
+  &amp;&amp; !NaN
+  &amp;&amp; !''
+) {
+  console.log('true');
+} // true
+</code></pre>
+<p>下面两种写法，有时也用于将一个表达式转为布尔值。它们内部调用的也是<code>Boolean()</code>函数。</p>
+<pre><code class="language-javascript">// 写法一
+expression ? true : false
+
+// 写法二
+!! expression
+</code></pre>
+<h3 id="自动转换为字符串">自动转换为字符串</h3>
+<p>JavaScript 遇到预期为字符串的地方，就会将非字符串的值自动转为字符串。具体规则是，先将复合类型的值转为原始类型的值，再将原始类型的值转为字符串。</p>
+<p>字符串的自动转换，主要发生在字符串的加法运算时。当一个值为字符串，另一个值为非字符串，则后者转为字符串。</p>
+<pre><code class="language-javascript">'5' + 1 // '51'
+'5' + true // &quot;5true&quot;
+'5' + false // &quot;5false&quot;
+'5' + {} // &quot;5[object Object]&quot;
+'5' + [] // &quot;5&quot;
+'5' + function (){} // &quot;5function (){}&quot;
+'5' + undefined // &quot;5undefined&quot;
+'5' + null // &quot;5null&quot;
+</code></pre>
+<p>这种自动转换很容易出错。</p>
+<pre><code class="language-javascript">var obj = {
+  width: '100'
+};
+
+obj.width + 20 // &quot;10020&quot;
+</code></pre>
+<p>上面代码中，开发者可能期望返回<code>120</code>，但是由于自动转换，实际上返回了一个字符<code>10020</code>。</p>
+<h3 id="自动转换为数值">自动转换为数值</h3>
+<p>JavaScript 遇到预期为数值的地方，就会将参数值自动转换为数值。系统内部会自动调用<code>Number()</code>函数。</p>
+<p>除了加法运算符（<code>+</code>）有可能把运算子转为字符串，其他运算符都会把运算子自动转成数值。</p>
+<pre><code class="language-javascript">'5' - '2' // 3
+'5' * '2' // 10
+true - 1  // 0
+false - 1 // -1
+'1' - 1   // 0
+'5' * []    // 0
+false / '5' // 0
+'abc' - 1   // NaN
+null + 1 // 1
+undefined + 1 // NaN
+</code></pre>
+<p>上面代码中，运算符两侧的运算子，都被转成了数值。</p>
+<blockquote>
+<p>注意：<code>null</code>转为数值时为<code>0</code>，而<code>undefined</code>转为数值时为<code>NaN</code>。</p>
+</blockquote>
+<p>一元运算符也会把运算子转成数值。</p>
+<pre><code class="language-javascript">+'abc' // NaN
+-'abc' // NaN
++true // 1
+-false // 0
+</code></pre>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>Axel Rauschmayer, <a href="http://www.2ality.com/2012/01/object-plus-object.html">What is {} + {} in JavaScript?</a></li>
+<li>Axel Rauschmayer, <a href="http://www.2ality.com/2013/04/quirk-implicit-conversion.html">JavaScript quirk 1: implicit conversion of values</a></li>
+<li>Benjie Gillam, <a href="http://www.benjiegillam.com/2013/06/quantum-javascript/">Quantum JavaScript?</a></li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-operators-priority/" class="post-title gt-a-link">
+                    JavaScript 教程-运算符-其他运算符，运算顺序
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

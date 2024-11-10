@@ -1,0 +1,656 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content="负重前行，O52O加油吧少年"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>JavaScript 教程-浏览器模型-Location 对象，URL 对象，URLSearchParams 对象 | O52O</title>
+
+<link rel="shortcut icon" href="https://0520.eu.org/favicon.ico?v=1731204974435">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://0520.eu.org/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            O52O
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/javascript" class="menu gt-a-link">
+                            Javascript
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1731204974435" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    JavaScript 教程-浏览器模型-Location 对象，URL 对象，URLSearchParams 对象
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2024-05-31 ·
+                    </time>
+                    
+                        <a href="https://0520.eu.org/tag/G-9IdbXM1/" class="post-tags">
+                            # JavaScript 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><ul class="markdownIt-TOC">
+<li><a href="#location-%E5%AF%B9%E8%B1%A1url-%E5%AF%B9%E8%B1%A1urlsearchparams-%E5%AF%B9%E8%B1%A1">Location 对象，URL 对象，URLSearchParams 对象</a>
+<ul>
+<li><a href="#location-%E5%AF%B9%E8%B1%A1">Location 对象</a>
+<ul>
+<li><a href="#%E5%B1%9E%E6%80%A7">属性</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95">方法</a></li>
+</ul>
+</li>
+<li><a href="#url-%E7%9A%84%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81">URL 的编码和解码</a>
+<ul>
+<li><a href="#encodeuri">encodeURI()</a></li>
+<li><a href="#encodeuricomponent">encodeURIComponent()</a></li>
+<li><a href="#decodeuri">decodeURI()</a></li>
+<li><a href="#decodeuricomponent">decodeURIComponent()</a></li>
+</ul>
+</li>
+<li><a href="#url-%E6%8E%A5%E5%8F%A3">URL 接口</a>
+<ul>
+<li><a href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">构造函数</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">实例属性</a></li>
+<li><a href="#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95">静态方法</a></li>
+</ul>
+</li>
+<li><a href="#urlsearchparams-%E5%AF%B9%E8%B1%A1">URLSearchParams 对象</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#urlsearchparamstostring">URLSearchParams.toString()</a></li>
+<li><a href="#urlsearchparamsappend">URLSearchParams.append()</a></li>
+<li><a href="#urlsearchparamsdelete">URLSearchParams.delete()</a></li>
+<li><a href="#urlsearchparamshas">URLSearchParams.has()</a></li>
+<li><a href="#urlsearchparamsset">URLSearchParams.set()</a></li>
+<li><a href="#urlsearchparamsgeturlsearchparamsgetall">URLSearchParams.get()，URLSearchParams.getAll()</a></li>
+<li><a href="#urlsearchparamssort">URLSearchParams.sort()</a></li>
+<li><a href="#urlsearchparamskeysurlsearchparamsvaluesurlsearchparamsentries">URLSearchParams.keys()，URLSearchParams.values()，URLSearchParams.entries()</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="location-对象url-对象urlsearchparams-对象">Location 对象，URL 对象，URLSearchParams 对象</h1>
+<p>URL 是互联网的基础设施之一。浏览器提供了一些原生对象，用来管理 URL。</p>
+<h2 id="location-对象">Location 对象</h2>
+<p><code>Location</code>对象是浏览器提供的原生对象，提供 URL 相关的信息和操作方法。通过<code>window.location</code>和<code>document.location</code>属性，可以拿到这个对象。</p>
+<!-- more -->
+<h3 id="属性">属性</h3>
+<p><code>Location</code>对象提供以下属性。</p>
+<ul>
+<li><code>Location.href</code>：整个 URL。</li>
+<li><code>Location.protocol</code>：当前 URL 的协议，包括冒号（<code>:</code>）。</li>
+<li><code>Location.host</code>：主机。如果端口不是协议默认的<code>80</code>和<code>433</code>，则还会包括冒号（<code>:</code>）和端口。</li>
+<li><code>Location.hostname</code>：主机名，不包括端口。</li>
+<li><code>Location.port</code>：端口号。</li>
+<li><code>Location.pathname</code>：URL 的路径部分，从根路径<code>/</code>开始。</li>
+<li><code>Location.search</code>：查询字符串部分，从问号<code>?</code>开始。</li>
+<li><code>Location.hash</code>：片段字符串部分，从<code>#</code>开始。</li>
+<li><code>Location.username</code>：域名前面的用户名。</li>
+<li><code>Location.password</code>：域名前面的密码。</li>
+<li><code>Location.origin</code>：URL 的协议、主机名和端口。</li>
+</ul>
+<pre><code class="language-javascript">// 当前网址为
+// http://user:passwd@www.example.com:4097/path/a.html?x=111#part1
+document.location.href
+// &quot;http://user:passwd@www.example.com:4097/path/a.html?x=111#part1&quot;
+document.location.protocol
+// &quot;http:&quot;
+document.location.host
+// &quot;www.example.com:4097&quot;
+document.location.hostname
+// &quot;www.example.com&quot;
+document.location.port
+// &quot;4097&quot;
+document.location.pathname
+// &quot;/path/a.html&quot;
+document.location.search
+// &quot;?x=111&quot;
+document.location.hash
+// &quot;#part1&quot;
+document.location.username
+// &quot;user&quot;
+document.location.password
+// &quot;passwd&quot;
+document.location.origin
+// &quot;http://user:passwd@www.example.com:4097&quot;
+</code></pre>
+<p>这些属性里面，只有<code>origin</code>属性是只读的，其他属性都可写。</p>
+<p>注意，如果对<code>Location.href</code>写入新的 URL 地址，浏览器会立刻跳转到这个新地址。</p>
+<pre><code class="language-javascript">// 跳转到新网址
+document.location.href = 'http://www.example.com';
+</code></pre>
+<p>这个特性常常用于让网页自动滚动到新的锚点。</p>
+<pre><code class="language-javascript">document.location.href = '#top';
+// 等同于
+document.location.hash = '#top';
+</code></pre>
+<p>直接改写<code>location</code>，相当于写入<code>href</code>属性。</p>
+<pre><code class="language-javascript">document.location = 'http://www.example.com';
+// 等同于
+document.location.href = 'http://www.example.com';
+</code></pre>
+<p>另外，<code>Location.href</code>属性是浏览器唯一允许跨域写入的属性，即非同源的窗口可以改写另一个窗口（比如子窗口与父窗口）的<code>Location.href</code>属性，导致后者的网址跳转。<code>Location</code>的其他属性都不允许跨域写入。</p>
+<h3 id="方法">方法</h3>
+<p><strong>（1）Location.assign()</strong></p>
+<p><code>assign</code>方法接受一个 URL 字符串作为参数，使得浏览器立刻跳转到新的 URL。如果参数不是有效的 URL 字符串，则会报错。</p>
+<pre><code class="language-javascript">// 跳转到新的网址
+document.location.assign('http://www.example.com')
+</code></pre>
+<p><strong>（2）Location.replace()</strong></p>
+<p><code>replace</code>方法接受一个 URL 字符串作为参数，使得浏览器立刻跳转到新的 URL。如果参数不是有效的 URL 字符串，则会报错。</p>
+<p>它与<code>assign</code>方法的差异在于，<code>replace</code>会在浏览器的浏览历史<code>History</code>里面删除当前网址，也就是说，一旦使用了该方法，后退按钮就无法回到当前网页了，相当于在浏览历史里面，使用新的 URL 替换了老的 URL。它的一个应用是，当脚本发现当前是移动设备时，就立刻跳转到移动版网页。</p>
+<pre><code class="language-javascript">// 跳转到新的网址
+document.location.replace('http://www.example.com')
+</code></pre>
+<p><strong>（3）Location.reload()</strong></p>
+<p><code>reload</code>方法使得浏览器重新加载当前网址，相当于按下浏览器的刷新按钮。</p>
+<p>它接受一个布尔值作为参数。如果参数为<code>true</code>，浏览器将向服务器重新请求这个网页，并且重新加载后，网页将滚动到头部（即<code>scrollTop === 0</code>）。如果参数是<code>false</code>或为空，浏览器将从本地缓存重新加载该网页，并且重新加载后，网页的视口位置是重新加载前的位置。</p>
+<pre><code class="language-javascript">// 向服务器重新请求当前网址
+window.location.reload(true);
+</code></pre>
+<p><strong>（4）Location.toString()</strong></p>
+<p><code>toString</code>方法返回整个 URL 字符串，相当于读取<code>Location.href</code>属性。</p>
+<h2 id="url-的编码和解码">URL 的编码和解码</h2>
+<p>网页的 URL 只能包含合法的字符。合法字符分成两类。</p>
+<ul>
+<li>URL 元字符：分号（<code>;</code>），逗号（<code>,</code>），斜杠（<code>/</code>），问号（<code>?</code>），冒号（<code>:</code>），at（<code>@</code>），<code>&amp;</code>，等号（<code>=</code>），加号（<code>+</code>），美元符号（<code>$</code>），井号（<code>#</code>）</li>
+<li>语义字符：<code>a-z</code>，<code>A-Z</code>，<code>0-9</code>，连词号（<code>-</code>），下划线（<code>_</code>），点（<code>.</code>），感叹号（<code>!</code>），波浪线（<code>~</code>），星号（<code>*</code>），单引号（<code>'</code>），圆括号（<code>()</code>）</li>
+</ul>
+<p>除了以上字符，其他字符出现在 URL 之中都必须转义，规则是根据操作系统的默认编码，将每个字节转为百分号（<code>%</code>）加上两个大写的十六进制字母。</p>
+<p>比如，UTF-8 的操作系统上，<code>http://www.example.com/q=春节</code>这个 URL 之中，汉字“春节”不是 URL 的合法字符，所以被浏览器自动转成<code>http://www.example.com/q=%E6%98%A5%E8%8A%82</code>。其中，“春”转成了<code>%E6%98%A5</code>，“节”转成了<code>%E8%8A%82</code>。这是因为“春”和“节”的 UTF-8 编码分别是<code>E6 98 A5</code>和<code>E8 8A 82</code>，将每个字节前面加上百分号，就构成了 URL 编码。</p>
+<p>JavaScript 提供四个 URL 的编码/解码方法。</p>
+<ul>
+<li><code>encodeURI()</code></li>
+<li><code>encodeURIComponent()</code></li>
+<li><code>decodeURI()</code></li>
+<li><code>decodeURIComponent()</code></li>
+</ul>
+<h3 id="encodeuri">encodeURI()</h3>
+<p><code>encodeURI()</code>方法用于转码整个 URL。它的参数是一个字符串，代表整个 URL。它会将元字符和语义字符之外的字符，都进行转义。</p>
+<pre><code class="language-javascript">encodeURI('http://www.example.com/q=春节')
+// &quot;http://www.example.com/q=%E6%98%A5%E8%8A%82&quot;
+</code></pre>
+<h3 id="encodeuricomponent">encodeURIComponent()</h3>
+<p><code>encodeURIComponent()</code>方法用于转码 URL 的组成部分，会转码除了语义字符之外的所有字符，即元字符也会被转码。所以，它不能用于转码整个 URL。它接受一个参数，就是 URL 的片段。</p>
+<pre><code class="language-javascript">encodeURIComponent('春节')
+// &quot;%E6%98%A5%E8%8A%82&quot;
+encodeURIComponent('http://www.example.com/q=春节')
+// &quot;http%3A%2F%2Fwww.example.com%2Fq%3D%E6%98%A5%E8%8A%82&quot;
+</code></pre>
+<p>上面代码中，<code>encodeURIComponent()</code>会连 URL 元字符一起转义，所以如果转码整个 URL 就会出错。</p>
+<h3 id="decodeuri">decodeURI()</h3>
+<p><code>decodeURI()</code>方法用于整个 URL 的解码。它是<code>encodeURI()</code>方法的逆运算。它接受一个参数，就是转码后的 URL。</p>
+<pre><code class="language-javascript">decodeURI('http://www.example.com/q=%E6%98%A5%E8%8A%82')
+// &quot;http://www.example.com/q=春节&quot;
+</code></pre>
+<h3 id="decodeuricomponent">decodeURIComponent()</h3>
+<p><code>decodeURIComponent()</code>用于URL 片段的解码。它是<code>encodeURIComponent()</code>方法的逆运算。它接受一个参数，就是转码后的 URL 片段。</p>
+<pre><code class="language-javascript">decodeURIComponent('%E6%98%A5%E8%8A%82')
+// &quot;春节&quot;
+</code></pre>
+<h2 id="url-接口">URL 接口</h2>
+<p>浏览器原生提供<code>URL()</code>接口，它是一个构造函数，用来构造、解析和编码 URL。一般情况下，通过<code>window.URL</code>可以拿到这个构造函数。</p>
+<h3 id="构造函数">构造函数</h3>
+<p><code>URL()</code>作为构造函数，可以生成 URL 实例。它接受一个表示 URL 的字符串作为参数。如果参数不是合法的 URL，会报错。</p>
+<pre><code class="language-javascript">var url = new URL('http://www.example.com/index.html');
+url.href
+// &quot;http://www.example.com/index.html&quot;
+</code></pre>
+<p>上面示例生成了一个 URL 实例，用来代表指定的网址。</p>
+<p>除了字符串，<code>URL()</code>的参数也可以是另一个 URL 实例。这时，<code>URL()</code>会自动读取该实例的<code>href</code>属性，作为实际参数。</p>
+<p>如果 URL 字符串是一个相对路径，那么需要表示绝对路径的第二个参数，作为计算基准。</p>
+<pre><code class="language-javascript">var url1 = new URL('index.html', 'http://example.com');
+url1.href
+// &quot;http://example.com/index.html&quot;
+
+var url2 = new URL('page2.html', 'http://example.com/page1.html');
+url2.href
+// &quot;http://example.com/page2.html&quot;
+
+var url3 = new URL('..', 'http://example.com/a/b.html')
+url3.href
+// &quot;http://example.com/&quot;
+</code></pre>
+<p>上面代码中，返回的 URL 实例的路径都是在第二个参数的基础上，切换到第一个参数得到的。最后一个例子里面，第一个参数是<code>..</code>，表示上层路径。</p>
+<h3 id="实例属性">实例属性</h3>
+<p>URL 实例的属性与<code>Location</code>对象的属性基本一致，返回当前 URL 的信息。</p>
+<ul>
+<li>URL.href：返回整个 URL</li>
+<li>URL.protocol：返回协议，以冒号<code>:</code>结尾</li>
+<li>URL.hostname：返回域名</li>
+<li>URL.host：返回域名与端口，包含<code>:</code>号，默认的80和443端口会省略</li>
+<li>URL.port：返回端口</li>
+<li>URL.origin：返回协议、域名和端口</li>
+<li>URL.pathname：返回路径，以斜杠<code>/</code>开头</li>
+<li>URL.search：返回查询字符串，以问号<code>?</code>开头</li>
+<li>URL.searchParams：返回一个<code>URLSearchParams</code>实例，该属性是<code>Location</code>对象没有的</li>
+<li>URL.hash：返回片段识别符，以井号<code>#</code>开头</li>
+<li>URL.password：返回域名前面的密码</li>
+<li>URL.username：返回域名前面的用户名</li>
+</ul>
+<pre><code class="language-javascript">var url = new URL('http://user:passwd@www.example.com:4097/path/a.html?x=111#part1');
+
+url.href
+// &quot;http://user:passwd@www.example.com:4097/path/a.html?x=111#part1&quot;
+url.protocol
+// &quot;http:&quot;
+url.hostname
+// &quot;www.example.com&quot;
+url.host
+// &quot;www.example.com:4097&quot;
+url.port
+// &quot;4097&quot;
+url.origin
+// &quot;http://www.example.com:4097&quot;
+url.pathname
+// &quot;/path/a.html&quot;
+url.search
+// &quot;?x=111&quot;
+url.searchParams
+// URLSearchParams {}
+url.hash
+// &quot;#part1&quot;
+url.password
+// &quot;passwd&quot;
+url.username
+// &quot;user&quot;
+</code></pre>
+<p>这些属性里面，只有<code>origin</code>属性是只读的，其他属性都可写，并且会立即生效。</p>
+<pre><code class="language-javascript">var url = new URL('http://example.com/index.html#part1');
+
+url.pathname = 'index2.html';
+url.href // &quot;http://example.com/index2.html#part1&quot;
+
+url.hash = '#part2';
+url.href // &quot;http://example.com/index2.html#part2&quot;
+</code></pre>
+<p>上面代码中，改变 URL 实例的<code>pathname</code>属性和<code>hash</code>属性，都会实时反映在 URL 实例当中。</p>
+<h3 id="静态方法">静态方法</h3>
+<p><strong>（1）URL.createObjectURL()</strong></p>
+<p><code>URL.createObjectURL()</code>方法用来为上传/下载的文件、流媒体文件生成一个 URL 字符串。这个字符串代表了<code>File</code>对象或<code>Blob</code>对象的 URL。</p>
+<pre><code class="language-javascript">// HTML 代码如下
+// &lt;div id=&quot;display&quot;/&gt;
+// &lt;input
+//   type=&quot;file&quot;
+//   id=&quot;fileElem&quot;
+//   multiple
+//   accept=&quot;image/*&quot;
+//   onchange=&quot;handleFiles(this.files)&quot;
+//  &gt;
+var div = document.getElementById('display');
+
+function handleFiles(files) {
+  for (var i = 0; i &lt; files.length; i++) {
+    var img = document.createElement('img');
+    img.src = window.URL.createObjectURL(files[i]);
+    div.appendChild(img);
+  }
+}
+</code></pre>
+<p>上面代码中，<code>URL.createObjectURL()</code>方法用来为上传的文件生成一个 URL 字符串，作为<code>&lt;img&gt;</code>元素的图片来源。</p>
+<p>该方法生成的 URL 就像下面的样子。</p>
+<pre><code class="language-javascript">blob:http://localhost/c745ef73-ece9-46da-8f66-ebes574789b1
+</code></pre>
+<p>注意，每次使用<code>URL.createObjectURL()</code>方法，都会在内存里面生成一个 URL 实例。如果不再需要该方法生成的 URL 字符串，为了节省内存，可以使用<code>URL.revokeObjectURL()</code>方法释放这个实例。</p>
+<p><strong>（2）URL.revokeObjectURL()</strong></p>
+<p><code>URL.revokeObjectURL()</code>方法用来释放<code>URL.createObjectURL()</code>方法生成的 URL 实例。它的参数就是<code>URL.createObjectURL()</code>方法返回的 URL 字符串。</p>
+<p>下面为上一段的示例加上<code>URL.revokeObjectURL()</code>。</p>
+<pre><code class="language-javascript">var div = document.getElementById('display');
+
+function handleFiles(files) {
+  for (var i = 0; i &lt; files.length; i++) {
+    var img = document.createElement('img');
+    img.src = window.URL.createObjectURL(files[i]);
+    div.appendChild(img);
+    img.onload = function() {
+      window.URL.revokeObjectURL(this.src);
+    }
+  }
+}
+</code></pre>
+<p>上面代码中，一旦图片加载成功以后，为本地文件生成的 URL 字符串就没用了，于是可以在<code>img.onload</code>回调函数里面，通过<code>URL.revokeObjectURL()</code>方法卸载这个 URL 实例。</p>
+<h2 id="urlsearchparams-对象">URLSearchParams 对象</h2>
+<h3 id="概述">概述</h3>
+<p><code>URLSearchParams</code>对象是浏览器的原生对象，用来构造、解析和处理 URL 的查询字符串（即 URL 问号后面的部分）。</p>
+<p>它本身也是一个构造函数，可以生成实例。参数可以为查询字符串，起首的问号<code>?</code>有没有都行，也可以是对应查询字符串的数组或对象。</p>
+<pre><code class="language-javascript">// 方法一：传入字符串
+var params = new URLSearchParams('?foo=1&amp;bar=2');
+// 等同于
+var params = new URLSearchParams(document.location.search);
+
+// 方法二：传入数组
+var params = new URLSearchParams([['foo', 1], ['bar', 2]]);
+
+// 方法三：传入对象
+var params = new URLSearchParams({'foo' : 1 , 'bar' : 2});
+</code></pre>
+<p><code>URLSearchParams</code>会对查询字符串自动编码。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams({'foo': '你好'});
+params.toString() // &quot;foo=%E4%BD%A0%E5%A5%BD&quot;
+</code></pre>
+<p>上面代码中，<code>foo</code>的值是汉字，<code>URLSearchParams</code>对其自动进行 URL 编码。</p>
+<p>浏览器向服务器发送表单数据时，可以直接使用<code>URLSearchParams</code>实例作为表单数据。</p>
+<pre><code class="language-javascript">const params = new URLSearchParams({foo: 1, bar: 2});
+fetch('https://example.com/api', {
+  method: 'POST',
+  body: params
+}).then(...)
+</code></pre>
+<p>上面代码中，<code>fetch</code>命令向服务器发送命令时，可以直接使用<code>URLSearchParams</code>实例。</p>
+<p><code>URLSearchParams</code>可以与<code>URL()</code>接口结合使用。</p>
+<pre><code class="language-javascript">var url = new URL(window.location);
+var foo = url.searchParams.get('foo') || 'somedefault';
+</code></pre>
+<p>上面代码中，URL 实例的<code>searchParams</code>属性就是一个<code>URLSearchParams</code>实例，所以可以使用<code>URLSearchParams</code>接口的<code>get</code>方法。</p>
+<p><code>URLSearchParams</code>实例有遍历器接口，可以用<code>for...of</code>循环遍历（详见《ES6 标准入门》的《Iterator》一章）。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams({'foo': 1 , 'bar': 2});
+
+for (var p of params) {
+  console.log(p[0] + ': ' + p[1]);
+}
+// foo: 1
+// bar: 2
+</code></pre>
+<p><code>URLSearchParams</code>没有实例属性，只有实例方法。</p>
+<h3 id="urlsearchparamstostring">URLSearchParams.toString()</h3>
+<p><code>toString</code>方法返回实例的字符串形式。</p>
+<pre><code class="language-javascript">var url = new URL('https://example.com?foo=1&amp;bar=2');
+var params = new URLSearchParams(url.search);
+
+params.toString() // &quot;foo=1&amp;bar=2'
+</code></pre>
+<p>那么需要字符串的场合，会自动调用<code>toString</code>方法。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams({version: 2.0});
+window.location.href = location.pathname + '?' + params;
+</code></pre>
+<p>上面代码中，<code>location.href</code>赋值时，可以直接使用<code>params</code>对象。这时就会自动调用<code>toString</code>方法。</p>
+<h3 id="urlsearchparamsappend">URLSearchParams.append()</h3>
+<p><code>append()</code>方法用来追加一个查询参数。它接受两个参数，第一个为键名，第二个为键值，没有返回值。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams({'foo': 1 , 'bar': 2});
+params.append('baz', 3);
+params.toString() // &quot;foo=1&amp;bar=2&amp;baz=3&quot;
+</code></pre>
+<p><code>append()</code>方法不会识别是否键名已经存在。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams({'foo': 1 , 'bar': 2});
+params.append('foo', 3);
+params.toString() // &quot;foo=1&amp;bar=2&amp;foo=3&quot;
+</code></pre>
+<p>上面代码中，查询字符串里面<code>foo</code>已经存在了，但是<code>append</code>依然会追加一个同名键。</p>
+<h3 id="urlsearchparamsdelete">URLSearchParams.delete()</h3>
+<p><code>delete()</code>方法用来删除指定的查询参数。它接受键名作为参数。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams({'foo': 1 , 'bar': 2});
+params.delete('bar');
+params.toString() // &quot;foo=1&quot;
+</code></pre>
+<h3 id="urlsearchparamshas">URLSearchParams.has()</h3>
+<p><code>has()</code>方法返回一个布尔值，表示查询字符串是否包含指定的键名。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams({'foo': 1 , 'bar': 2});
+params.has('bar') // true
+params.has('baz') // false
+</code></pre>
+<h3 id="urlsearchparamsset">URLSearchParams.set()</h3>
+<p><code>set()</code>方法用来设置查询字符串的键值。</p>
+<p>它接受两个参数，第一个是键名，第二个是键值。如果是已经存在的键，键值会被改写，否则会被追加。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams('?foo=1');
+params.set('foo', 2);
+params.toString() // &quot;foo=2&quot;
+params.set('bar', 3);
+params.toString() // &quot;foo=2&amp;bar=3&quot;
+</code></pre>
+<p>上面代码中，<code>foo</code>是已经存在的键，<code>bar</code>是还不存在的键。</p>
+<p>如果有多个的同名键，<code>set</code>会移除现存所有的键。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams('?foo=1&amp;foo=2');
+params.set('foo', 3);
+params.toString() // &quot;foo=3&quot;
+</code></pre>
+<p>下面是一个替换当前 URL 的例子。</p>
+<pre><code class="language-javascript">// URL: https://example.com?version=1.0
+var params = new URLSearchParams(location.search.slice(1));
+params.set('version', '2.0');
+
+window.history.replaceState({}, '', location.pathname + `?` + params);
+// URL: https://example.com?version=2.0
+</code></pre>
+<h3 id="urlsearchparamsgeturlsearchparamsgetall">URLSearchParams.get()，URLSearchParams.getAll()</h3>
+<p><code>get()</code>方法用来读取查询字符串里面的指定键。它接受键名作为参数。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams('?foo=1');
+params.get('foo') // &quot;1&quot;
+params.get('bar') // null
+</code></pre>
+<p>两个地方需要注意。第一，它返回的是字符串，如果原始值是数值，需要转一下类型；第二，如果指定的键名不存在，返回值是<code>null</code>。</p>
+<p>如果有多个的同名键，<code>get</code>返回位置最前面的那个键值。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams('?foo=3&amp;foo=2&amp;foo=1');
+params.get('foo') // &quot;3&quot;
+</code></pre>
+<p>上面代码中，查询字符串有三个<code>foo</code>键，<code>get</code>方法返回最前面的键值<code>3</code>。</p>
+<p><code>getAll()</code>方法返回一个数组，成员是指定键的所有键值。它接受键名作为参数。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams('?foo=1&amp;foo=2');
+params.getAll('foo') // [&quot;1&quot;, &quot;2&quot;]
+</code></pre>
+<p>上面代码中，查询字符串有两个<code>foo</code>键，<code>getAll</code>返回的数组就有两个成员。</p>
+<h3 id="urlsearchparamssort">URLSearchParams.sort()</h3>
+<p><code>sort()</code>方法对查询字符串里面的键进行排序，规则是按照 Unicode 码点从小到大排列。</p>
+<p>该方法没有返回值，或者说返回值是<code>undefined</code>。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams('c=4&amp;a=2&amp;b=3&amp;a=1');
+params.sort();
+params.toString() // &quot;a=2&amp;a=1&amp;b=3&amp;c=4&quot;
+</code></pre>
+<p>上面代码中，如果有两个同名的键<code>a</code>，它们之间不会排序，而是保留原始的顺序。</p>
+<h3 id="urlsearchparamskeysurlsearchparamsvaluesurlsearchparamsentries">URLSearchParams.keys()，URLSearchParams.values()，URLSearchParams.entries()</h3>
+<p>这三个方法都返回一个遍历器对象，供<code>for...of</code>循环遍历。它们的区别在于，<code>keys</code>方法返回的是键名的遍历器，<code>values</code>方法返回的是键值的遍历器，<code>entries</code>返回的是键值对的遍历器。</p>
+<pre><code class="language-javascript">var params = new URLSearchParams('a=1&amp;b=2');
+
+for(var p of params.keys()) {
+  console.log(p);
+}
+// a
+// b
+
+for(var p of params.values()) {
+  console.log(p);
+}
+// 1
+// 2
+
+for(var p of params.entries()) {
+  console.log(p);
+}
+// [&quot;a&quot;, &quot;1&quot;]
+// [&quot;b&quot;, &quot;2&quot;]
+</code></pre>
+<p>如果直接对<code>URLSearchParams</code>进行遍历，其实内部调用的就是<code>entries</code>接口。</p>
+<pre><code class="language-javascript">for (var p of params) {}
+// 等同于
+for (var p of params.entries()) {}
+</code></pre>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location">Location</a>, by MDN</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/URL">URL</a>, by MDN</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">URLSearchParams</a>, by MDN</li>
+<li><a href="https://developers.google.com/web/updates/2016/01/urlsearchparams?hl=en">Easy URL Manipulation with URLSearchParams</a>, by Eric Bidelman</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://0520.eu.org/post/javascript-bom-history/" class="post-title gt-a-link">
+                    JavaScript 教程-浏览器模型-History 对象
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: '0520',
+  apikey: '',
+}
+if ('https://0520.disqus.com') {
+  options.api = 'https://0520.disqus.com'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lovoupw" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/lovou_pw" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://weibo.com/316302888" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://zhihu.com/people/feng-ling-71-63-43" target="_blank">
+                    <i class="fab fa-zhihu gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Copyright &copy;2024 负重前行 <a href="https://blog.lovou.pw" target="_blank">O52O</a> 加油吧少年
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://0520.eu.org/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
